@@ -1,23 +1,27 @@
 ---
 title: "Joseph Priestly's \"A Chart of Biography\""
-author: "Jeffrey Arnold"
+author: "Jeffrey B. Arnold"
 date: "2/5/2018"
 output: html_document
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 
+## Introduction
 
-The data came from the corrected OCR 
+Describe data
 
+
+Create timelines
 
 
 ## Descriptions
-
-In the 
 
 Examples in which the date of death and the age at death are known. These are drawn with a single solid black line since there is no uncertainty.
 
@@ -90,9 +94,6 @@ Examples:
 
 - Suidas fl. ab. 11 Cent. Cr
 - Hesychius fl. ab. 300 Cr
-
-
-
 
 
 text                               start2   start1   end1

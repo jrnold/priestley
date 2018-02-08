@@ -1,12 +1,15 @@
+#!/usr/bin/env Rscript
+#
+# Script to convert the json files of parsed Priestley bios to
+# rda files, saving them in the data directory
 suppressPackageStartupMessages({
   library("jsonlite")
   library("purrr")
   library("tibble")
   library("stringr")
+  library("rlang")
 })
 
-FILENAME <- here::here("data-raw", "priestley1764.json")
-priestley <- read_json(FILENAME)
 
 process_bio <- function(x) {
   out <- as_tibble(x[c("name", "text", "division")])
@@ -20,4 +23,20 @@ process_bio <- function(x) {
   out
 }
 
-priestley %>% map_df(process_bio)
+json2rda <- function(infile) {
+  obj <- tools::file_path_sans_ext(basename(infile))
+  outfile <- here::here("data", str_c(obj, ".rda"))
+  e <- rlang::new_environment()
+  e[[obj]] <- read_json(infile) %>%
+    map_df(process_bio)
+  dir.create(here::here("data"), showWarnings = FALSE)
+  save(list = obj, file = outfile, envir = e, compress = "bzip2")
+}
+
+main <- function() {
+  infile <- commandArgs(TRUE)[1]
+  json2rda(infile)
+}
+
+main()
+
