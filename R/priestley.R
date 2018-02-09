@@ -1,13 +1,36 @@
 #' Priestley's Chart of Biography Data
 #'
+#' These are several datasets from the Joseph Priestley's \emph{A Chart of Biography},
+#' which is the first known use of a visual timeline to display historical data.
+#' The data consist of the lives of approximately 2,000 individuals between 1200 B.C.E.
+#' and about 1800 C.E. The \emph{Chart of Biogrpahy} was published in numerous
+#' editions between 1764 and 1815. This package provides the data associated
+#' with the 1st (1764) and 74th (1778) editions.x
+#'
 #' These datasets comprise the biographical data in Priestley's
 #' \emph{Chart of Biography}. The data frame \code{priestley_1764} has
-#' the biographical data for the 1st edition (1764), and \code{priestley_bios_1778}
+#' the biographical data for the 1st edition (1764), \code{priestley_bios_1778}
 #' has the biographical data for the 2nd edition (1778).
+#' Each biographical entry lists the name of the individual, their primary profession
+#' as used to organize them in the chart, and some combination of birth, death,
+#' lived, or "flourished" years.
 #'
-#' In these charts, the margin is annotated with the current ruler (Kings of Judah,
-#' Kings of Persia, Ptolemies of Egypt, Roman Emperors, Kings of England).
-#' The rulers data is from the 1st Edition (1764).
+#' The data frame \code{priestly_kings} is a list of rulers (Kings of Judah,
+#' Kings of Persia, Ptolemies of Egypt, Roman Emperors, Kings of England)
+#' which are used to annotated the margin of the chart. These data are from
+#' the list titled "The Times When Kings in Those Successions Which Are Noted
+#' in the Margin of the Chart Began Their Reigns".
+#' These data are from the 1st Edition (1764), pp. 77--80.
+#'
+#' The data frame \code{priestly_continuation} is from two Appendix Tables in
+#' the 1st edition titled, "A Catalogue of All the Names in the
+#' Continuation of the Chart, According to the Hebrew Chronology" (p. 74--75)
+#' and "The Same According to the Septuagint, as Far as that Chronology
+#' Differs Considerably from Any Thing in the Hebrew." (p. 76). These are lists
+#' of famous Old Testament people, along with their purported death years and ages
+#' according to both the Hebrew and Septuagint versions of Old Testament of
+#' the Bible.
+#'
 #'
 #' @format \code{priestley_bios_1764} and \code{priestley_bios_1764} are data frames with the same column formats:
 #' \tabular{lll}{
