@@ -2110,16 +2110,16 @@
    "century": false
   },
   "lived after": {
-   "value": 399,
+   "value": -399,
    "century": false
   },
   "name": "Andocides",
   "category": "Or",
   "division": "Orators and Critics",
-  "text": "Andocides b. 468 BC. liv. af. 399 Or",
+  "text": "Andocides b. 468 BC. liv. af. 399 BC. Or",
   "start_1": -468,
-  "end_1": 399,
-  "end_2": 409,
+  "end_1": -399,
+  "end_2": -389,
   "start_2": -468
  },
  {

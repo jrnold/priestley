@@ -18,7 +18,58 @@ knitr::opts_chunk$set(echo = TRUE)
 Describe data
 
 
-Create timelines
+```{r height=1800,width=1800}
+library("tidyverse")
+library("plotly")
+library("priestley")
+
+
+subplot(
+  priestley_bios_1764 %>% 
+    arrange(division, start_2, end_2) %>%
+    mutate(.id = row_number()) %>%
+    plot_ly() %>%
+    add_segments(y = ~ .id, yend = ~ .id, 
+                 x = ~ start_2, xend = ~ end_2,
+                 color = ~ division, text = ~ text, hoverinfo = "text") %>%
+    layout(
+      xaxis = list(title = "",
+                   showticklabels = TRUE,
+                   dtick = 100,
+                   tick0 = 0,
+                   range = list(-1200, 1800),
+                   minorgridcount = 10,
+                   type = "linear",
+                   side = "bottom"),
+      xaxis2 = list(title = "",
+                   tickmode = "array",
+                   tickvals = priestley_kings$year,
+                   ticktext = priestley_kings$name,
+                   side = "top",
+                   overlaying = "x"),
+      yaxis = list(title = "",
+                   showticklabels = FALSE,
+                   showgrid = FALSE)
+    ),
+  priestley_kings %>%
+    plot_ly() %>%
+    add_text(x = ~ year, y = 0, text = ~ name, textangle = 90, mode = "text",
+             textfont = list(textangle = 0, color = "black"),
+             showlegend = FALSE) %>%
+    layout(xaxis = list(title = "", showticklabels = FALSE, showgrid = FALSE,
+                        zeroline = FALSE),
+           yaxis = list(title = "", showticklabels = FALSE, showgrid = FALSE,
+                        zeroline = FALSE)),
+  nrows = 2,
+  shareX = TRUE, shareY = FALSE,
+  margin = 0
+)
+
+
+
+
+```
+
 
 
 ## Descriptions
