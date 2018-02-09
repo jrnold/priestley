@@ -20,6 +20,24 @@ Describe data
 
 Create timelines
 
+A **ggplot2** example:
+```{r message = FALSE}
+library("tidyverse")
+library("priestley")
+
+ggplot(priestley1764) +
+  geom_segment(aes(y = name, yend = name, x = start_2, xend = end_2),
+               alpha = 0.3) +
+  geom_segment(aes(y = name, yend = name, x = start_1, xend = end_1)) +
+  facet_wrap(~ division, ncol = 1) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  scale_x_continuous(minor_breaks = seq(-1200, 1800, 10), breaks = seq(-1200, 1800, 100))
+                     
+```
+
+![](PriestleyChart.gif)
+
+Wikimedia Commons contributors, "File:PriestleyChart.gif," Wikimedia Commons, the free media repository, https://commons.wikimedia.org/w/index.php?title=File:PriestleyChart.gif&oldid=177413180 (accessed February 8, 2018).
 
 ## Descriptions
 

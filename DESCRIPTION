@@ -9,7 +9,8 @@ Encoding: UTF-8
 LazyData: true
 Authors@R: person("Jeffrey", "Arnold", role = c("aut", "cre"), email = "jeffrey.arnold@gmail.com")
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    tidyverse
 Depends: 
   R (>= 3.0.0)
 VignetteBuilder: knitr
