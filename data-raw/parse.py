@@ -318,8 +318,8 @@ def add_intervals(data):
             # use exact values for age and the 2/3 rule for flourished
             fl = person['flourished']['value']
             age = person['age']
-            person["start_1"] = fl + (1 / 3) * age
-            person["end_1"] = fl - (2 / 3) * age
+            person["end_1"] = fl + (1 / 3) * age
+            person["start_1"] = fl - (2 / 3) * age
         elif life_type == ("age about", "born"):
             # ignore uncertainty with about
             person['start_1'] = person['born']['value']
@@ -372,20 +372,20 @@ def add_intervals(data):
             person["end_2"] = person["end_1"] + 3 * DOTS_YEARS
         elif life_type == ("born about", "died"):
             person['end_1'] = person['died']['value']
-            person['start_1'] = person['end_1'] - person['born about']
+            person['start_1'] = person['born about']['value']
         elif life_type == ("born before", ):
-            person["start_1"] = person["born"]["value"]
+            person["start_1"] = person["born before"]["value"]
             person["start_2"] = person["start_1"] - 1 * DOTS_YEARS
             person["end_1"] = person["start_1"] + 3 * DOTS_YEARS
             person["end_2"] = person["end_1"] + 3 * DOTS_YEARS
         elif life_type == ("died", ):
             person['end_1'] = person['died']['value']
             person['start_1'] = person['end_1'] - 3 * DOTS_YEARS
-            person['end_2'] = person['end_1'] - 4 * DOTS_YEARS
+            person['start_2'] = person['start_1'] - 4 * DOTS_YEARS
         elif life_type == ("died about", ):
             person['end_1'] = person['died about']['value']
             person['start_1'] = person['end_1'] - 3 * DOTS_YEARS
-            person['end_2'] = person['end_1'] - 4 * DOTS_YEARS
+            person['start_2'] = person['start_1'] - 4 * DOTS_YEARS
         elif life_type == ("died after", ):
             person['end_1'] = person['died after']['value']
             person['end_2'] = person['end_1'] + DOTS_YEARS
@@ -394,21 +394,21 @@ def add_intervals(data):
         elif life_type == ("flourished", ):
             fl = person['flourished']['value']
             person["start_1"] = fl - 2 * DOTS_YEARS
-            person["start_2"] = fl - 3 * DOTS_YEARS
+            person["start_2"] = person['start_1'] - 3 * DOTS_YEARS
             person["end_1"] = fl + DOTS_YEARS
             person["end_2"] = person["end_1"] + 2 * DOTS_YEARS
         elif life_type == ("flourished after", ):
             # treat the same as flourished
             fl = person['flourished after']['value']
             person["start_1"] = fl - 2 * DOTS_YEARS
-            person["start_2"] = fl - 3 * DOTS_YEARS
+            person["start_2"] = person['start_1'] - 3 * DOTS_YEARS
             person["end_1"] = fl + DOTS_YEARS
             person["end_2"] = person["end_1"] + 2 * DOTS_YEARS
         elif life_type == ("flourished before", ):
             # treat the same as flourished
             fl = person['flourished before']['value']
             person["start_1"] = fl - 2 * DOTS_YEARS
-            person["start_2"] = fl - 3 * DOTS_YEARS
+            person["start_2"] = person["start_1"] - 3 * DOTS_YEARS
             person["end_1"] = fl + DOTS_YEARS
             person["end_2"] = person["end_1"] + 2 * DOTS_YEARS
         elif life_type == ("flourished about", ):

@@ -5,7 +5,7 @@ date: "2/5/2018"
 output: html_document
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Joseph Priestly's "A Chart of Biography"}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -15,10 +15,49 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-Describe data
 
 
-Create timelines
+```{r fig.height=2000, fig.width=3000}
+library("tidyverse")
+library("plotly")
+library("priestley")
+
+xaxis <- list(title = "",
+              tickmode = "array",
+              tickvals = seq(-1200, 1800, by = 100),
+              mirror = "all"
+              )
+xaxis$ticktext <- map_chr(xaxis$tickvals, ~ if_else(.x == 0, 
+                                                    str_c("O CE"),
+                                                    as.character(abs(.x))))
+
+priestley_bios_1764 %>% 
+  ungroup() %>%
+  mutate(y = runif(n = length(text)) + as.numeric(as.factor(division))) %>%
+  plot_ly() %>%
+  add_segments(y = ~ y, yend = ~ y, 
+               x = ~ start_2, xend = ~ end_2,
+               color = ~ division, text = ~ text, hoverinfo = "text") %>%
+  layout(
+    xaxis = xaxis,
+    yaxis = list(title = "",
+                 showticklabels = FALSE,
+                 showgrid = FALSE),
+    margin = list(b = 120)
+  )
+
+
+```
+
+```{r}
+priestley_kings %>% 
+  arrange(year) %>%
+  mutate(.id = row_number()) %>%
+  plot_ly(y = ~ .id, x = ~ year, 
+          text = ~ name,
+          hovertext = 
+          mode = "marker+text")
+```
 
 A **ggplot2** example:
 ```{r message = FALSE}
@@ -34,6 +73,7 @@ ggplot(priestley1764) +
   scale_x_continuous(minor_breaks = seq(-1200, 1800, 10), breaks = seq(-1200, 1800, 100))
                      
 ```
+
 
 ![](PriestleyChart.gif)
 
