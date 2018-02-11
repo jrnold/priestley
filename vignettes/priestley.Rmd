@@ -15,7 +15,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
+Joseph Priestley's 
 
+The **priestley** package is a data-only package containing a few datasets with
+the biographic information from his original data
 
 ```{r fig.height=2000, fig.width=3000}
 library("tidyverse")

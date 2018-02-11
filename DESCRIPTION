@@ -9,10 +9,7 @@ Encoding: UTF-8
 LazyData: true
 Authors@R: person("Jeffrey", "Arnold", role = c("aut", "cre"), email = "jeffrey.arnold@gmail.com")
 Suggests: knitr,
-<<<<<<< HEAD
-=======
     plotly,
->>>>>>> 5f8c4d7111b493cea0b46fc86b8a2a1a6ababcd6
     rmarkdown,
     tidyverse
 Depends: 
