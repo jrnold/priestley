@@ -121,8 +121,8 @@ Ali, Ebn Hosein, fl. 980 M
 Alimentus L. C. fl. 211 BC. L
 Al Kamel d. 1237. 69
 Alkindus fl. 1100 M
-Alcmæon fl. 500 BC. H P. Ital
-Alcmæon, Alm, fl. 1140 M
+Alcmaeon fl. 500 BC. H P. Ital
+Alcmaeon, Alm, fl. 1140 M
 Almamon d. 833. 48
 Al Mansur d. 775. 63
 Al Mochtar d. 689. 66
@@ -407,7 +407,7 @@ Bolingbroke d. 1751. 73
 Bonaventura d. 1274 D
 Booth d. 1733. 52 Act
 Borelli d. 1679. 72 M
-Borgia Cæsar d. 1507
+Borgia Caesar d. 1507
 Boscawen d. 1761
 Bossuet d. 1704. 78 H
 Boyle d. 1691. 65 M
@@ -448,16 +448,16 @@ Buzur Giumhur fl. 580 M
 Cabot, Sebastian d. 1557 above 70
 Cadmus fl. 1045 BC.
 Cadmus Milesius fl. 550 BC. H
-Cæcilius d. af. 166 BC. P
+Caecilius d. af. 166 BC. P
 Caerleon Ludovicus fl. 1360 M
-Cæsalpinus, Andreas, d. 1603. 84 Ph
-Cæsar Julius d. 44 BC. 56
+Caesalpinus, Andreas, d. 1603. 84 Ph
+Caesar Julius d. 44 BC. 56
 Cajetan d. 1534. 65 D
 Caius d. ab. 210 L
 Caius J. d. 1573. 63 Ph
 Calamy d. 1732. 61 D
 Caleca Manuel fl. 1250 D
-Caligua d. 41. 29
+Caligula d. 41. 29
 Calippus fl. 330 BC. M
 Calisthenes d. 328 H P.
 Callimachus d. ab. 244 BC. P
@@ -526,7 +526,7 @@ Cerinthus fl. 80 F
 Cervantes d. 1620. 69 Bel
 Cerularius Michael d. 1058 D
 Chabrias d. 357 BC.
-Chæremon fl. 25 M
+Chaeremon fl. 25 M
 Chalchondiles d. 1513 ab. 80 Cr
 Charlemaigne d. 813. 70
 Charles the Bald. d. 876. 53
@@ -727,7 +727,7 @@ Diodorus Siculus fl. 44 BC. H
 Diogenes d. 324 BC. 90 H P.
 Diogenes Laertius d. ab. 122 H
 Dion d. 354 BC.
-Dion Prusæus fl. 105 Cr
+Dion Prusaeus fl. 105 Cr
 Dionysius Sen. d. 361 BC. 45
 Dionysius Junr. d. af. 343 BC.
 Dionysius Alex. d. ab. 241 BC. M
@@ -968,7 +968,7 @@ Gozan d. 1353
 Gracchus, Cornelius, d. 121
 Gracchus Tiberius d. 133
 Gracchus Sempron Senr. d. af. 162
-Grævius d. 1703. 70 Cr
+Graevius d. 1703. 70 Cr
 Gratian d. 383. 24
 Gratian d. af. 1151 L
 Gratius fl. 0 F
@@ -983,7 +983,7 @@ Gregory 9th d. 1241. 99 Po
 Gregory 13th d. 1585 Po
 Gregory Cyprius fl. 1284 D
 Gregory Nazianzen d. 389 F
-Gregory Neocæsariensis d. af. 270 F
+Gregory Neocaesariensis d. af. 270 F
 Gregory Nissenus d. 395 F
 Gregory Thaumaturgus d. 266 F
 Gregory of Tours d. 595 H
@@ -1009,10 +1009,10 @@ Gurges Fabius d. 263
 Gustavus Adolphus d. 1632
 Gustavus Vafa d. 1560. 70
 Guttembugh J. d. af. 1460 Pa
-Guy D’ Arezzo fl. 1020 Mu
+Guy D'Arezzo fl. 1020 Mu
 Gylippus fl. 415 BC.
 Habakkuk fl. 730 BC. J
-Hæmus fl. 1080 BC.
+Haemus fl. 1080 BC.
 Haggai fl. 528 BC. J
 Haithem Al. d. 1038 M
 Haitonius fl. 1307 H
@@ -1203,7 +1203,7 @@ Innocent 1st d. 417 F
 Innocent 2d d. 1143 Po
 Innocent 3d d. 1216 Po
 Joachim de Calaber fl. 1200 D
-Joan D' Arc d. 1431
+Joan D'Arc d. 1431
 Joannes Becanus fl. 1350 H
 Joannes Hagastaldensis fl. 1180 H
 Joannes Mauropus fl. 1050 P
@@ -1228,7 +1228,7 @@ John Sprot fl. 1350 J
 Johnson Ben d. 1638. 64 P
 Ion Chius fl. 419 BC. P
 Jonah fl. 800 BC. J
-Jonathan Macchabæus d. 144 BC.
+Jonathan Macchabaeus d. 144 BC.
 Jonathan Ben Uzziel fl. 30 J
 Jones Inigo d. 1651 Ar
 Joram d. 884 BC.
@@ -1255,7 +1255,7 @@ Isocrates d. 338 BC. 99 Or
 Juan Don d. 1578. 74
 Judah, Rabbi, fl. 763 J
 Judah Hakkadosh fl. 160 J
-Judas Maccabæus d. ab. 161 BC.
+Judas Maccabaeus d. ab. 161 BC.
 Jugurtha d. 106 BC.
 Julia d. 14
 Julia Mammaea d. 222
@@ -1306,7 +1306,7 @@ Lautrec d. 1528
 Le Brun d. 1690. 71 Pa
 Le Clerc d. 1736. 79 D
 Leibnitz d. 1716. 70 M
-Leicester E. of, d. 1588
+Leicester, E. of, d. 1588
 Leland, John, d. 1552 Ant
 Lelex fl. 1125 BC.
 Leo Armenius d. 821
@@ -1404,7 +1404,7 @@ Maleck Shah d. 1091. 37
 Malela J fl. 600 H
 Malherbe d. 1628. 76 P
 Malpighi d. 1694. 66 Ph
-Mammæa d. 235
+Mammaea d. 235
 Manes fl. 277 F
 Manetho fl. 261 BC. H
 Manfred of Naples d. 1266
@@ -1444,8 +1444,8 @@ Massinello d. 1647
 Massinissa d. ab. 149 BC. 97
 Masurius Sabinus fl. 25 L
 Matilda d. 1167. 67
-Matthæus Sylvaticus fl. 1297 Ph
-Matthæus Vindocinensis fl. 1200 P
+Matthaeus Sylvaticus fl. 1297 Ph
+Matthaeus Vindocinensis fl. 1200 P
 Matthew of Westminster fl. 1378 H
 Maurice of Nassau d. 1625
 Mauritius d. 602. 60
@@ -1462,7 +1462,7 @@ Maximus Tyrius d. ab. 180 H P.
 Mazarine d. 1661. 59
 Mead d. 1754. 81 Ph
 Mead Joseph, d. 1638. 52 D
-Mecænas d. 8 BC.
+Mecaenas d. 8 BC.
 Mela Pomponius fl. 45 Geo
 Melancthon d. 1560. 64 D
 Meleager fl. 954 BC.
@@ -1499,7 +1499,7 @@ Milton d. 1674. 66 P
 Mimnermus fl. 606 BC. P
 Minos d. 964 BC.
 Minucianus fl. 260 Cr
-Minucius Fælix fl. 220. F
+Minucius Faelix fl. 220. F
 Mirkhond fl. 1478 H
 Misitheus d. 243
 Misphragmuthosis fl. 1157 BC.
@@ -1535,7 +1535,7 @@ Motanabbi d. 965. 54 P
 Muça d. 714
 Mummius fl. 146 BC.
 Munster Sebastian fl. 1530 M
-Musæus fl. 950 BC. P
+Musaeus fl. 950 BC. P
 Musurus d. 1517. 49 Cr
 Myron fl. 444 BC. St
 Myso fl. 590 H P.
@@ -1545,7 +1545,7 @@ Nachman fl. 12 Cent. J
 Nachmanides M. d. ab. 1270. 76 J
 Nachmanides M. fl. 322 J
 Nadir Shah d. 1747. 61
-Nævius d. 203 BC. P
+Naevius d. 203 BC. P
 Nahum fl. 758 BC. J
 Napier d. 1617. 67 M
 Narses d. 605
@@ -1639,18 +1639,18 @@ Pachymerus fl. 1280 H
 Paciolus, Lucas, fl. 1494 M
 Pacuvius d. 131 BC. 90 P
 Pagninus Sanctes d. 1536. 70 P
-Palæmon fl. 50 Cr
-Palæphatas fl. 300 H
+Palaemon fl. 50 Cr
+Palaephatas fl. 300 H
 Paleologas, J. Michael, d. 1283. 58
 Palestina fl. 1500 Mu
 Palladio fl. 1576 Ar
 Pallas d. 61
 Pamphilus fl. 350 BC. Pa
-Panænus fl. 446 BC. Pa
-Panætius d. af. 136 BC. H P. Sto
+Panaenus fl. 446 BC. Pa
+Panaetius d. af. 136 BC. H P. Sto
 Pancirollus d. 1599. 76 L
 Panodorus fl. 404 H
-Pantænus d. ab. 213 F
+Pantaenus d. ab. 213 F
 Panvinius Onuphrius d. 1568. 38 Cr
 Papias fl. 110 F
 Papinian d. 212 L
@@ -1716,8 +1716,8 @@ Petronius Arbiter d. ab. 66 Cr
 Petrus Blesensis d. ab. 1200 D
 Petrus Chrysolorus d. ab. 449 F
 Peurbachius d. 1462. 87 M
-Phædo fl. 400 BC. H P. Eleack
-Phædrus fl. 4 P
+Phaedo fl. 400 BC. H P. Eleack
+Phaedrus fl. 4 P
 Phalantus fl. 625 BC.
 Phalaris d. 552 BC.
 Pharamond d. 428
@@ -1791,7 +1791,7 @@ Politian d. 1494. 46 Cr
 Pollio A. fl. 42
 Pollio Trebellius fl. 305 H
 Polo, Marco, b. 1250 Trav.
-Polyænus d. ab. 164 Cr
+Polyaenus d. ab. 164 Cr
 Polybius d. 124 BC. 82 H
 Polycarp d. 167 F
 Polycletus fl. 432 BC. St
@@ -1822,7 +1822,7 @@ Proclus d. 487. 75 M
 Proclus of Constantinople d. 446 F
 Procopius d. 366
 Procopius fl. 534 H
-Procopius Gazæus fl. 520 F.
+Procopius Gazaeus fl. 520 F.
 Prometheus fl. 937 BC.
 Propertius d. ab. 7 BC. ab. 41 P
 Prosper d. 456 F
@@ -2048,7 +2048,7 @@ Stefano d. 1350. 48 Pa
 Stephanus Athen. fl. 630 Ph
 Stephanus Byzantinus fl. 5 or 6 Cent. Cr
 Stephens, Henry, d. 1598. 70 Cr
-Stephens Robert, d. 1559. 66 Cr
+Stephens, Robert d. 1559. 66 Cr
 Sternhold d. 1549 P
 Stesichorus d. 556 BC. P
 Stiborius, Andreas, fl. 1500 M
@@ -2151,7 +2151,7 @@ Thomas d. 822
 Thompson d. 1748. 48 P
 Thoresby d. 1725. 65 M
 Thornton, Geo. D. fl. 1300 L
-Thrasea Pætus d. 66
+Thrasea Paetus d. 66
 Thrasybulus d. 390
 Thuanus d. 1617. 64 H .
 Thucydides d. ab. 391. ab. 80 H
@@ -2163,7 +2163,7 @@ Tiglath Pileser d. 727 BC.
 Tigranes d. 37 BC. 84
 Tillotson d. 1694. 65 D
 Tilly, Count, d. 1632
-Timæus Siculus d. 262 BC. 96
+Timaeus Siculus d. 262 BC. 96
 Timanthes fl. 440 BC. Pa
 Timocharis d. af. 272 BC. M
 Timoleon d. 337 BC.
@@ -2205,7 +2205,7 @@ Turpilius fl. 101 BC. P
 Turpilius fl. 69 Pa.
 Tycho Brahe fl. 1601. 55 M
 Tyrannio d. af. 56 BC. Cr
-Tyrtæus fl. 607 BC. P
+Tyrtaeus fl. 607 BC. P
 Vaillant d. 1708. 76 Ant
 Valdemar d. 1182. 48
 Valens d. 379. 50
@@ -2259,7 +2259,7 @@ Ulpian d. 226 L
 Ulpius Marcellus fl. 150 L
 Ulugh Beg d. 1467
 Ung Khan d. 1202
-Volusius Mæsianus fl. 160 L
+Volusius Maesianus fl. 160 L
 Vopiscus Flav. fl. 303 H
 Vortigern d. ab. 484
 Vossius, Gerrard J. d. 1650. 73 Cr
@@ -2296,7 +2296,7 @@ William of Newbury fl. 1197 H
 William of Spires fl. 1081 M
 William of Tyre d. 1180 H
 Willis d. 1670. 49 Ph
-Winftanley, Hamlet, d. 1756. 61 Pa
+Winftanley, Hamlet d. 1756. 61 Pa
 Wit, John de, d. 1672. 47
 Witikind fl. 781
 Wolfe d. 1759. 34

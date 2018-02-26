@@ -15,10 +15,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-Joseph Priestley's 
+Joseph Priestley's *A Chart of Biography*, first published in 
 
 The **priestley** package is a data-only package containing a few datasets with
-the biographic information from his original data
+the biographic information from the 1764 and 1778 editions of the the *Chart of Biography*.
 
 ```{r fig.height=2000, fig.width=3000}
 library("tidyverse")
@@ -73,8 +73,22 @@ ggplot(priestley1764) +
   geom_segment(aes(y = name, yend = name, x = start_1, xend = end_1)) +
   facet_wrap(~ division, ncol = 1) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  scale_x_continuous(minor_breaks = seq(-1200, 1800, 10), breaks = seq(-1200, 1800, 100))
+  scale_x_continuous(minor_breaks = seq(-1200, 1800, 10), 
+                     breaks = seq(-1200, 1800, 100))
                      
+```
+
+```{r}
+yaml::yaml.load_file(here::here("data-raw/small-chart.yml")) %>%
+  imap_dfr(~ tibble(division = .x, name = .y)) %>%
+  left_join(priestley_bios_1764, by = "name") %>% 
+  filter(!is.na(text))
+  
+
+function(x) {
+  str_replace(" ", 
+}
+
 ```
 
 
