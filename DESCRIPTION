@@ -5,7 +5,6 @@ Version: 0.0.1
 Description: Data from Joseph Priestley's, "A Chart of Biography" (1765, 1778),
     the first known example of visual timeline.
 License: MIT + file LICENSE
-Encoding: UTF-8
 LazyData: true
 Authors@R: person("Jeffrey", "Arnold", role = c("aut", "cre"), email = "jeffrey.arnold@gmail.com")
 Suggests: knitr,

@@ -10,17 +10,17 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 ```
 
 ## Introduction
 
-Joseph Priestley's *A Chart of Biography*, first published in 
+Joseph Priestley's *A Chart of Biography*, first published in 1764, is the first instance of a modern timeline.
 
 The **priestley** package is a data-only package containing a few datasets with
 the biographic information from the 1764 and 1778 editions of the the *Chart of Biography*.
 
-```{r fig.height=2000, fig.width=3000}
+```{r fig.height=2000, fig.width=3000, eval=FALSE}
 library("tidyverse")
 library("plotly")
 library("priestley")
@@ -52,7 +52,7 @@ priestley_bios_1764 %>%
 
 ```
 
-```{r}
+```{r eval=FALSE}
 priestley_kings %>% 
   arrange(year) %>%
   mutate(.id = row_number()) %>%
@@ -63,7 +63,7 @@ priestley_kings %>%
 ```
 
 A **ggplot2** example:
-```{r message = FALSE}
+```{r message = FALSE, eval = FALSE}
 library("tidyverse")
 library("priestley")
 
@@ -78,16 +78,11 @@ ggplot(priestley1764) +
                      
 ```
 
-```{r}
+```{r eval=FALSE}
 yaml::yaml.load_file(here::here("data-raw/small-chart.yml")) %>%
   imap_dfr(~ tibble(division = .x, name = .y)) %>%
   left_join(priestley_bios_1764, by = "name") %>% 
   filter(!is.na(text))
-  
-
-function(x) {
-  str_replace(" ", 
-}
 
 ```
 
@@ -100,28 +95,29 @@ Wikimedia Commons contributors, "File:PriestleyChart.gif," Wikimedia Commons, th
 
 Examples in which the date of death and the age at death are known. These are drawn with a single solid black line since there is no uncertainty.
 
-> Pindar d. 435 BC. 86 P
-> Sophocles d. 406 BC 91 P
-> Xenophon d. 359 BC. ab. 90 H
-> Plato d. 348 BC. 81 HP
-> Terence d. 159 BC. 35 P
+- Pindar d. 435 BC. 86 P
+- Sophocles d. 406 BC 91 P
+- Xenophon d. 359 BC. ab. 90 H
+- Plato d. 348 BC. 81 HP
+- Terence d. 159 BC. 35 P
 
-> IT is an imperfeftion which must neceiTarily attend every Chart of this 
-> nature, that the time of the death, but more efpecially the time of the birth of eminent
-> men cannot always be found. In this cafe the  piler muft content hirafelf    with placing his line as
-> near as he can conjefture from hiftory where his true
-place was, leaving marks to exprefs the uncertainty
-> there is attending it. The method I have ufed in
-> this Chart is to exprefs certainty by a full line, and
-> what is uncertain by dots or a broken line, dispro
+> It is an imperfection which must necessarily attend every Chart of this 
+> nature, that the time of the death, but more especially the time of the birth 
+> of eminent men cannot always be found. In this case the compiler must content 
+> himself with placing his line as near as he can conjecture from history where 
+> his true place was, leaving marks to express the uncertainty
+> there is attending it. The method I have used in
+> this Chart is to express certainty by a full line, and
+> what is uncertain by dots or a broken line, dispro 
 > of the dots in the following manner, according to the
 > kind or degree of the uncertainty they have to express.
-
-
+> 
 > If it be thought that a person was born or died but
 > a little before or after a certain time, the full line
 > begins or ends at the certain time, and a single dot only
 > is placed at the beginning or end of the line
+
+Examples include,
 
 - Herodotus b. 484 BC. d. af. 413 H
 
@@ -129,12 +125,14 @@ place was, leaving marks to exprefs the uncertainty
 > about a certain time, a dot is placed just under the
 > beginning or end of the full line
 
+Examples include,
+
 - Agis b. 24. BC. ab. 22
 - Thucydides d. ab. 391. ab. 80 H
 
 > If the birth be certain but the death uncertain, the line begins full but ends in dots.
 
-Examples: Abul Pharai, Alain
+Examples include,
 
 - Abul Pharai b. 1226 l. af. 1285 H
 - Alain b. 1386 H
@@ -163,105 +161,111 @@ Dots seem a little less than decades?
 > line made at all, but only dots or broken lines where
 > I imagine it is most probable he might have flourished.
 
-No other details about how long this line may be. However, the examples on the [chart](http://www.enoughroomforspace.org/wp-content/uploads/cartographies-of-time_20130505_0006.jpg) have between six and seven dots.
+Priestley provides no other details about how long this line may be. However, 
+the examples on this [chart](http://www.enoughroomforspace.org/wp-content/uploads/cartographies-of-time_20130505_0006.jpg) have between six and seven dots, which seem
+to correspond to 60--70 years.
 
-Examples:
+Suidas fl. ab. 11 Cent. Cr                  
+Hesychius fl. ab. 300 Cr
 
-- Suidas fl. ab. 11 Cent. Cr
-- Hesychius fl. ab. 300 Cr
-
-
-text                               start2   start1   end1
-----------------------             -------- -------- -------- end2
----------
+text                               start2   start1   end1     end2
+---------------------------------  -------- -------- -------- --------
 Euclid fl. 300 BC. M               -320     -350     -290     -270
 Epaminondas d. 363                 303      333       363
-Herodotus b. 484 BC. d. af. 413 H           -484       413     423
-Suidas fl. ab. 11 Cent. Cr         1000                        1080
-Hesychius fl. ab. 300 Cr           250                         330
+Herodotus b. 484 BC. d. af. 413 H           -484      413     423
+Suidas fl. ab. 11 Cent. Cr         1000                       1080
+Hesychius fl. ab. 300 Cr           250                        330
 Agis 241. BC ab. 22                241
-Thucydides d. ab. 391. ab. 80 H
+Thucydides d. ab. 391. ab. 80 H             311       391
+
+
 
 # Divisions and Classes
 
 Priestley divides the persons in his chart into six broad *divisions*, based on their primary profession.
 
 1. Warriors and Statesmen
-2. Divines and Metaphysicians
-3. Mathematicians and Physicians
-4. Artists and Poets
-5. Orators and Critics
-6. Historians, Antiquarians, and Lawyers
 
-## Warriors and Statesmen
+1.  Divines and Metaphysicians
 
-There are no subcategories
+    -   J: "Signifies a JEW, either a PROPHET, RABBI, or HIGH-PRIEST, &c."
 
-## Divines and Metaphysicians
+    -   H P: "HEATHEN PHILOSOPHERS, which are further subdivided according to their 
+        sects in the following manner"
 
-The subclasses are:
+      -   Ion: Ionic
+      -   Soc: Socratic
+      -   Cyr: Cyrenaic
+      -   Meg: Megaric
+      -   Ac: Academic
+      -   Per: Peripatetic
+      -   Sto: Stoic
+      -   Cyn: Cynic
+      -   Ital: Italic
+      -   Scept: Sceptic
+      -   Ep: Epicurean
+      -   Eleack: Eleack
+      -   Eleat. Eleatic
 
-- J: "Signifies a JEW, either a PROPHET, RABBI, or HIGH-PRIEST, &c."
-- H P: "HEATHER PHILOSOPHERRS, which are further subdivided according to their sects in the following manner"
+  -   F: "Signifies CHRISITIAN FATHERS, including those commonly called HERETICS, 
+      who will be found in the Chart between those who are usually called orthodoc
+      and the Jews"
 
-  - Ion: Ionic
-  - Soc: Socratic
-  - Cyr: Cyrenaic
-  - Meg: Megaric
-  - Ac: Academic
-  - Per: Peripatetic
-  - Sto: Stoic
-  - Cyn: Cynic
-  - Ital: Italic
-  - Scept: Sceptic
-  - Ep: Epicurean
-  - Eleack: Eleack
-  - Eleat. Eleatic
+  -   D: "Christian DIVINES, arbitrarily distinguished from the Fathers, by behind 
+      made to commence from the time of Mohammed, and including those called 
 
-- F: "Signifies CHRISITIAN FATHERS, including those commonly called HERETICS, who will be found in the Chart between those who are usually called orthodoc and the Jews"
-- D: "Christian DIVINES, arbitrarily distinguished from the Fathers, by behind made to commence from the time of Mohammed, and including those called SCHOOLMEN"
+      -   Moh. "MOHAMMADAN DOCTORS"
 
-- Moh. "MOHAMMADAN DOCTORS"
-- Met. "METAPHYSICIANS"
-- Mor. "MORALILSTS"
-- Pol. "POLITICAL WRITERS, such as Grotius, Puffendorf, and even Algernon Sydney"
+      -   Met. "METAPHYSICIANS"
 
-## 
+      -   Mor. "MORALILSTS"
 
-- M: "MATHEMATICIANS, including NATURALISTS, NATURAL PHILOSOPHERS and ASTRONOMERS"
-- Ph. "PHYSICIANS"
-- Chy. "CHYMISTS"
+      -   Pol. "POLITICAL WRITERS, such as Grotius, Puffendorf, and even 
+          Algernon Sydney"
 
+1.  Mathematicians and Physicians
 
-# Fourth Column
+    -   M: "MATHEMATICIANS, including NATURALISTS, NATURAL PHILOSOPHERS and 
+        ASTRONOMERS"
 
-- P POET
-- Pa. PAINTER
-- St. STATUARY
-- Mu. MUSICIAN
-- Pr. PRINTER
-- Act. ACTOR
-- Eng. ENGRAVER
-- Ar. ARCHITECT
+    -   Ph. "PHYSICIANS"
 
-# Fifth Column
+    -   Chy. "CHYMISTS"
 
-- Or. ORATOR
-- Bell. CRITIC, including all the Miscellaneous writers of Antiquity, and those who are usually called SOPHISTS
-- H. Historian
-- Trav. Traveller
-- Geo. Geographer
-- Ch. Chronologer
-- Ant. Antiquity
-- L. Lawyer
+1. Artists and Poets
+
+    -   P POET
+    -   Pa. PAINTER
+    -   St. STATUARY
+    -   Mu. MUSICIAN
+    -   Pr. PRINTER
+    -   Act. ACTOR
+    -   Eng. ENGRAVER
+    -   Ar. ARCHITECT
+
+1.  Orators and Critics
+
+    -   Or. "ORATOR"
+    
+    -   Bell. "CRITIC, including all the Miscellaneous writers of Antiquity, and 
+        those who are usually called SOPHISTS"
+
+1.  Historians, Antiquarians, and Lawyers
+
+    -   H. "Historian"
+    -   Trav. "Traveller"
+    -   Geo. "Geographer"
+    -   Ch. "Chronologer"
+    -   Ant. "Antiquity"
+    -   L. "Lawyer"
 
 ## Miscellaneous
 
-"Engineer" appears as a pr, but not mentioned in the Description.
+"Engineer" appears but not mentioned in the Description.
 
 Date abbreviations
 
-----
+------- ----------------------------
 d.      died
 b.      born
 fl.     flourished
@@ -269,20 +273,29 @@ af.     after
 ab.     about
 fl. ab. Considerable uncertainty
 B C.    before Christ
+------- ----------------------------
 
 ## References
 
-- Priestley, Joseph. 1764 and 1778. Description of a Chart of Biography (list of the c2,000 names in the chart). 1st and 7th edn. J. Johnson. London.
-Corrected OCR and annotated by Davis, Stephen Boyd (2009). [URL](https://drive.google.com/file/d/0B4KIGf4GncycZGRmNWY4Y2QtZjNjNS00OGEzLWE0MjctMzY0NzFhM2I2YjFj/view?usp=sharing&authkey=CPGfreEB)
-- Davis, Stephen Boyd. "History on the Line: Time as Dimension." Design - Issues 28, no. 4 (2012): 4-17. [URL](http://www.jstor.org/stable/23273847).
-- Priestley, Joseph. "A Description of a Chart of Biography with a Catalogue of All the Names and the Dates Annexed to Them." 7th edition. 1778. Corrected OCR and annotated by Davis, Stephen Boyd. [URL](https://drive.google.com/open?id=0B4KIGf4GncycMmU1ZTdjMGYtM2RiMC00NTE3LThiMTUtZjk5YzkxOThlNGNk).
+-   Priestley, Joseph. 1764 and 1778. Description of a Chart of Biography
+    (list of the c2,000 names in the chart). 1st and 7th edn. J. Johnson. 
+    London. Corrected OCR and annotated by Davis, Stephen Boyd (2009).
+    [URL](https://drive.google.com/file/d/0B4KIGf4GncycZGRmNWY4Y2QtZjNjNS00OGEzLWE0MjctMzY0NzFhM2I2YjFj/view?usp=sharing&authkey=CPGfreEB)
+
+-   Davis, Stephen Boyd. "History on the Line: Time as Dimension." Design - 
+    Issues 28, no. 4 (2012): 4-17. [URL](http://www.jstor.org/stable/23273847).
+
+-   Priestley, Joseph. "A Description of a Chart of Biography with a Catalogue 
+    of All the Names and the Dates Annexed to Them." 7th edition. 1778. 
+    Corrected OCR and annotated by Davis, Stephen Boyd. [URL](https://drive.google.com/open?id=0B4KIGf4GncycMmU1ZTdjMGYtM2RiMC00NTE3LThiMTUtZjk5YzkxOThlNGNk).
 
 
-- Priestley, Joseph. *A description of a new chart of history with a a Catalogue of All the Names and the Dates Annexed to Them*
-    - 2nd edn. 1765. https://books.google.com/books?id=JHJZAAAAcAAJ
-    - 3rd ed. 1767. https://books.google.com/books?id=RYZcAAAAcAAJ
-    - 5th ed. 1781. https://books.google.com/books?id=eCwIAAAAQAAJ
-    - 6th ed. 1777. (London: J. Johnson) https://books.google.com/books?id=4QJcAAAAQAAJ
-    - 1790. https://books.google.com/books?id=-QJcAAAAQAAJ
-    - 1767. Warrington. https://books.google.com/books?id=w5QBAAAAQAAJ
-    - 1805. https://books.google.com/books?id=6LuuDdFMKQAC
+-   Priestley, Joseph. *A description of a new chart of history with a a Catalogue of All the Names and the Dates Annexed to Them*
+
+    -   2nd edn. 1765. <https://books.google.com/books?id=JHJZAAAAcAAJ>
+    -   3rd ed. 1767. <https://books.google.com/books?id=RYZcAAAAcAAJ>
+    -   5th ed. 1781. <https://books.google.com/books?id=eCwIAAAAQAAJ>
+    -   6th ed. 1777. <https://books.google.com/books?id=4QJcAAAAQAAJ>
+    -   1790. <https://books.google.com/books?id=-QJcAAAAQAAJ>
+    -   1767. <https://books.google.com/books?id=w5QBAAAAQAAJ>
+    -   1805. <https://books.google.com/books?id=6LuuDdFMKQAC>
