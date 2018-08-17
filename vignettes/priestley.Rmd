@@ -15,81 +15,198 @@ knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 
 ## Introduction
 
-Joseph Priestley's *A Chart of Biography*, first published in 1764, is the first instance of a modern timeline.
+Joseph Priestley's *A Chart of Biography*, first published in 1764, is the, or one of the, first instances of a modern timeline. (ADD Citation)
 
-The **priestley** package is a data-only package containing a few datasets with
-the biographic information from the 1764 and 1778 editions of the the *Chart of Biography*.
-
-```{r fig.height=2000, fig.width=3000, eval=FALSE}
-library("tidyverse")
-library("plotly")
-library("priestley")
-
-xaxis <- list(title = "",
-              tickmode = "array",
-              tickvals = seq(-1200, 1800, by = 100),
-              mirror = "all"
-              )
-xaxis$ticktext <- map_chr(xaxis$tickvals, ~ if_else(.x == 0, 
-                                                    str_c("O CE"),
-                                                    as.character(abs(.x))))
-
-priestley_bios_1764 %>% 
-  ungroup() %>%
-  mutate(y = runif(n = length(text)) + as.numeric(as.factor(division))) %>%
-  plot_ly() %>%
-  add_segments(y = ~ y, yend = ~ y, 
-               x = ~ start_2, xend = ~ end_2,
-               color = ~ division, text = ~ text, hoverinfo = "text") %>%
-  layout(
-    xaxis = xaxis,
-    yaxis = list(title = "",
-                 showticklabels = FALSE,
-                 showgrid = FALSE),
-    margin = list(b = 120)
-  )
+The **priestley** package is a data-only package containing datasets used in the 
+the biographic information used in the  1764 and 1778 editions of the the *Chart of Biography*.
 
 
-```
+The data timelines include approximately two thousand individuals, "the most distinguished in the annals of fame".
 
-```{r eval=FALSE}
-priestley_kings %>% 
-  arrange(year) %>%
-  mutate(.id = row_number()) %>%
-  plot_ly(y = ~ .id, x = ~ year, 
-          text = ~ name,
-          hovertext = 
-          mode = "marker+text")
-```
+> My rule, I considered, was renown and not merit; acquired fame,
+> and not deserved reputation : so that a person who had
+> made a great noise in the world, though he were
+> known by nothing but the devastation he had made
+> in it, was more acceptable to me than one who had
+> deserved ever so well of it, if he had passed through
+> it without being much known.
 
-A **ggplot2** example:
-```{r message = FALSE, eval = FALSE}
-library("tidyverse")
-library("priestley")
+The timeline shows the names and lines indicating lifespan.
+The individuals were grouped into five divisions:
 
-ggplot(priestley1764) +
-  geom_segment(aes(y = name, yend = name, x = start_2, xend = end_2),
-               alpha = 0.3) +
-  geom_segment(aes(y = name, yend = name, x = start_1, xend = end_1)) +
+The *Chart* was accompanied by a *A Description of a Chart of Biography: With a Catalouge of all the Names Inserted in It, and the Dates annexed to Them.*.
+This included an index of the names, and 
+more detailed information about the birth and death dates of the individuals included in the *Chart*,
+as well as their profession.
+
+about two thousand names of persons 
+
+IT will easily occur to all my readers, that my
+greatest difficulty must have been the proper choice of
+names to fill this tablet of fame : and some degree of
+
+solicitude is certainly unavoidable when a man volun-
+tarily assumes the province of the arbiter and dispenser
+
+of every man’s reputation, and when he sees all the
+dead pass, as it were, in review before him for that
+purpose. But this is no greater presumption than is
+implied in numberless other works, and is in fact no
+
+more than one man’s giving his present opinion con-
+cerning others. The nature of the design necessarily
+
+fixed some limits to the width of the divisions, and
+though in some ages there was room enough for all
+the candidates for fame ; if I would have inserted
+them ; in others, and particularly in modern times,
+where no reasonable space would admit a tenth part
+of the candidates, it must require no small judgement
+to decide concerning their respective pretensions.
+
+With respect to this, I can only say that I have acquitted myself with all 
+the impartiality of which I
+
+was capable.HOWEVER a due regard to the nature of my design
+made made the task much easier, and less invidious than
+
+may, at first sight, be imagined. My rule, I con-
+sidered, was renown and not merit ; acquired fame,
+
+and not deserved reputation : so that a person who had
+made a great noise in the world, though he were
+known by nothing but the devastation he had made
+in it, was more acceptable to me than one who had
+deserved ever so well of it, if he had passed through
+it without being much known. And it is manifest
+that, if this chart be designed for the use of persons
+who are beginning an acquaintance with history, it
+must be drawn up according to this rule. Otherwise
+it would not show them the situation of the names
+they are most likely to look for in it.
+
+I AM sensible it would be extreme arrogance in any
+
+person to pretend to so accurate and extensive a know-
+ledge even of the proportion of renown which all men
+
+of every profession have acquired, as would enable him
+to select the most distinguished names, with so much
+exactness, that none of those who are omitted should
+be more noted than any of those who are inserted :
+yet thus much I hope the diligence of my inquiries
+may encourage me to say, that, though some instances
+may occur, to more diligent and longer continued
+researches, of persons of greater note omitted, and
+less note inserted, yet that the fame of all those
+
+who are omitted would bear an exceeding small pro-
+portion to the fame of those who are inserted.
+
+I AM convinced, however, it is absolutely impos-
+sible to please many persons with the choice of names
+
+upon such a plan as this. No two persons living
+would make the same choice. I will even venture
+to say, from my own experience, that no one person
+would, at different times, make the same choice. It
+is only such an experience as I have had that can
+convince any person, how extremely fluctuating are
+
+our ideas of the relative fame of many different pers-
+ons, and of the figure they have made in the world.
+
+The many times I have altered my lists convinces me
+that I should never revise them without seeing some
+reason to make farther alterations ; but the many
+times that I have replaced the same names after
+
+having rejected them, convinces me that further al-
+terations would have been of very little consequence.
+
+BEFORE a person express great surprize at my o-
+mitting or over-looking any favourite of his, let him
+
+consider, particularly, at what time he flourished ;
+for hundreds which have been excluded in later, and
+
+more crowded ages, would have found a ready recep-
+tion in an earlier period ; so that their exclusion must
+
+not be attributed either to my fault or their own.
+Let it always be remembered, that the celebrity of
+
+any person is to be compared with that of his co-
+temporaries, and not with that of those who made
+
+their appearance either before or after him.
+
+I HAVE perhaps inserted rather more Englishmen
+in proportion, than those of other nations, but this
+
+was not owing to any national prejudice ; but as re-
+nown is a relative thing, regard must necessarily be
+
+had to the minds of those into whose hands the chart
+is most likely to fall. Had I drawn the chart in
+order to its being published in any other part of the
+world, even in France, I should naturally, with the
+same ideas of relative fame, have made a different
+
+choice of names. If the chart, as it stands at pre-
+sent, seemed calculated rather for men of letters than
+
+men of business, let it be attributed to a similar reason.
+
+NEITHER the number, nor the width of the divi-
+sions was determined at random, and a priori, but
+
+both were made such as the names I previously
+collected appeared most natural to require. Fewer
+classes I could not have made, and at the same time
+have preserved any tolerable distinctness, and more
+would
+
+THE classing of the names occasioned some little
+
+difficulty to me, and may occasion some to the peru-
+ser. My general rule has been to place every person
+
+in that class in which he was most eminent. Thus
+
+I have placed Mohammed, as the head of a celebra-
+ted sect in religion, among the Divines ; though the
+
+Caliphs, his successors, will be found among the
+Statesmen.
+
+The original chart is "about three feet in length,
+and two feet in breadth" (Description A3)
+
+```{r message = FALSE}
+ggplot(priestley::Specimen) +
+  geom_segment(aes(y = row, yend = row, x = start_2, xend = end_2),
+               alpha = 0.5, size = 0.5) +
+  geom_segment(aes(y = row, yend = row, x = start_1, xend = end_1),
+               size = 1) +
+  geom_text(aes(x = (start_2 + end_2) * 0.5, y = row, label = name),
+            size = 3, vjust = "bottom", nudge_y = 0.25, color = "gray50") +
   facet_wrap(~ division, ncol = 1) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  scale_x_continuous(minor_breaks = seq(-1200, 1800, 10), 
-                     breaks = seq(-1200, 1800, 100))
-                     
+  scale_x_continuous("", 
+                     minor_breaks = seq(-600, 0, 50),
+                     breaks = seq(-600, 0, 100)) +
+  scale_y_continuous("", expand = c(0.1, 0.1)) +
+  ggtitle("A Specimen of the Chart of Biography") +
+  theme_minimal() +
+  theme(panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        strip.background = element_rect(fill = "white", colour = NA),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank())
 ```
 
-```{r eval=FALSE}
-yaml::yaml.load_file(here::here("data-raw/small-chart.yml")) %>%
-  imap_dfr(~ tibble(division = .x, name = .y)) %>%
-  left_join(priestley_bios_1764, by = "name") %>% 
-  filter(!is.na(text))
 
-```
-
-
-![](PriestleyChart.gif)
-
-Wikimedia Commons contributors, "File:PriestleyChart.gif," Wikimedia Commons, the free media repository, https://commons.wikimedia.org/w/index.php?title=File:PriestleyChart.gif&oldid=177413180 (accessed February 8, 2018).
+Wikimedia Commons contributors, "File:PriestleyChart.gif," Wikimedia Commons, the free media repository, <https://commons.wikimedia.org/w/index.php?title=File:PriestleyChart.gif&oldid=177413180> (accessed February 8, 2018).
 
 ## Descriptions
 
@@ -101,17 +218,17 @@ Examples in which the date of death and the age at death are known. These are dr
 - Plato d. 348 BC. 81 HP
 - Terence d. 159 BC. 35 P
 
-> It is an imperfection which must necessarily attend every Chart of this 
-> nature, that the time of the death, but more especially the time of the birth 
-> of eminent men cannot always be found. In this case the compiler must content 
-> himself with placing his line as near as he can conjecture from history where 
+> It is an imperfection which must necessarily attend every Chart of this
+> nature, that the time of the death, but more especially the time of the birth
+> of eminent men cannot always be found. In this case the compiler must content
+> himself with placing his line as near as he can conjecture from history where
 > his true place was, leaving marks to express the uncertainty
 > there is attending it. The method I have used in
 > this Chart is to express certainty by a full line, and
-> what is uncertain by dots or a broken line, dispro 
+> what is uncertain by dots or a broken line, dispro
 > of the dots in the following manner, according to the
 > kind or degree of the uncertainty they have to express.
-> 
+>
 > If it be thought that a person was born or died but
 > a little before or after a certain time, the full line
 > begins or ends at the certain time, and a single dot only
@@ -161,7 +278,7 @@ Dots seem a little less than decades?
 > line made at all, but only dots or broken lines where
 > I imagine it is most probable he might have flourished.
 
-Priestley provides no other details about how long this line may be. However, 
+Priestley provides no other details about how long this line may be. However,
 the examples on this [chart](http://www.enoughroomforspace.org/wp-content/uploads/cartographies-of-time_20130505_0006.jpg) have between six and seven dots, which seem
 to correspond to 60--70 years.
 
@@ -178,90 +295,7 @@ Hesychius fl. ab. 300 Cr           250                        330
 Agis 241. BC ab. 22                241
 Thucydides d. ab. 391. ab. 80 H             311       391
 
-
-
-# Divisions and Classes
-
-Priestley divides the persons in his chart into six broad *divisions*, based on their primary profession.
-
-1. Warriors and Statesmen
-
-1.  Divines and Metaphysicians
-
-    -   J: "Signifies a JEW, either a PROPHET, RABBI, or HIGH-PRIEST, &c."
-
-    -   H P: "HEATHEN PHILOSOPHERS, which are further subdivided according to their 
-        sects in the following manner"
-
-      -   Ion: Ionic
-      -   Soc: Socratic
-      -   Cyr: Cyrenaic
-      -   Meg: Megaric
-      -   Ac: Academic
-      -   Per: Peripatetic
-      -   Sto: Stoic
-      -   Cyn: Cynic
-      -   Ital: Italic
-      -   Scept: Sceptic
-      -   Ep: Epicurean
-      -   Eleack: Eleack
-      -   Eleat. Eleatic
-
-  -   F: "Signifies CHRISITIAN FATHERS, including those commonly called HERETICS, 
-      who will be found in the Chart between those who are usually called orthodoc
-      and the Jews"
-
-  -   D: "Christian DIVINES, arbitrarily distinguished from the Fathers, by behind 
-      made to commence from the time of Mohammed, and including those called 
-
-      -   Moh. "MOHAMMADAN DOCTORS"
-
-      -   Met. "METAPHYSICIANS"
-
-      -   Mor. "MORALILSTS"
-
-      -   Pol. "POLITICAL WRITERS, such as Grotius, Puffendorf, and even 
-          Algernon Sydney"
-
-1.  Mathematicians and Physicians
-
-    -   M: "MATHEMATICIANS, including NATURALISTS, NATURAL PHILOSOPHERS and 
-        ASTRONOMERS"
-
-    -   Ph. "PHYSICIANS"
-
-    -   Chy. "CHYMISTS"
-
-1. Artists and Poets
-
-    -   P POET
-    -   Pa. PAINTER
-    -   St. STATUARY
-    -   Mu. MUSICIAN
-    -   Pr. PRINTER
-    -   Act. ACTOR
-    -   Eng. ENGRAVER
-    -   Ar. ARCHITECT
-
-1.  Orators and Critics
-
-    -   Or. "ORATOR"
-    
-    -   Bell. "CRITIC, including all the Miscellaneous writers of Antiquity, and 
-        those who are usually called SOPHISTS"
-
-1.  Historians, Antiquarians, and Lawyers
-
-    -   H. "Historian"
-    -   Trav. "Traveller"
-    -   Geo. "Geographer"
-    -   Ch. "Chronologer"
-    -   Ant. "Antiquity"
-    -   L. "Lawyer"
-
 ## Miscellaneous
-
-"Engineer" appears but not mentioned in the Description.
 
 Date abbreviations
 
@@ -278,15 +312,15 @@ B C.    before Christ
 ## References
 
 -   Priestley, Joseph. 1764 and 1778. Description of a Chart of Biography
-    (list of the c2,000 names in the chart). 1st and 7th edn. J. Johnson. 
+    (list of the c2,000 names in the chart). 1st and 7th edn. J. Johnson.
     London. Corrected OCR and annotated by Davis, Stephen Boyd (2009).
     [URL](https://drive.google.com/file/d/0B4KIGf4GncycZGRmNWY4Y2QtZjNjNS00OGEzLWE0MjctMzY0NzFhM2I2YjFj/view?usp=sharing&authkey=CPGfreEB)
 
--   Davis, Stephen Boyd. "History on the Line: Time as Dimension." Design - 
+-   Davis, Stephen Boyd. "History on the Line: Time as Dimension." Design -
     Issues 28, no. 4 (2012): 4-17. [URL](http://www.jstor.org/stable/23273847).
 
--   Priestley, Joseph. "A Description of a Chart of Biography with a Catalogue 
-    of All the Names and the Dates Annexed to Them." 7th edition. 1778. 
+-   Priestley, Joseph. "A Description of a Chart of Biography with a Catalogue
+    of All the Names and the Dates Annexed to Them." 7th edition. 1778.
     Corrected OCR and annotated by Davis, Stephen Boyd. [URL](https://drive.google.com/open?id=0B4KIGf4GncycMmU1ZTdjMGYtM2RiMC00NTE3LThiMTUtZjk5YzkxOThlNGNk).
 
 

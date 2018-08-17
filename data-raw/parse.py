@@ -22,10 +22,10 @@ DOTS_YEARS = 10
 def load_categories(filename):
     """Read Priestley's categories from YAML file."""
     with open("Categories.yml", "r") as f:
-        divisions = yaml.load(f)
+        data = yaml.load(f)
     categories = {}
-    for d in divisions:
-        for cat in d['categories']:
+    for d in data['divisions']:
+        for cat, _ in d['categories'].items():
             categories[cat] = d['name']
     return categories
 
@@ -66,8 +66,9 @@ class Visitor(PTNodeVisitor):
             print(children)
             print(node)
         value = children[0]
+        # if BCE, then need to adjust it so that 1 BCE = 0
         if len(children) > 1:
-            value *= -1
+            value = -value + 1
         return {'value': value, 'century': False}
 
     def visit_name(self, node, children):

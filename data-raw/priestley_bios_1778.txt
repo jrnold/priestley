@@ -790,7 +790,7 @@ Emanuel of Portugal d. 1521. 52
 Empedocles d. 413 BC. 60 H P. Ital
 Eunius d. 169 BC. 70 P
 Ennodius d. 521. 48 F
-Epaminondas d. 363
+Epaminondas d. 363 BC.
 Ephorus fl. 351 BC. H
 Ephrem Syrus d. 378 F
 Epicharmus fl. 480 BC. H P. Ital
@@ -966,8 +966,8 @@ Gothofredus, Arnold, d. 1714. 48 L.
 Gower J. d. 1402 P
 Gozan d. 1353
 Gracchus, Cornelius, d. 121
-Gracchus Tiberius d. 133
-Gracchus Sempron Senr. d. af. 162
+Gracchus, Tiberius d. 133 BC.
+Gracchus, Sempron Senr. d. af. 162
 Graevius d. 1703. 70 Cr
 Gratian d. 383. 24
 Gratian d. af. 1151 L
@@ -2109,13 +2109,13 @@ Tertullian d. ab. 220 F
 Teucer fl. 895 BC.
 Thabet Ebn Sinan d. 973 H
 Thalassien fl. 550 P
-Thales d. 546. 90 H P.
+Thales d. 546 BC. 90 H P.
 Thaulerus fl. ab. 350 D
 Thebit fl. 1296 M .
 Themison fl. 34 BC. Ph
 Themistius Euphrades d. ab. 386 Cr
 Themistocles d. 449 BC. 65
-Theoritus fl. 262 BC. P
+Theocritus fl. 262 BC. P
 Theodore Gaza d. 1478. 90 Cr
 Theodoret d. af. 460 H
 Theodoric the Ostrogoth d. 526. 71
@@ -2154,7 +2154,7 @@ Thornton, Geo. D. fl. 1300 L
 Thrasea Paetus d. 66
 Thrasybulus d. 390
 Thuanus d. 1617. 64 H .
-Thucydides d. ab. 391. ab. 80 H
+Thucydides d. ab. 391 BC. ab. 80 H
 Tiberius d. 37. 78
 Tiberius d. 582
 Tibullus d. 19 BC. 84 P
@@ -2322,7 +2322,7 @@ Zechariah fl. 527 BC. J
 Zedekiah d. af. 587 BC.
 Zeno d. 491. 66
 Zeno of Elea fl. 463 BC. H P.
-Zeno Stoicus d. 264. 98 H P.
+Zeno Stoicus d. 264 BC. 98 H P.
 Zeno of Sydon fl. 83 BC. H P. Ep
 Zenobia fl. 273
 Xephaniah fl. 626 BC. J

@@ -15,24 +15,14 @@
 #' as used to organize them in the chart, and some combination of birth, death,
 #' lived, or "flourished" years.
 #'
-#' The data frame \code{priestly_kings} is a list of rulers (Kings of Judah,
+#' The data frame \code{Kings} is a list of rulers (Kings of Judah,
 #' Kings of Persia, Ptolemies of Egypt, Roman Emperors, Kings of England)
 #' which are used to annotated the margin of the chart. These data are from
 #' the list titled "The Times When Kings in Those Successions Which Are Noted
 #' in the Margin of the Chart Began Their Reigns".
 #' These data are from the 1st Edition (1764), pp. 77--80.
 #'
-#' The data frame \code{priestly_continuation} is from two Appendix Tables in
-#' the 1st edition titled, "A Catalogue of All the Names in the
-#' Continuation of the Chart, According to the Hebrew Chronology" (p. 74--75)
-#' and "The Same According to the Septuagint, as Far as that Chronology
-#' Differs Considerably from Any Thing in the Hebrew." (p. 76). These are lists
-#' of famous Old Testament people, along with their purported death years and ages
-#' according to both the Hebrew and Septuagint versions of Old Testament of
-#' the Bible.
-#'
-#'
-#' @format \code{priestley_bios_1764} and \code{priestley_bios_1764} are data frames with the same column formats:
+#' @format \code{Biographies} is a data frames with the columns:
 #' \tabular{lll}{
 #' \code{name} \tab \code{character} \tab Person's name \cr
 #' \code{text} \tab \code{character} \tab Original text description \cr
@@ -48,7 +38,7 @@
 #' }
 #' Each row is a unique person. Note that \code{name} does not uniquely identify individuals.
 #'
-#' \code{priestley_kings} is a data frame with two columns:
+#' \code{Kings} is a data frame with two columns:
 #' \tabular{lll}{
 #' \code{name} \tab \code{character} \tab Name of the ruler \cr
 #' \code{year} \tab \code{integer} \tab Year in which the ruler took power. Negative
@@ -62,11 +52,11 @@
 #'
 #' @docType data
 #' @name priestley
-"priestley_bios_1764"
+"Biographies"
 
 
 #' @rdname priestley
-"priestley_bios_1778"
+"Kings"
 
 #' @rdname priestley
-"priestley_kings"
+"Specimen"
