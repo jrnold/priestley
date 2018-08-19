@@ -10,8 +10,10 @@ Authors@R: person("Jeffrey", "Arnold", role = c("aut", "cre"), email = "jeffrey.
 Suggests: knitr,
     plotly,
     rmarkdown,
-    ggplot2
-Depends: 
+    ggplot2,
+    testthat
+Depends:
   R (>= 3.0.0)
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
+Encoding: UTF-8

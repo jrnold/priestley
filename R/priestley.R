@@ -27,8 +27,11 @@
 #' \code{name} \tab \code{character} \tab Person's name \cr
 #' \code{text} \tab \code{character} \tab Original text description \cr
 #' \code{division} \tab \code{character} \tab Division \cr
-#' \code{category} \tab \code{character} \tab Category (profession) of the person. \cr
-#' \code{subcategory} \tab \code{character} \tab Sub-category of the person; only relevant for category "H P.". \cr
+#' \code{profession} \tab \code{character} \tab Profession of the person. These
+#'    were kept as close to the original source. However, a few had to be changed
+#'    because they had not aged well. \cr
+#' \code{sect} \tab \code{character} \tab Philsophers are further categorized into sects, e.g. "Stoic".
+#' \code{sect_abbr} \tab \code{character} \tab Philsophers are further categorized into sects, e.g. "Stoic".
 #' \code{start_1} \tab \code{numeric} \tab Timeline start (conservative). Negative numbers indicate B.C.E. years. \cr
 #' \code{start_2} \tab \code{numeric} \tab Timeline start (uncertain) \cr
 #' \code{end_1} \tab \code{numeric} \tab Timeline end (conservative) \cr

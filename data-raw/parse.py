@@ -25,7 +25,7 @@ def load_categories(filename):
         data = yaml.load(f)
     categories = {}
     for d in data['divisions']:
-        for cat, _ in d['categories'].items():
+        for cat, _ in d['occupations'].items():
             categories[cat] = d['name']
     return categories
 
@@ -33,8 +33,8 @@ def load_categories(filename):
 class Visitor(PTNodeVisitor):
     """Visitor Class for Parsed Biographies"""
 
-    def __init__(self, categories, **kwargs):
-        self.categories = categories
+    def __init__(self, occupations, **kwargs):
+        self.occupations = occupations
         super().__init__(**kwargs)
 
     def visit_after(self, node, children):
@@ -74,9 +74,9 @@ class Visitor(PTNodeVisitor):
     def visit_name(self, node, children):
         return ' '.join(str(x) for x in children)
 
-    def visit_category(self, node, children):
-        category = ' '.join(children)
-        return category
+    def visit_occupation(self, node, children):
+        occupation = ' '.join(children)
+        return occupation
 
     def visit_died_prefix(self, node, children):
         out = 'died'
@@ -162,14 +162,17 @@ class Visitor(PTNodeVisitor):
     def visit_bio(self, node, children):
         out = children[1]
         out['name'] = children.name[0]
-        if len(children.category):
-            category = children.category[0].split(' ')
-            out['category'] = category[0]
-            if len(category) > 1:
-                out['subcategory'] = category[1]
-            out['division'] = self.categories[out['category']]
+        if len(children.occupation):
+            occupation = children.occupation[0]
+            if occupation.startswith('H P.'):
+              out['occupation'] = occupation[:3]
+              if len(occupation) > 4:
+                out['sect'] = occupation[4:].strip()
+            else:
+              out['occupation'] = occupation
+            out['division'] = self.occupations[out['occupation']]
         else:
-            out['division'] = 'Statesman and Warriors'
+            out['division'] = 'Statesmen and Warriors'
         return out
 
 
@@ -206,7 +209,7 @@ def before():
 
 
 def bc():
-    return "BC."
+    return "BC"
 
 
 def period():
@@ -274,7 +277,7 @@ def flourished_expr():
     return flourished, Optional(period), Optional([age, lived, died])
 
 
-def category():
+def occupation():
     return [
         "Engineer", *(f"H P. {k}"
                       for k in [
@@ -288,7 +291,7 @@ def category():
 
 def bio():
     return (name, [died_expr, flourished_expr, born_expr], Optional(period),
-            Optional(category), Optional(period), EOF)
+            Optional(occupation), Optional(period), EOF)
 
 
 def add_intervals(data):
@@ -432,6 +435,14 @@ def parse(filename, outfile, categories_filename):
     data = []
     with open(filename, "r") as f:
         for line in f.readlines():
+            # ignore lines starting with spaces
+            if re.match(r"^[ \t]", line) or line == "\n":
+                print("Skipping line")
+                continue
+            m = re.search("(.*)\[(.*)\]\s*$", line)
+            if m:
+                line = m.group(1).strip()
+                editions = m.group(2).split(';')
             try:
                 parse_tree = parser.parse(line.strip())
                 try:

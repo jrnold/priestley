@@ -10,7 +10,7 @@ Abibalus fl. 1048 BC.
 Abijah d. 955 BC.
 Abrabinel d. 1508. 70 J
 Abu Bekr d. 634. 63
-Abucaras fl.770 D
+Abucaras fl. 770 D
 Abulfeda d. 1345. 72 Geo
 Abulghazi d. 1663. 59 H
 Abul Pharai b. 1226 l. af. 1285 H
@@ -83,7 +83,7 @@ Alakis d. 694
 Alamand d. 1450. 60 D
 Alanus de insulis d. 1182 D
 Alaric the Goth d. 410
-Alban St. d. 303 F
+Alban, St. d. 303 F
 Albategni d. 928 M
 Albert d. 1308
 Albertet fl. 1289 M
@@ -264,7 +264,7 @@ Arnaud de Mereuil d. 1220 P
 Arnaud de Villa nova. d. 1310 Ph
 Arnobius fl. 303 F
 Arnobius Junior fl. 460 F
-Arnold of Brescia d. 1. 155 D
+Arnold of Brescia d. 1155 D
 Arnulph d. 1124. 84 D
 Arrian fl. 140 H
 Arfaces d. 245 BC.
@@ -279,7 +279,7 @@ Arviragus fl. 80
 Arundel Th. d. 1413 D
 Arzachel fl. 1079 M
 Asa d. 914 BC.
-Asaph St. d. 590 F
+Asaph, St. d. 590 F
 Asce d. 427. 74 J
 Ascham Roger d. 1560. 55 Cr
 Asclepiades d. af. 63 BC. Ph
@@ -868,7 +868,7 @@ Ferdinand of Castile d. 1065
 Ferdinand of Spain d. 1545. 63
 Fernellius d. 1558 Ph
 Feftus Sex. Pom. fl. ab. 650
-Ficinus, Marsilius, d. 1499. 66 Ph
+Ficinus, Marsilius d. 1499. 66 Ph
 Fielding H. d. 1754. 47 Bel
 Fimbria d. 84 BC.
 Fingal d. 283
@@ -888,7 +888,7 @@ Fox George d. 1681 D
 Fox John d. 1587. 69 D
 Fracastorius d. 1553. 71 P
 Francis 1st d. 1547. 52
-Francis St. d. 1227. 46 D
+Francis, St. d. 1227. 46 D
 Francis Mayronis d. 1325 D
 Franciscus Pedemontanus fl. 1310 Ph
 Franco fl. 1047 M
@@ -952,7 +952,7 @@ Gilulfus d. 707
 Giotto d. 1336. 60 Pa
 Glaber d. af. 1045 H
 Glanville fl. 1181 L
-Glauber b. 1. 500 Chy
+Glauber b. 1500 Chy
 Gloucester, D. of, d. 1447
 Godeschalchus d. 864 D
 Godfrey of Boloigne d. 1100
@@ -1435,7 +1435,7 @@ Marlborough d. 1712. 73
 Marot d. 1544. 60 P
 Marsham d. 1685. 83 Ch
 Martial d. 104. 75 P
-Martin St. d. ab. 402 F
+Martin, St. d. ab. 402 F
 Marcellus fl. in 5 Cent. P
 Marcellus M. d. 1499. Cr
 Mary of Scots d. 1587.45
@@ -1590,7 +1590,7 @@ Occam, Wlliam, d. 1347 D
 Ocellus Lucanus fl. ab. 450 H P.
 Octavius Horatianus fl. 370 Ph
 Odenatus d. 267
-Odo St. d. 942. 64 D
+Odo, St. d. 942. 64 D
 Odo Cantianus d. 1171 D
 Odoacer, King of the Heruli, d. 492
 Odurius Vitalis fl. 1141 H
@@ -1666,9 +1666,9 @@ Parthenius fl. 0 Cr
 Pascal d. 1662. 39 D
 Paschasius Rutpertus d. 851 D
 Paterculos d. 31 H
-Patric St. d. 492 F
+Patric, St. d. 492 F
 PaulVeronese d. 1588. 58 Pa
-Paul St. d. 67 F
+Paul, St. d. 67 F
 Paul of Venice d. 1623. 71 H
 Paul Warnefrid fl. 780 H
 Paulatio of Venice d. 717

@@ -19,7 +19,8 @@ main <- function() {
 
   kings[["name"]] <- parsed_names[["V2"]]
   kings[["year"]] <- (as.integer(parsed_names[["V3"]]) *
-                        if_else(!is.na(parsed_names[["V4"]]), -1, 1))
+                        if_else(!is.na(parsed_names[["V4"]]), -1L, 1L))
+  kings[["year"]] <- as.integer(kings[["year"]])
 
   e <- rlang::new_environment()
   e[["Kings"]] <- select(kings, name, year, category)
