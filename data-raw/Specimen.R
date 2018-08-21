@@ -6,24 +6,33 @@ suppressPackageStartupMessages({
   library("rlang")
 })
 
+parse_row <- function(x, i) {
+  tibble(
+    row = i,
+    label = names(x),
+    name = imap_chr(x, ~ if_else(is.null(.x), .y, .x))
+  )
+}
+
+parse_division <- function(x, i) {
+  imap_dfr(x, parse_row) %>%
+    mutate(division = i)
+}
+
 main <- function() {
   load(here::here("data", "Biographies.rda"))
 
   specimen <- read_yaml(here::here("data-raw", "small-chart.yml")) %>%
-    imap_dfr(~ tibble(division = .y, name = .x)) %>%
-    group_by(division) %>%
-    mutate(row = row_number()) %>%
-    unnest(name) %>%
-    ungroup() %>%
-    mutate(id = row_number())
+    imap_dfr(parse_division)
 
   specimen_merged <-
     left_join(specimen,
-              select(filter(Biographies, !is.na(id_1764)), -division),
+              select(filter(Biographies, in_1778), -division),
               by = "name") %>%
     # delete duplicates
     filter(!(name == "Aratus" & start_2 > 0),
-           !(name == "Socrates" & start_2 > 0))
+           !(name == "Socrates" & start_2 > 0)) %>%
+    select(-in_1764, -in_1778, -sect, -sect_abbr, -in_names_omitted)
 
   dir.create(here::here("data"), showWarnings = FALSE)
   e <- new_environment()

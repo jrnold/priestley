@@ -1,5 +1,6 @@
 context("Biographies")
 library(glue)
+library(stringr)
 library(rlang)
 
 data("Kings", package = "priestley")

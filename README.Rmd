@@ -1,0 +1,11 @@
+---
+title: "Data from Joseph Priestley's \"A Chart of Biography\""
+output: md_document
+---
+
+Joseph Priestley's [A Chart of Biography](https://en.wikipedia.org/wiki/A_Chart_of_Biography) was one of the first examples of a timeline in its current form. The first edition was printed in 1764, and it was reprinted in various editions. Data from the 1st (1764) and 1778 editions are included in this package. *A Chart of Biography* visualizes the lifespans of more than 2,000 famous individuals from 1300 BCE to 1800 AD.
+
+This is a R package that contains data from this chart.
+The vignette contains example
+
+![](vignettes/PriestleyChart.gif)

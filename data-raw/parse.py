@@ -419,8 +419,14 @@ def add_intervals(data):
             fl = person["flourished about"]['value']
             person["start_2"] = fl - 5 * DOTS_YEARS
             person["end_2"] = fl + 3 * DOTS_YEARS
+        elif life_type == ("age about", "born about"):
+            person['start_1'] = person["born about"]["value"]
+            person["start_2"] = person["start_1"] - DOTS_YEARS
+            person["end_1"] = person["start_1"] + person["age about"]
+            person["end_2"] = person["end_1"] + DOTS_YEARS
         else:
             print("unknown type: ", life_type)
+            print(person)
 
         if 'start_1' in person and 'start_2' not in person:
             person['start_2'] = person['start_1']
@@ -437,17 +443,26 @@ def parse(filename, outfile, categories_filename):
         for line in f.readlines():
             # ignore lines starting with spaces
             if re.match(r"^[ \t]", line) or line == "\n":
-                print("Skipping line")
                 continue
             m = re.search("(.*)\[(.*)\]\s*$", line)
             if m:
                 line = m.group(1).strip()
-                editions = m.group(2).split(';')
+                editions = set(m.group(2).split(';'))
+                in_1764 = '1764' in editions
+                in_names_omitted = 'Names Omitted' in editions
+                in_1778 = '1778' in editions
+            else:
+                in_1764 = True
+                in_1778 = True
+                in_names_omitted = False
             try:
                 parse_tree = parser.parse(line.strip())
                 try:
                     parsed = visit_parse_tree(parse_tree, visitor)
                     parsed['text'] = line.strip()
+                    parsed['in_1778'] = in_1778
+                    parsed['in_1764'] = in_1764
+                    parsed['in_names_omitted'] = in_names_omitted
                     data.append(parsed)
                 except IndexError as exc:
                     raise exc

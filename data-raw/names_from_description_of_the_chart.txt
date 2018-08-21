@@ -186,7 +186,7 @@ Anaxagoras Claz. d. 428 BC 72 H P. Ion
 Anaxarchus fl. 340 BC H P. Eleat [Names Omitted;1778]
 Anaximander d. 547 BC 64 H P. Ion
 Anaximenes d. 504 BC H P. Ion
-Andocides b. 468 BC liv. af. 399 Or
+Andocides b. 468 BC liv. af. 399 BC Or
 Andrea del Sarto d. 1520. 42 Pa
 Andreas Cretensis d. 724 D
 Andreas J. d. 1347 L
@@ -305,7 +305,7 @@ Arnaud de Mereuil d. 1220 P
 Arnaud de Villa nova. d. 1310 Ph
 Arnobius fl. 303 F
 Arnobius Junior fl. 460 F [Names Omitted;1778]
-Arnold of Brescia d. 1 155 D
+Arnold of Brescia d. 1155 D
 Arnulph d. 1124. 84 D
 Arrian fl. 136 H [1764]
 Arrian fl. 140 H [1778]
@@ -521,7 +521,7 @@ Cæcilius d. af. 166 BC P
 Caerleon Ludovicus fl. 1360 M
 Cæsalpinus, Andreas, d. 1603 84 Ph [1778]
 Cæsalpinus, Andreas, d. 1613. 44 Ph [Names Omitted]
-Cæsar Julius d. 44 BC 56
+Cæsar, Julius d. 44 BC 56
 Cajetan d. 1534. 65 D
 Caius d. ab. 210 L
 Caius J. d. 1573. 63 Ph
@@ -883,7 +883,7 @@ Emanuel of Portugal d. 1521. 52
 Empedocles d. 413 BC. 60 H P. Ital
 Eunius d. 169 BC 70 P
 Ennodius d. 521. 48 F
-Epaminondas d. 363
+Epaminondas d. 363 BC
 Ephorus fl. 351 BC H
 Ephrem Syrus d. 378 F
 Epicharmus fl. 480 BC H P. Ital
@@ -1051,7 +1051,7 @@ Gilulfus d. 707
 Giotto d. 1336. 60 Pa
 Glaber d. af. 1045 H
 Glanville fl. 1181 L
-Glauber b. 1 500 Chy
+Glauber b. 1500 Chy
 Gloucester, D. of, d. 1447
 Godeschalchus d. 864 D
 Godfrey of Boloigne d. 1100
@@ -1065,7 +1065,7 @@ Gothofredus, Arnold, d. 1714. 48 L. [Names Omitted]
 Gower J. d. 1402 P
 Gozan d. 1353
 Gracchus, Cornelius, d. 121
-Gracchus Tiberius d. 133
+Gracchus Tiberius d. 133 BC
 Gracchus Sempron Senr. d. af. 162
 Grævius d. 1703. 70 Cr
 Gratian d. 383. 24
@@ -1194,7 +1194,7 @@ Herod the Great d. 3 BC 70
 Herodes Atticus d. ab. 185. 75 Cr
 Herodian fl. 247 H
 Herodicus fl. 443 BC Ph
-Herodotus b. 484 BC d. af. 413 H
+Herodotus b. 484 BC d. af. 413 BC H
 Herring d. 1757 D [Names Omitted;1778]
 Hesiod fl. 870 BC P
 Hesychius fl. ab. 300 Cr
@@ -2250,13 +2250,13 @@ Tertullian d. ab. 220 F
 Teucer fl. 895 BC
 Thabet Ebn Sinan d. 973 H
 Thalassien fl. 550 P
-Thales d. 546. 90 H P.
+Thales d. 546 BC. 90 H P.
 Thaulerus fl. ab. 350 D
 Thebit fl. 1296 M
 Themison fl. 34 BC Ph
 Themistius Euphrades d. ab. 386 Cr
 Themistocles d. 449 BC 65
-Theoritus fl. 262 BC P
+Theocritus fl. 262 BC P
 Theodore Gaza d. 1478. 90 Cr
 Theodoret d. af. 460 H
 Theodoric the Ostrogoth d. 526. 71
@@ -2296,7 +2296,7 @@ Thornton, Geo. D. fl. 1300 L
 Thrasea Pætus d. 66
 Thrasybulus d. 390
 Thuanus d. 1617. 64 H .
-Thucydides d. ab. 391. ab. 80 H
+Thucydides d. ab. 391 BC. ab. 80 H
 Tiberius d. 37. 78
 Tiberius d. 582
 Tibullus d. 19 BC 84 P
@@ -2467,7 +2467,7 @@ Zechariah fl. 527 BC J
 Zedekiah d. af. 587 BC
 Zeno d. 491. 66
 Zeno of Elea fl. 463 BC H P.
-Zeno Stoicus d. 264. 98 H P.
+Zeno Stoicus d. 264 BC. 98 H P.
 Zeno of Sydon fl. 83 BC H P. Ep
 Zenobia fl. 273
 Xephaniah fl. 626 BC J

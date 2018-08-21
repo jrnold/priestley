@@ -12,7 +12,51 @@ library("priestley")
 
 DIVISIONS <- unique(priestley::Biographies$division)
 
-add_layout_rows <- priestley:::add_layout_rows
+year_format <- function(x) {
+  if_else(x <= 0L, str_c(abs(x - 1L), " ", "BCE"), as.character(x))
+}
+
+cent_format <- function(x) {
+  cent <- abs(x %/% 100) + 1
+  str_c(case_when(
+    cent == 1 ~ "1st",
+    cent == 2 ~ "2nd",
+    cent == 3 ~ "3rd",
+    TRUE ~ str_c(cent, "th")
+  ), " Century", if_else(x < 0, " BCE", ""))
+}
+
+format_person <- function(x) {
+  rlang::eval_tidy(quo({
+    born_str <- if_else(is.na(born), "",
+                        str_c("Born ",
+                              if_else(is.na(born_about), "about ", ""),
+                              year_format(born), ". "))
+    died_str <- if_else(is.na(died), "",
+                        str_c("Died ",
+                              if_else(died_about, "about ", ""),
+                              if_else(died_after, "after ", ""),
+                              year_format(died), ". "))
+    flourished_str <- if_else(is.na(flourished),
+                              "",
+                              str_c(
+                                "Flourished ",
+                                if_else(flourished_about, "about ", ""),
+                                if_else(flourished_before, "before ", ""),
+                                if_else(flourished_after, "after ", ""),
+                                if_else(flourished_century,
+                                        cent_format(flourished),
+                                        year_format(flourished)),
+                                ". "
+                              ))
+    lived_str <- if_else(is.na(lived), "",
+                         str_c("Lived after ", year_format(lived), ". "))
+    age_str <- if_else(is.na(age), "", str_c("Age ", age, ". "))
+    str_trim(str_c(name, " (", occupation, ") ",
+                   born_str, died_str, flourished_str,
+                   lived_str, age_str))
+  }), data = x)
+}
 
 local_theme <- function() {
   theme_minimal() +
@@ -32,11 +76,6 @@ ui <- fluidPage(
   titlePanel("A Chart of Biography"),
   sidebarPanel(
     h2("Data"),
-    selectInput("dataset", "Dataset",
-                c("1764 Edition" = '1764',
-                  "1778 Edition" = '1778',
-                  "Specimen" = 'specimen',
-                  selected = 'specimen')),
     sliderInput("yearRange", h3("Years"), min = START_YEAR,
                 max = END_YEAR, value = c(START_YEAR, END_YEAR),
                 step = 100, sep = ""),
@@ -58,26 +97,16 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   # plot sizing
-  label_size <- 2
-  res <- 100
+  res <- 72
   # height <- reactive({max(dat()$row) * res})
   height <- 45 * res
   # width <- reactive({abs(diff(year_range())) * res * 100})
   width <- 32 * res
 
   dat <- reactive({
-    # Choose initial dataset to use
-    if (input$dataset == "specimen") {
-      out <- priestley::Specimen
-    } else if (input$dataset == "1764") {
-      out <- priestley::Biographies %>%
-        filter(!is.na(id_1764))
-    } else if (input$dataset == "1778") {
-      out <- priestley::Biographies %>%
-        filter(!is.na(id_1778))
-    } else {
-      stop("Invalid dataset", call. = FALSE)
-    }
+    out <- priestley::Biographies %>%
+      filter(in_1778) %>%
+      sample_n(256)
     # Use that dataset
     out <- out %>%
       filter(start_2 >= input$yearRange[1],
@@ -94,7 +123,7 @@ server <- function(input, output) {
         ungroup()
     }
     out <- out %>%
-      mutate(row = add_layout_rows(start_2, end_2, hgap = 100)) %>%
+      mutate(row = layout_rows(start_2, end_2, hgap = 100)) %>%
       ungroup(out)
 
     out
@@ -122,19 +151,18 @@ server <- function(input, output) {
       geom_segment(data = segments2,
                    mapping = aes(x = start, xend = end,
                                  y = row, yend = row,
-                                 color = !!sym(color))) +
+                                 color = !!sym(color)),
+                   size = 1) +
       geom_segment(data = segments1,
                    mapping = aes(x = start, xend = end, y = row, yend = row,
                                  color = !!sym(color)),
                    alpha = 0.5) +
-      geom_text_repel(data = segments2,
-                      mapping = aes(x = (start + end) * 0.5,
-                                    y = row,
-                                    color = !!sym(color),
-                                    label = name),
-                      nudge_y = 0.1,
-                      size = label_size, force_pull = 1, box.padding = 0,
-                      segment.size = 0.2, segment.alpha = 0.5)
+      geom_text(data = segments2,
+                mapping = aes(x = (start + end) * 0.5,
+                              y = row,
+                              color = !!sym(color),
+                              label = name),
+                vjust = "bottom", nudge_y = 0.05, size = 3.86, alpha = 0.5)
 
     if (input$groupDivisions) {
       p <- p + facet_wrap(vars(division), ncol = 1, shrink = TRUE,
@@ -143,8 +171,10 @@ server <- function(input, output) {
 
     p <- p +
       scale_y_continuous("") +
-      scale_x_continuous("", breaks = centuries, minor_breaks = decades,
-                         limits = input$yearRange) +
+      scale_x_continuous("", breaks = centuries,
+                         minor_breaks = decades,
+                         limits = input$yearRange, position = "bottom",
+                         sec.axis = dup_axis()) +
       scale_color_discrete("") +
       local_theme()
 

@@ -1,61 +1,61 @@
 "Men of Learning":
-- - Thucydides
-- - Herodotus
-  - Demosthenes
-  - Polybius
-  - Sallust
-- - Anacreon
-  - Xenophon
-  - Aristarchus
-  - Livy
-- - Aristophanes
-  - Theocritus
-  - Plautus
-  - Ovid
-- - Thales
-  - Pindar
-  - Plato
-  - Euclid
-  - Terence
-  - Virgil
-- - Sophocles
-  - Aristotle
-  - Eunius
-  - Horace
-- - Pythagoras
-  - Hippocrates
-  - Epicurus
-  - Lucretius
-- - Socrates
-  - Zeno Stoicus
-  - Catullus
+- "Thucydides": null
+- "Herodotus": null
+  "Demosthenes": null
+  "Polybius": null
+  "Sallust": null
+- "Anacreon": null
+  "Xenophon": null
+  "Aristarchus": null
+  "Livy": null
+- "Aristophanes": null
+  "Theocritus": null
+  "Plautus": null
+  "Ovid": null
+- "Thales": null
+  "Pindar": null
+  "Plato": null
+  "Euclid": null
+  "Terence": null
+  "Virgil": null
+- "Sophocles": null
+  "Aristotle": null
+  "Eunius": null
+  "Horace": null
+- "Pythagoras": null
+  "Hippocrates": null
+  "Epicurus": null
+  "Lucretius": null
+- "Socrates": null
+  "Zeno Stoicus": null
+  "Catullus": null
 Statesmen:
-- - Agesilaus
-  - Aratus
-  - Mithridates
-- - Cyrus
-  - Pericles
-  - Philip of Maced.
-  - Philopoemen
-  - Cicero
-- - Miltiades
-  - Alcibiades
-  - Alexander
-  - Pompey
-- - Solon
-  - Themistocles
-  - Dionysius Junr.
-  - Agis
-  - Cato Censor
-  - Caesar, Julius
-- - Cimon
-  - Epaminondas
-  - Pyrrhus
-  - Gracchus Tiberius
-  - Brutus Marcus
-- - Camillus
-  - Scipio Africanus
-  - Sylla
-  - Augustus
-- - Hannibal
-  - Marius
+- "Agesilaus": null
+  "Aratus": null
+  "Mithridates": null
+- "Cyrus": null
+  "Pericles": null
+  "Philip": "Philip of Maced."
+  "Philopoemen": "Philopœmen"
+  "Cicero": null
+- "Miltiades": null
+  "Alcibiades": null
+  "Alexander": null
+  "Pompey": null
+- "Solon": null
+  "Themistocles": null
+  "Dionysius": "Dionysius Junr."
+  "Agis": null
+  "Cato Censor": null
+  "J Caesar": "Cæsar, Julius"
+- "Cimon": null
+  "Epaminondas": null
+  "Pyrrhus": null
+  "T. Gracchus": "Gracchus Tiberius"
+  "Brutus Marcus": null
+- "Camillus": null
+  "Scipio Af.": "Scipio Africanus"
+  "Sylla": null
+  "Augustus": null
+- "Hannibal": null
+  "Marius": null

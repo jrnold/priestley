@@ -32,7 +32,8 @@ process_bio <- function(x) {
   out <- as_tibble(x[c("name", "text", "division")])
   out[["occupation"]] <- x[["occupation"]] %||% NA_character_
   out[["sect"]] <- x[["sect"]] %||% NA_character_
-  for (i in c("start_1", "start_2", "end_1", "end_2", "age")) {
+  for (i in c("start_1", "start_2", "end_1", "end_2", "age",
+              "in_1764", "in_1778", "in_names_omitted")) {
     out[[i]] <- x[[i]]
   }
   for (i in str_subset(names(x), "^(born|died|lived|flourished)")) {
@@ -67,21 +68,9 @@ create_bios <- function() {
 
   categories <- load_categories()
 
-  list(here::here("data-raw", "priestley_bios_1764.json") %>%
-         read_json() %>%
-         map_df(process_bio) %>%
-         ungroup() %>%
-         mutate(id_1764 = row_number()),
-       here::here("data-raw", "priestley_bios_1778.json") %>%
-        read_json() %>%
-        map_df(process_bio) %>%
-        ungroup() %>%
-        mutate(id_1778 = row_number())
-    ) %>%
-    bind_rows() %>%
-    group_by(text) %>%
-    mutate_at(vars(id_1764, id_1778), funs(non_missing)) %>%
-    slice(1) %>%
+  here::here("data-raw", "priestley_bios.json") %>%
+    read_json() %>%
+    map_df(process_bio) %>%
     mutate_at(vars(matches("^(id|start|end)_")),
               funs(as.integer)) %>%
     mutate(flourished = as.integer(flourished)) %>%
@@ -92,7 +81,7 @@ create_bios <- function() {
     mutate(occupation = if_else(division == "Statesmen and Warriors",
                                 "Politician/Military Person", occupation)) %>%
   # order columns
-  select(text, name, id_1764, id_1778, division, occupation_abbr, occupation,
+  select(text, name, in_1764, in_1778, in_names_omitted, division, occupation_abbr, occupation,
          sect_abbr, sect, start_1, end_1, start_2, end_2, born, born_about,
          died, died_about,
          died_after, age, flourished, flourished_about, flourished_before,

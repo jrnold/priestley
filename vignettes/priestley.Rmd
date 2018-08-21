@@ -1,16 +1,17 @@
 ---
-title: "Joseph Priestly's \"A Chart of Biography\""
+title: "Joseph Priestley's \"A Chart of Biography\""
 author: "Jeffrey B. Arnold"
 date: "2/5/2018"
 output: html_document
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Joseph Priestly's "A Chart of Biography"}
+  %\VignetteIndexEntry{Joseph Priestley's "A Chart of Biography"}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+library("priestley")
 ```
 
 ## Introduction
@@ -18,10 +19,12 @@ knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 Joseph Priestley's *A Chart of Biography*, first published in 1764, is the, or one of the, first instances of a modern timeline. (ADD Citation)
 
 The **priestley** package is a data-only package containing datasets used in the 
-the biographic information used in the  1764 and 1778 editions of the the *Chart of Biography*.
+the biographic information used in the 1764 and 1778 editions of the the *Chart of Biography*.
 
 
-The data timelines include approximately two thousand individuals, "the most distinguished in the annals of fame".
+The data timelines include approximately two thousand individuals
+(`r sum(Biographies$in_1778)` in the 1764 edition and `r sum(Biographies$in_1778)` in the 1778 edition) "the most distinguished in the annals of fame".
+The stated criteria for selection into this list was "fame" rather than "merit".
 
 > My rule, I considered, was renown and not merit; acquired fame,
 > and not deserved reputation : so that a person who had
@@ -31,159 +34,47 @@ The data timelines include approximately two thousand individuals, "the most dis
 > deserved ever so well of it, if he had passed through
 > it without being much known.
 
+The list of individuals was both Priestley's opinion and particular to an educated 
+18th century Englishman. However, the purpose of reproducing the data is not the 
+subject of the data itself or its quality, 
+but because it was used in a historically important data visualization.
+
 The timeline shows the names and lines indicating lifespan.
-The individuals were grouped into five divisions:
+The individuals were grouped into five categories, which are called "divisions"
+in the work.
 
-The *Chart* was accompanied by a *A Description of a Chart of Biography: With a Catalouge of all the Names Inserted in It, and the Dates annexed to Them.*.
-This included an index of the names, and 
-more detailed information about the birth and death dates of the individuals included in the *Chart*,
-as well as their profession.
+1. Statesmen and Warriors
+2. Divines and Physicians
+3. Historians, Antiquarians, and Lawyers
+4. Poets and Artists
+5. Orators and Critics
 
-about two thousand names of persons 
+The *Chart* was accompanied by a *A Description of a Chart of Biography: With a Catalogue of all the Names Inserted in It, and the Dates annexed to Them.*.
+This included an index of the names, birth date, death date, age, and primary occupation of the individuals included in the *Chart*.
 
-IT will easily occur to all my readers, that my
-greatest difficulty must have been the proper choice of
-names to fill this tablet of fame : and some degree of
+## A Specimen of a Chart of History
 
-solicitude is certainly unavoidable when a man volun-
-tarily assumes the province of the arbiter and dispenser
+The *Description of a Chart of History* contained a chart called *A Specimen of a Chart of History*,
+shown the following image.
+The "Specimen" was a sample of the full chart. It only contained `r nrow(Specimen)` individuals,
+divided into "Men of Learning" and "Statesmen". 
 
-of every man’s reputation, and when he sees all the
-dead pass, as it were, in review before him for that
-purpose. But this is no greater presumption than is
-implied in numberless other works, and is in fact no
+![](PriestleyChart.gif)
 
-more than one man’s giving his present opinion con-
-cerning others. The nature of the design necessarily
+Table: "A redacted version of Priestley's Chart of Biography (1765)." 
+Wikimedia Commons contributors, "File:PriestleyChart.gif," Wikimedia Commons, the free media repository, <https://commons.wikimedia.org/w/index.php?title=File:PriestleyChart.gif&oldid=177413180>.
 
-fixed some limits to the width of the divisions, and
-though in some ages there was room enough for all
-the candidates for fame ; if I would have inserted
-them ; in others, and particularly in modern times,
-where no reasonable space would admit a tenth part
-of the candidates, it must require no small judgement
-to decide concerning their respective pretensions.
+The data frame `priestley::Specimen` contains the data necessary to reproduce this chart.
+The dates used in `Specimen` and `Biographies` were taken from the index, and not directly 
+from the chart. These charts indicated uncertainty in birth and death dates by using solid 
+lines for certain segments, and using dots for uncertain segments, where the exact date
+of birth or death was not known exactly.
+In the `Specimen` data frame, the values of `start_1` and `end_1` represent the certain segment,
+and `start_2` and `end_2` represent the uncertain segment.
 
-With respect to this, I can only say that I have acquitted myself with all 
-the impartiality of which I
+```{r specimen-chart,message = FALSE}
+library("ggplot2")
 
-was capable.HOWEVER a due regard to the nature of my design
-made made the task much easier, and less invidious than
-
-may, at first sight, be imagined. My rule, I con-
-sidered, was renown and not merit ; acquired fame,
-
-and not deserved reputation : so that a person who had
-made a great noise in the world, though he were
-known by nothing but the devastation he had made
-in it, was more acceptable to me than one who had
-deserved ever so well of it, if he had passed through
-it without being much known. And it is manifest
-that, if this chart be designed for the use of persons
-who are beginning an acquaintance with history, it
-must be drawn up according to this rule. Otherwise
-it would not show them the situation of the names
-they are most likely to look for in it.
-
-I AM sensible it would be extreme arrogance in any
-
-person to pretend to so accurate and extensive a know-
-ledge even of the proportion of renown which all men
-
-of every profession have acquired, as would enable him
-to select the most distinguished names, with so much
-exactness, that none of those who are omitted should
-be more noted than any of those who are inserted :
-yet thus much I hope the diligence of my inquiries
-may encourage me to say, that, though some instances
-may occur, to more diligent and longer continued
-researches, of persons of greater note omitted, and
-less note inserted, yet that the fame of all those
-
-who are omitted would bear an exceeding small pro-
-portion to the fame of those who are inserted.
-
-I AM convinced, however, it is absolutely impos-
-sible to please many persons with the choice of names
-
-upon such a plan as this. No two persons living
-would make the same choice. I will even venture
-to say, from my own experience, that no one person
-would, at different times, make the same choice. It
-is only such an experience as I have had that can
-convince any person, how extremely fluctuating are
-
-our ideas of the relative fame of many different pers-
-ons, and of the figure they have made in the world.
-
-The many times I have altered my lists convinces me
-that I should never revise them without seeing some
-reason to make farther alterations ; but the many
-times that I have replaced the same names after
-
-having rejected them, convinces me that further al-
-terations would have been of very little consequence.
-
-BEFORE a person express great surprize at my o-
-mitting or over-looking any favourite of his, let him
-
-consider, particularly, at what time he flourished ;
-for hundreds which have been excluded in later, and
-
-more crowded ages, would have found a ready recep-
-tion in an earlier period ; so that their exclusion must
-
-not be attributed either to my fault or their own.
-Let it always be remembered, that the celebrity of
-
-any person is to be compared with that of his co-
-temporaries, and not with that of those who made
-
-their appearance either before or after him.
-
-I HAVE perhaps inserted rather more Englishmen
-in proportion, than those of other nations, but this
-
-was not owing to any national prejudice ; but as re-
-nown is a relative thing, regard must necessarily be
-
-had to the minds of those into whose hands the chart
-is most likely to fall. Had I drawn the chart in
-order to its being published in any other part of the
-world, even in France, I should naturally, with the
-same ideas of relative fame, have made a different
-
-choice of names. If the chart, as it stands at pre-
-sent, seemed calculated rather for men of letters than
-
-men of business, let it be attributed to a similar reason.
-
-NEITHER the number, nor the width of the divi-
-sions was determined at random, and a priori, but
-
-both were made such as the names I previously
-collected appeared most natural to require. Fewer
-classes I could not have made, and at the same time
-have preserved any tolerable distinctness, and more
-would
-
-THE classing of the names occasioned some little
-
-difficulty to me, and may occasion some to the peru-
-ser. My general rule has been to place every person
-
-in that class in which he was most eminent. Thus
-
-I have placed Mohammed, as the head of a celebra-
-ted sect in religion, among the Divines ; though the
-
-Caliphs, his successors, will be found among the
-Statesmen.
-
-The original chart is "about three feet in length,
-and two feet in breadth" (Description A3)
-
-```{r message = FALSE}
 ggplot(priestley::Specimen) +
   geom_segment(aes(y = row, yend = row, x = start_2, xend = end_2),
                alpha = 0.5, size = 0.5) +
@@ -205,18 +96,80 @@ ggplot(priestley::Specimen) +
         axis.text.y = element_blank())
 ```
 
+## Full Chart
 
-Wikimedia Commons contributors, "File:PriestleyChart.gif," Wikimedia Commons, the free media repository, <https://commons.wikimedia.org/w/index.php?title=File:PriestleyChart.gif&oldid=177413180> (accessed February 8, 2018).
+The full chart contains over 2,000 individuals and when printed was "about three feet in length,
+and two feet in breadth".  The data frame `priestley::Biographies` contains data on the
+individuals in the chart extracted from the name index.
+
+```{r message=FALSE, fig.width = 14, fig.height = 7}
+library("plotly")
+library("dplyr")
+
+start_year <- -1300
+end_year <- 1800
+
+bios <- priestley::Biographies %>%
+  filter(in_1778) %>%
+  ungroup() %>%
+  mutate(row = layout_segments(start_2, end_2, gap = 100, random = FALSE)) %>%
+  ungroup()
+
+plot_ly() %>%
+  add_segments(x = ~ start_2, xend = ~end_2, y = ~ row, yend = ~row, data = bios,
+               color = ~division,
+               size = I(1),
+               hovertext = ~text,
+               hoverinfo = "text", 
+               legendgroup = ~division, 
+               showlegend = FALSE) %>%
+  add_segments(x = ~start_1, xend = ~end_1, y = ~row, yend = ~row,  data = bios,
+               color = ~division,
+               size = I(2),
+               hovertext = ~text, 
+               hoverinfo = "text",
+               legendgroup = ~division, 
+               showlegend = TRUE
+               ) %>%
+  layout(title = "A Chart of Biography",
+         hovermode = "closest",
+         legend = list(orientation = "h"),
+         xaxis = list(
+            title = "",
+            autotick = FALSE,
+            tick0 = (start_year %/% 100) * 100,
+            dtick = 100,
+            zeroline = FALSE,
+            mirror = "allticks",
+            side = "bottom",
+            rangeslider = list()
+         ),
+         yaxis = list(
+                title = "",
+                zeroline = FALSE,
+                showline = FALSE,
+                showticklabels = FALSE,
+                showgrid = FALSE
+         )
+        )
+```
+
 
 ## Descriptions
 
+The *Chart of Biography* displays the lifespans of individuals with line segments, using dots to indicate uncertainty about birth and death dates.
+However, the name index from which this data is derived provides the birth and death dates of individuals in a variety of text descriptions, such as
+"Euclid fl. 300 BC M", "Epaminondas d. 363 BC",  "Herodotus b. 484 BC d. af. 413 BC H", and "Suidas fl. ab. 11 Cent. Cr".
+The name index uses a regular, concise representation of the birth and death dates of individuals, but they can appear in several formats: indicating on or more of the year(s) in which an individual was born, died, lived, or "flourished", as well as several ways of indicating uncertainty ("before", "after", "about", and only indicating the Century).
+The *Description of a Chart of Biography* contains extensive discussion of how the lifespan segments were constructed from the available information. This section discusses how the segments in this data was generated.
+
 Examples in which the date of death and the age at death are known. These are drawn with a single solid black line since there is no uncertainty.
 
-- Pindar d. 435 BC. 86 P
-- Sophocles d. 406 BC 91 P
-- Xenophon d. 359 BC. ab. 90 H
-- Plato d. 348 BC. 81 HP
-- Terence d. 159 BC. 35 P
+-   Pindar d. 435 BC. 86 P
+-   Sophocles d. 406 BC 91 P
+-   Xenophon d. 359 BC. ab. 90 H
+-   Plato d. 348 BC. 81 HP
+-   Terence d. 159 BC. 35 P
 
 > It is an imperfection which must necessarily attend every Chart of this
 > nature, that the time of the death, but more especially the time of the birth
@@ -236,7 +189,7 @@ Examples in which the date of death and the age at death are known. These are dr
 
 Examples include,
 
-- Herodotus b. 484 BC. d. af. 413 H
+-   Herodotus b. 484 BC. d. af. 413 H
 
 > If history informs us that he was born or died
 > about a certain time, a dot is placed just under the
@@ -244,37 +197,37 @@ Examples include,
 
 Examples include,
 
-- Agis b. 24. BC. ab. 22
-- Thucydides d. ab. 391. ab. 80 H
+-   Agis b. 24. BC. ab. 22
+-   Thucydides d. ab. 391. ab. 80 H
 
 > If the birth be certain but the death uncertain, the line begins full but ends in dots.
 
 Examples include,
 
-- Abul Pharai b. 1226 l. af. 1285 H
-- Alain b. 1386 H
+-   Abul Pharai b. 1226 l. af. 1285 H
+-   Alain b. 1386 H
 
 > If, as is often the case, the death be known but the birth
 > unknown, the line begins with dots, and ends full
 
-- Epaminondas d. 363
+-   Epaminondas d. 363
 
-> When it is faid that a writer flourijhed at or
+> When it is faid that a writer flourished at or
 > about a particular time, a short full line is drawn
 > about two-thirds before and one third after that particular time,
 > with three dots before and two after it; because, in
 general, men are said to flourish much
 > nearer the time of their death than the time of their
-birth
+birth.
 
-- Euclid fl. 300 BC. M
+-   Euclid fl. 300 BC. M
 
 What is left unspecified in the description is the mapping between dots and years?
 None of the digital specimens of the Chart of Biography available are high resolution enough to make this out.
 Dots seem a little less than decades?
 
 > If it be uncertain even in what
-> century a perfon lived or flourished, there is no full
+> century a person lived or flourished, there is no full
 > line made at all, but only dots or broken lines where
 > I imagine it is most probable he might have flourished.
 
@@ -282,22 +235,28 @@ Priestley provides no other details about how long this line may be. However,
 the examples on this [chart](http://www.enoughroomforspace.org/wp-content/uploads/cartographies-of-time_20130505_0006.jpg) have between six and seven dots, which seem
 to correspond to 60--70 years.
 
-Suidas fl. ab. 11 Cent. Cr                  
-Hesychius fl. ab. 300 Cr
+-   Suidas fl. ab. 11 Cent. Cr                  
+-   Hesychius fl. ab. 300 Cr
 
-text                               start2   start1   end1     end2
----------------------------------  -------- -------- -------- --------
-Euclid fl. 300 BC. M               -320     -350     -290     -270
-Epaminondas d. 363                 303      333       363
-Herodotus b. 484 BC. d. af. 413 H           -484      413     423
-Suidas fl. ab. 11 Cent. Cr         1000                       1080
-Hesychius fl. ab. 300 Cr           250                        330
-Agis 241. BC ab. 22                241
-Thucydides d. ab. 391. ab. 80 H             311       391
+```{r example-ages}
+examples <- c("Euclid fl. 300 BC M",
+              "Epaminondas d. 363 BC",
+              "Herodotus b. 484 BC d. af. 413 BC H",
+              "Suidas fl. ab. 11 Cent. Cr",
+              "Hesychius fl. ab. 300 Cr",
+              "Agis d. 241 BC ab. 22",
+              "Thucydides d. ab. 391 BC. ab. 80 H")
+              
+filter(Biographies, 
+       text %in% examples) %>%
+  select(text, start_2, start_1, end_1, end_2) %>%
+  knitr::kable()
+```
+
+Table: Examples of life segments generated from the text descriptions in 
+the index of names in the *Description of a Chart of Biography*.
 
 ## Miscellaneous
-
-Date abbreviations
 
 ------- ----------------------------
 d.      died
@@ -308,6 +267,8 @@ ab.     about
 fl. ab. Considerable uncertainty
 B C.    before Christ
 ------- ----------------------------
+
+Table: Date abbreviations appearing in the name index.
 
 ## References
 
@@ -323,9 +284,10 @@ B C.    before Christ
     of All the Names and the Dates Annexed to Them." 7th edition. 1778.
     Corrected OCR and annotated by Davis, Stephen Boyd. [URL](https://drive.google.com/open?id=0B4KIGf4GncycMmU1ZTdjMGYtM2RiMC00NTE3LThiMTUtZjk5YzkxOThlNGNk).
 
-
+-   https://en.wikipedia.org/wiki/A_Chart_of_Biography
 -   Priestley, Joseph. *A description of a new chart of history with a a Catalogue of All the Names and the Dates Annexed to Them*
 
+<!--
     -   2nd edn. 1765. <https://books.google.com/books?id=JHJZAAAAcAAJ>
     -   3rd ed. 1767. <https://books.google.com/books?id=RYZcAAAAcAAJ>
     -   5th ed. 1781. <https://books.google.com/books?id=eCwIAAAAQAAJ>
@@ -333,3 +295,4 @@ B C.    before Christ
     -   1790. <https://books.google.com/books?id=-QJcAAAAQAAJ>
     -   1767. <https://books.google.com/books?id=w5QBAAAAQAAJ>
     -   1805. <https://books.google.com/books?id=6LuuDdFMKQAC>
+-->
