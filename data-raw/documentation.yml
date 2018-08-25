@@ -1,0 +1,439 @@
+name: priestley
+title: >
+  Data from Joseph Priestley's "A Chart of Biography"
+homepage: "https://github.com/jrnold/priestley"
+version: "1.0.0"
+contributors:
+  - title: Jeffrey Arnold
+    email: jeffrey.arnold@gmail.com
+    role: author
+resources:
+- name: Biographies
+  title: List of persons in Priestley's A Chart of Biography
+  description: >
+    Table with biographical information: names, birth dates, death dates, ages,
+    occupation, category, and the lifespan segments to use in the timeline
+    for all individuals in the 1st (1764) and ... (1778) editions of
+    Joseph Priestley's *A Chart of Biography*.
+  schema:
+    fields:
+      - &text
+        name: text
+        type: string
+        constraints:
+          required: true
+        description: Text entry in the name index of the source.
+      - &name
+        name: name
+        type: string
+        constraints:
+          required: true
+        description: Name of the individual
+      - &in_1764
+        name: in_1764
+        type: boolean
+        constraints:
+          required: true
+        description: >
+          Is this entry in the 1764 edition?
+      - &in_1778
+        name: in_1778
+        type: boolean
+        constraints:
+          required: true
+        description: >
+          Is this entry in the 1778 edition?
+      - &in_names_omitted
+        name: in_names_omitted
+        type: boolean
+        constraints:
+          required: true
+        description: >
+          Is this entry in the "Names Omitted" section of the 1764 edition?
+      - &division
+        name: division
+        type: string
+        description: >
+          The *Chart* divides individuals into six categories of occupations,
+          which are referred to as "divisions" in the text.
+        constraints: >
+          enum:
+          - Mathematicians and Physicians
+          - Statesmen and Warriors
+          - Divines and Metaphysicians
+          - Poets and Artists
+          - Historians, Antiquarians, and Lawyers
+          - Orators and Critics
+          required: true
+      - &occupation_abbr
+        name: occupation_abbr
+        type: string
+        description: >
+          Abbreviation of the occupation, as used in the name index.
+        constraints:
+          required: false
+          enum:
+          - Act
+          - Ant
+          - Ar
+          - Bel
+          - Ch
+          - Chy
+          - Cr
+          - D
+          - Eng
+          - Engineer
+          - F
+          - Geo
+          - H
+          - H P
+          - J
+          - L
+          - M
+          - Met
+          - Moh
+          - Mor
+          - Mu
+          - Or
+          - P
+          - Pa
+          - Ph
+          - Po
+          - Pol
+          - Pr
+          - St
+          - Trav
+      - &occupation
+        name: occupation
+        type: string
+        description: >
+          Full name of the occupation. These values are generally the same as
+          the provided documentation from the *Description*, but in a few cases
+          they were modernized to avoid archaic or offensive language.
+        constraints:
+          required: true
+          enum:
+          - Actor
+          - Antiquary
+          - Architect
+          - Chemist
+          - Christian Father
+          - Christian Religious Person
+          - Chronologer
+          - Critic
+          - Engineer
+          - Engraver
+          - Geographer
+          - Historian
+          - Jewish Religious Person
+          - Lawyer
+          - Mathematician
+          - Metaphysician
+          - Moralist
+          - Musician
+          - Muslim Religious Person
+          - Orator
+          - Painter
+          - Philosopher
+          - Physician
+          - Poet
+          - Political Writer
+          - Politician/Military Person
+          - Pope
+          - Printer
+          - Statuary
+          - Traveller
+          - Writer
+      - &sect_abbr
+        name: sect_abbr
+        type: string
+        description: >
+          Abbreviation of the particular sect/school of Greek philosophy to which
+          the individual belonged, as used in the
+        constraints:
+          required: false
+          enum:
+          - Ac
+          - Cyn
+          - Cyr
+          - Eleack
+          - Eleat
+          - Ep
+          - Ion
+          - Ital
+          - Meg
+          - Per
+          - Scept
+          - Soc
+          - Sto
+      - &sect
+        name: sect
+        type: string
+        description: >
+          Name of the particular sect/school of Greek philosophy to which
+          the individual belonged.
+        constraints:
+          required: false
+          enum:
+          - Academic
+          - Cynic
+          - Cyrenaic
+          - Eleack
+          - Eleatic
+          - Epicurean
+          - Ionic
+          - Italic
+          - Megaric
+          - Peripatetic
+          - Sceptic
+          - Socratic
+          - Stoic
+      - &start_1
+        name: start_1
+        type: integer
+        description: >
+          Upper estimate of the birth year of an individual. This is used as the
+          start of the certain segment of an lifespan on a chart. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+        constraints: >
+          minimum: -1300
+          maximum: 1800
+          required: false
+      - &end_1
+        name: end_1
+        type: integer
+        description: >
+          Lower estimate of the death year of an individual. This is used as the
+          end of the certain segment of an lifespan on a chart. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+        constraints: >
+          minimum: -1300
+          maximum: 1800
+          required: false
+      - &start_2
+        name: start_2
+        type: integer
+        description: >
+          Lower estimate of the birth year of an individual. This is used as the
+          start of the uncertain segment of an lifespan on a chart. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+        constraints: >
+          minimum: -1300
+          maximum: 1800
+          required: true
+      - &end_2
+        name: end_2
+        type: integer
+        description: >
+          Upper estimate of the death year of an individual. This is used as the
+          end of the uncertain segment of an lifespan on a chart. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+        constraints: >
+          minimum: -1300
+          maximum: 1800
+          required: true
+      - &born
+        name: born
+        type: integer
+        constraints: >
+          minimum: -1300
+          maximum: 1800
+          required: true
+        description: >
+          Birth year of an individual. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+      - &born_about
+        name: born_about
+        type: boolean
+        description: >
+          Indicator for whether the birth year is approximate: "born about".
+        constraints:
+          required: false
+      - &died
+        name: died
+        type: integer
+        description: >
+          Death year of an individual. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+        constraints: >
+          minimum: -1300
+          maximum: 1800
+          required: true
+      - &died_about
+        name: died_about
+        type: boolean
+        description: >
+          Indicator for whether the death year is approximate: "died about".
+        constraints:
+          required: false
+      - &died_after
+        name: died_after
+        type: boolean
+        constraints:
+          required: false
+        description: >
+          Indicator for whether the death year should be interpreted as the
+          lower value of a death, "died after".
+      - &age
+        name: age
+        type: integer
+        constraints:
+          required: false
+          minimum: 0
+          maximum: 120
+        description: >
+          Age at which an individual died.
+      - &flourished
+        name: flourished
+        type: integer
+        constraints:
+          minimum: -1300
+          maximum: 1800
+          required: false
+        description: Year in which an a individual was flourishing, meaning
+          that the individual was active in their occupation. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+      - &flourished_about
+        name: flourished_about
+        type: boolean
+        constraints:
+          required: false
+        description: >
+          Indicator for whether `flourished` is approximate, "flourished about".
+      - &flourished_before
+        name: flourished_before
+        type: boolean
+        constrains:
+          required: false
+        description: >
+          Indicator for whether `flourished `means "flourished before".
+      - &flourished_after
+        name: flourished_after
+        type: boolean
+        constraints:
+          required: false
+        description: >
+          Indicator for whether `flourished` means "flourished after".
+      - &flourished_century
+        name: flourished_century
+        type: boolean
+        constraints:
+          required: false
+        description: >
+          Indicator for whether the year in `flourished` refers to the century.
+      - &lived
+        name: lived
+        label: Lived after
+        type: integer
+        constraints:
+          minimum: -1300
+          maximum: 1800
+          required: false
+        description: >
+          Year that an individual lived after. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+- name: Specimen
+  title: List of persons in Priestley's A Specimen of A Chart of Biography
+  description: >
+    The "Specimen" only contains ... individuals, divided into two categories
+    ("Statesmen" and "Men of Learning") rather than six. Otherwise, the data is
+    identical to that in `Biographies`.
+  details: >
+    This dataset is the same as `Biographies`, except for the selection of a
+    subset of individuals, `division` comprising only two categories,
+    the addition of a `row` variable indicating the row (within each `division`)
+    in which the individual is place in the chart, and `label` which is the text label
+    used in the in the chart, and may be different than the name
+
+  schema:
+    fields:
+      - name: row
+        type: integer
+        description: >
+          The row (from top to bottom, within each `division`) which the
+          individual appears in the chart.
+        constraints:
+          required: true
+          minimum: 1
+          maximum: 8
+      - name: label
+        type: string
+        description: >
+          The label used for the individual in the "Specimen" chart. This
+          may be different than the one used in the name index.
+        constraints:
+          required: true
+      - <<: *text
+      - <<: *name
+      - name: division
+        type: string
+        constraints:
+          required: true
+          enum:
+            - Statesmen
+            - Men of Learning
+        description: >
+          In the Specimen chart, individuals are divided into two broad
+          classes of occupations: "Statesmen" and "Men of Learning".
+      - <<: *occupation_abbr
+      - <<: *occupation
+      - <<: *start_1
+      - <<: *end_1
+      - <<: *start_2
+      - <<: *end_2
+      - <<: *born
+      - <<: *born_about
+      - <<: *died
+      - <<: *died_about
+      - <<: *died_after
+      - <<: *age
+      - <<: *flourished
+      - <<: *flourished_about
+      - <<: *flourished_before
+      - <<: *flourished_after
+      - <<: *flourished_century
+      - <<: *lived
+
+- name: Kings
+  title: List of Rulers of Major Empires, 1300 BCE to 1800
+  description: >
+    This table contains a list of rulers and the dates of their successions
+    which were used annotate the margin of Joseph Priestley's a Chart of History.
+    The list consists  Kings of Judah (1095 BCE--608 BCE), Nebuchadnezzer (608 BCE),
+    Kings of Persia (604 BCE--335 BCE), Alexander the Great (336 BCE),
+    Ptolemies of Egypt (323 BCE--46 BCE), Roman Emperors (31 BCE--1059),
+    and the Kings of England (1066--1760).
+
+    These data are from the list titled "The Times When Kings in Those Successions
+    Which Are Noted in the Margin of the Chart Began Their Reigns",
+    (1st edition, 1764, pp. 77--80).
+  schema:
+    fields:
+    - name: name
+      type: string
+      description: >
+        Name of the individual
+      constraints:
+        required: true
+    - name: year
+      type: integer
+      description: >
+        Year in which the ruler ascended to power. Negative values indicate
+        years BCE.
+      constraints:
+        required: true
+        minimum: -1300
+        maximum: 1800
+    - name: category
+      type: string
+      description: >
+        The empire or kingdom that the ruler ruled.
+      constraints:
+        enum:
+        - Kings of Judah
+        - King of Babylon
+        - Kings of Persia
+        - Ptolemies of Egypt
+        - Roman Emperors
+        - Kings of England
+        required: false

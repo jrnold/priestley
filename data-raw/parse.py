@@ -21,7 +21,7 @@ DOTS_YEARS = 10
 
 def load_categories(filename):
     """Read Priestley's categories from YAML file."""
-    with open("Categories.yml", "r") as f:
+    with open(filename, "r") as f:
         data = yaml.load(f)
     categories = {}
     for d in data['divisions']:
