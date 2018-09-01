@@ -7,8 +7,8 @@ priestley_bios.json: parse.py names_from_description_of_the_chart.txt Categories
 ../data/Biographies.rda: Biographies.R priestley_bios.json
 	Rscript $^
 
-../data/Kings.rda: Kings.R priestley_kings.tsv
-	Rscript $<
+../data/Kings.rda: Kings.R Kings.tsv
+	Rscript $^
 
 ../data/Specimen.rda: Specimen.R small-chart.yml ../data/Biographies.rda
 	Rscript $<

@@ -32,11 +32,14 @@ process_bio <- function(x) {
   out <- as_tibble(x[c("name", "text", "division")])
   out[["occupation"]] <- x[["occupation"]] %||% NA_character_
   out[["sect"]] <- x[["sect"]] %||% NA_character_
-  for (i in c("start_1", "start_2", "end_1", "end_2", "age",
-              "in_1764", "in_1778", "in_names_omitted")) {
+  for (i in c("born_max", "born_min", "died_min", "died_max", "age",
+              "in_1764", "in_1778", "in_names_omitted", "lifetype")) {
     out[[i]] <- x[[i]]
   }
   for (i in str_subset(names(x), "^(born|died|lived|flourished)")) {
+    if (str_detect(i, "(born|died)_(min|max)")) {
+      next
+    }
     if (str_detect(i, "died")) {
       out[["died"]] <- x[[i]][["value"]]
       out[["died_about"]] <- str_detect(i, "about")
@@ -71,7 +74,7 @@ create_bios <- function() {
   here::here("data-raw", "priestley_bios.json") %>%
     read_json() %>%
     map_df(process_bio) %>%
-    mutate_at(vars(matches("^(id|start|end)_")),
+    mutate_at(vars(matches("^(born|died)_(min|max)$")),
               funs(as.integer)) %>%
     mutate(flourished = as.integer(flourished)) %>%
     rename(occupation_abbr = occupation,
@@ -82,10 +85,10 @@ create_bios <- function() {
                                 "Politician/Military Person", occupation)) %>%
   # order columns
   select(text, name, in_1764, in_1778, in_names_omitted, division, occupation_abbr, occupation,
-         sect_abbr, sect, start_1, end_1, start_2, end_2, born, born_about,
+         sect_abbr, sect, born_max, died_min, born_min, died_max, born, born_about,
          died, died_about,
          died_after, age, flourished, flourished_about, flourished_before,
-         flourished_after, flourished_century, lived)
+         flourished_after, flourished_century, lived, lifetype)
 }
 
 main <- function() {

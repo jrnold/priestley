@@ -29,9 +29,9 @@ main <- function() {
     left_join(specimen,
               select(filter(Biographies, in_1778), -division),
               by = "name") %>%
-    # delete duplicates
-    filter(!(name == "Aratus" & start_2 > 0),
-           !(name == "Socrates" & start_2 > 0)) %>%
+    # delete duplicatesf
+    filter(!(name == "Aratus" & born_min > 0),
+           !(name == "Socrates" & born_min > 0)) %>%
     select(-in_1764, -in_1778, -sect, -sect_abbr, -in_names_omitted)
 
   dir.create(here::here("data"), showWarnings = FALSE)

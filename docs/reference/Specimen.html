@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List of persons in Priestley's A Chart of Biography — Biographies • priestley</title>
+<title>List of persons in Priestley's A Specimen of A Chart of Biography — Specimen • priestley</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,12 +30,11 @@
 
 
 
-<meta property="og:title" content="List of persons in Priestley's A Chart of Biography — Biographies" />
+<meta property="og:title" content="List of persons in Priestley's A Specimen of A Chart of Biography — Specimen" />
 
-<meta property="og:description" content="Table with biographical information: names, birth dates, death dates,
-ages, occupation, category, and the lifespan segments to use in the
-timeline for all individuals in the 1st (1764) and ... (1778) editions
-of Joseph Priestley's *A Chart of Biography*." />
+<meta property="og:description" content="The &quot;Specimen&quot; only contains ... individuals, divided into two
+categories (&quot;Statesmen&quot; and &quot;Men of Learning&quot;) rather than six.
+Otherwise, the data is identical to that in `Biographies`." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,35 +97,31 @@ of Joseph Priestley's *A Chart of Biography*." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List of persons in Priestley's A Chart of Biography</h1>
+    <h1>List of persons in Priestley's A Specimen of A Chart of Biography</h1>
     
-    <div class="hidden name"><code>Biographies.Rd</code></div>
+    <div class="hidden name"><code>Specimen.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Table with biographical information: names, birth dates, death dates,
-ages, occupation, category, and the lifespan segments to use in the
-timeline for all individuals in the 1st (1764) and ... (1778) editions
-of Joseph Priestley's *A Chart of Biography*.</p>
+    <p>The "Specimen" only contains ... individuals, divided into two
+categories ("Statesmen" and "Men of Learning") rather than six.
+Otherwise, the data is identical to that in `Biographies`.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>Biographies</span></pre>
+    <pre class="usage"><span class='no'>Specimen</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 2418 rows and 26 columns.</p><dl class='dl-horizontal'>
+    <p>A data frame with 59 rows and 23 columns.</p><dl class='dl-horizontal'>
+<dt>row</dt><dd><p>(integer) The row (from top to bottom, within each `division`) which the individual appears in the chart.</p></dd>
+<dt>label</dt><dd><p>(string) The label used for the individual in the "Specimen" chart. This may be different than the one used in the name index.</p></dd>
 <dt>text</dt><dd><p>(string) Text entry in the name index of the source.</p></dd>
 <dt>name</dt><dd><p>(string) Name of the individual</p></dd>
-<dt>in_1764</dt><dd><p>(boolean) Is this entry in the 1764 edition?</p></dd>
-<dt>in_1778</dt><dd><p>(boolean) Is this entry in the 1778 edition?</p></dd>
-<dt>in_names_omitted</dt><dd><p>(boolean) Is this entry in the "Names Omitted" section of the 1764 edition?</p></dd>
-<dt>division</dt><dd><p>(string) The *Chart* divides individuals into six categories of occupations, which are referred to as "divisions" in the text.</p></dd>
+<dt>division</dt><dd><p>(string) In the Specimen chart, individuals are divided into two broad classes of occupations: "Statesmen" and "Men of Learning".</p></dd>
 <dt>occupation_abbr</dt><dd><p>(string) Abbreviation of the occupation, as used in the name index.</p></dd>
 <dt>occupation</dt><dd><p>(string) Full name of the occupation. These values are generally the same as the provided documentation from the *Description*, but in a few cases they were modernized to avoid archaic or offensive language.</p></dd>
-<dt>sect_abbr</dt><dd><p>(string) Abbreviation of the particular sect/school of Greek philosophy to which the individual belonged, as used in the</p></dd>
-<dt>sect</dt><dd><p>(string) Name of the particular sect/school of Greek philosophy to which the individual belonged.</p></dd>
 <dt>start_1</dt><dd><p>(integer) Upper estimate of the birth year of an individual. This is used as the start of the certain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
 <dt>end_1</dt><dd><p>(integer) Lower estimate of the death year of an individual. This is used as the end of the certain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
 <dt>start_2</dt><dd><p>(integer) Lower estimate of the birth year of an individual. This is used as the start of the uncertain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>

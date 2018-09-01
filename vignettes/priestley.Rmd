@@ -3,6 +3,7 @@ title: "Joseph Priestley's \"A Chart of Biography\""
 author: "Jeffrey B. Arnold"
 date: "2/5/2018"
 output: html_document
+bibliography: ../inst/REFERENCES.bib
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Joseph Priestley's "A Chart of Biography"}
@@ -16,23 +17,33 @@ library("priestley")
 
 ## Introduction
 
-Joseph Priestley's *A Chart of Biography*, first published in 1764, is the, or one of the, first instances of a modern timeline. (ADD Citation)
+Joseph Priestley's *A Chart of Biography* [@Priestley1864], first published in 1764, is the, or one of the, first instances of a modern timeline [@FriendleySigalHarnanasingh2013,@Friendly2006,@Friendly,@RosenbergGrafton2013,@wiki:chart-biography,@Davis2012].
+The **priestley** is a data package containing datasets used in the the biographic information used in the 1st (1764) and 7th (1778) editions of the the *Chart of Biography*.
 
-The **priestley** package is a data-only package containing datasets used in the 
-the biographic information used in the 1764 and 1778 editions of the the *Chart of Biography*.
-
-
-The data timelines include approximately two thousand individuals
-(`r sum(Biographies$in_1778)` in the 1764 edition and `r sum(Biographies$in_1778)` in the 1778 edition) "the most distinguished in the annals of fame".
+The timeline visualizes the lifespans of approximately two thousand individuals, 
+described as "the most distinguished in the annals of fame". 
+This timeline was popular in its era, being published 
 The stated criteria for selection into this list was "fame" rather than "merit".
 
 > My rule, I considered, was renown and not merit; acquired fame,
-> and not deserved reputation : so that a person who had
+> and not deserved reputation: so that a person who had
 > made a great noise in the world, though he were
 > known by nothing but the devastation he had made
 > in it, was more acceptable to me than one who had
 > deserved ever so well of it, if he had passed through
 > it without being much known.
+
+
+
+1. Statesmen and Warriors
+2. Divines and Physicians
+3. Historians, Antiquarians, and Lawyers
+4. Poets and Artists
+5. Orators and Critics
+
+The timeline was popular in 
+The timelines include approximately two thousand individuals
+(`r sum(Biographies$in_1778)` in the 1764 edition and `r sum(Biographies$in_1778)` in the 1778 edition) 
 
 The list of individuals was both Priestley's opinion and particular to an educated 
 18th century Englishman. However, the purpose of reproducing the data is not the 
@@ -43,21 +54,15 @@ The timeline shows the names and lines indicating lifespan.
 The individuals were grouped into five categories, which are called "divisions"
 in the work.
 
-1. Statesmen and Warriors
-2. Divines and Physicians
-3. Historians, Antiquarians, and Lawyers
-4. Poets and Artists
-5. Orators and Critics
-
-The *Chart* was accompanied by a *A Description of a Chart of Biography: With a Catalogue of all the Names Inserted in It, and the Dates annexed to Them.*.
+The data in this package come from the index of names  *Chart* was accompanied by a *A Description of a Chart of Biography: With a Catalogue of all the Names Inserted in It, and the Dates annexed to Them.*.
 This included an index of the names, birth date, death date, age, and primary occupation of the individuals included in the *Chart*.
 
-## A Specimen of a Chart of History
+## Replication of a Specimen of a Chart of History
 
-The *Description of a Chart of History* contained a chart called *A Specimen of a Chart of History*,
-shown the following image.
-The "Specimen" was a sample of the full chart. It only contained `r nrow(Specimen)` individuals,
-divided into "Men of Learning" and "Statesmen". 
+*The Chart of Biography* was distributed with a pamphlet titled 
+*A Description of a Chart of Biography*, which documented the methodology of the chart and included an index of the individuals included in the chart.
+Since the full chart was 2 feet x 3 feet, the *Description* also included a chart titled *A Specimen of a Chart of Biography*, which was a subset of the full chart small enough to fit on a single page.
+The "Specimen" contained only `r nrow(Specimen)` individuals with lifespans between 800 BCE and 0, divided into two categories: "Men of Learning", and "Statesmen". 
 
 ![](PriestleyChart.gif)
 
@@ -65,22 +70,16 @@ Table: "A redacted version of Priestley's Chart of Biography (1765)."
 Wikimedia Commons contributors, "File:PriestleyChart.gif," Wikimedia Commons, the free media repository, <https://commons.wikimedia.org/w/index.php?title=File:PriestleyChart.gif&oldid=177413180>.
 
 The data frame `priestley::Specimen` contains the data necessary to reproduce this chart.
-The dates used in `Specimen` and `Biographies` were taken from the index, and not directly 
-from the chart. These charts indicated uncertainty in birth and death dates by using solid 
-lines for certain segments, and using dots for uncertain segments, where the exact date
-of birth or death was not known exactly.
-In the `Specimen` data frame, the values of `start_1` and `end_1` represent the certain segment,
-and `start_2` and `end_2` represent the uncertain segment.
 
 ```{r specimen-chart,message = FALSE}
 library("ggplot2")
 
-ggplot(priestley::Specimen) +
+p <- ggplot(priestley::Specimen) +
   geom_segment(aes(y = row, yend = row, x = start_2, xend = end_2),
                alpha = 0.5, size = 0.5) +
   geom_segment(aes(y = row, yend = row, x = start_1, xend = end_1),
                size = 1) +
-  geom_text(aes(x = (start_2 + end_2) * 0.5, y = row, label = name),
+  geom_text(aes(x = (start_2 + end_2) * 0.5, y = row, label = label),
             size = 3, vjust = "bottom", nudge_y = 0.25, color = "gray50") +
   facet_wrap(~ division, ncol = 1) +
   scale_x_continuous("", 
@@ -93,19 +92,23 @@ ggplot(priestley::Specimen) +
         panel.grid.major.y = element_blank(),
         strip.background = element_rect(fill = "white", colour = NA),
         axis.ticks.y = element_blank(),
-        axis.text.y = element_blank())
+        axis.text.y = element_blank(),
+        strip.text = element_text(face = "bold"))
 ```
 
-## Full Chart
+```{r}
+ggplotly(p) %>% 
+  plotly_json()
+```
+
+
+## Replication of the Full Chart
 
 The full chart contains over 2,000 individuals and when printed was "about three feet in length,
 and two feet in breadth".  The data frame `priestley::Biographies` contains data on the
 individuals in the chart extracted from the name index.
 
 ```{r message=FALSE, fig.width = 14, fig.height = 7}
-library("plotly")
-library("dplyr")
-
 start_year <- -1300
 end_year <- 1800
 
@@ -123,7 +126,7 @@ plot_ly() %>%
                hoverinfo = "text", 
                legendgroup = ~division, 
                showlegend = FALSE) %>%
-  add_segments(x = ~start_1, xend = ~end_1, y = ~row, yend = ~row,  data = bios,
+  add_segments(x = ~start_1, xend = ~end_1, y = ~row, yend = ~row, data = bios,
                color = ~division,
                size = I(2),
                hovertext = ~text, 
@@ -154,13 +157,117 @@ plot_ly() %>%
         )
 ```
 
+```{r message=FALSE, fig.width = 14, fig.height = 7}
+library("plotly")
+library("dplyr")
 
-## Descriptions
+start_year <- -1300
+end_year <- 1800
 
-The *Chart of Biography* displays the lifespans of individuals with line segments, using dots to indicate uncertainty about birth and death dates.
-However, the name index from which this data is derived provides the birth and death dates of individuals in a variety of text descriptions, such as
-"Euclid fl. 300 BC M", "Epaminondas d. 363 BC",  "Herodotus b. 484 BC d. af. 413 BC H", and "Suidas fl. ab. 11 Cent. Cr".
+one_timeline <- function(`data_`, name) {
+  plot_ly() %>%
+  add_segments(x = ~start_2, xend = ~end_2, y = ~row, yend = ~row,
+               data = `data_`,
+               size = I(1),
+               hovertext = ~text,
+               hoverinfo = "text", 
+               color = I("black"),
+               alpha = 0.5,
+               showlegend = FALSE
+               ) %>%
+  add_segments(x = ~start_1, xend = ~end_1, y = ~row, yend = ~row,
+               data = `data_`,
+               sizes = 2,
+               color = I("black"),
+               hovertext = ~text, 
+               hoverinfo = "text",
+               showlegend = FALSE
+               ) %>%
+  layout(yaxis = list(
+            title = "",
+            zeroline = FALSE,
+            showline = FALSE,
+            showticklabels = FALSE,
+            showgrid = FALSE
+         ),
+         xaxis = list(title = name))
+}
+
+divisions <- priestley::Biographies %>%
+  filter(in_1778) %>%
+  split(.$division) %>%
+  map(~ mutate(., 
+               row = layout_segments(start_2, end_2, 
+                                     gap = 100, random = FALSE)))
+
+max_rows <- map_int(divisions, ~ max(.x$row))
+
+rulers <- plot_ly(data = priestley::Kings,
+        x = ~year, 
+        y = I(0),
+        type = 'scatter', 
+        mode = 'marker', 
+        visible = FALSE) %>%
+  layout(yaxis = list(
+                title = "",
+                zeroline = FALSE,
+                showline = FALSE,
+                showticklabels = FALSE,
+                showgrid = FALSE
+         ),
+        annotations = list(
+          text = Kings$name,
+          x = Kings$year,
+          y = I(0),
+          xanchor = "right",
+          yanchor = "bottom",
+          textangle = 90,
+          showarrow = FALSE,
+          xref = "x7",
+          yref = "y7"
+        ))
+
+imap(divisions, one_timeline) %>%
+  subplot(nrows = length(divisions),
+          shareX = TRUE, shareY = FALSE,
+          titleX = TRUE, titleY = TRUE) %>%
+  layout(title = "A Chart of Biography",
+         hovermode = "closest",
+         legend = list(orientation = "h"),
+         xaxis = list(
+            title = "",
+            autotick = FALSE,
+            tick0 = (start_year %/% 100) * 100,
+            dtick = 100,
+            zeroline = FALSE,
+            # mirror = "allticks",
+            side = "bottom",
+            # rangeslider = list()
+         ) 
+        )  
+```
+
+The full dataset is listed here:
+```{r}
+DT::datatable(priestley::Biographies)
+```
+
+
+## Details
+
+The names and dates in `priestley::Biographies` come from the name index included
+in the *Description of a Chart of Biography* that was distributed with the chart itself.
 The name index uses a regular, concise representation of the birth and death dates of individuals, but they can appear in several formats: indicating on or more of the year(s) in which an individual was born, died, lived, or "flourished", as well as several ways of indicating uncertainty ("before", "after", "about", and only indicating the Century).
+
+However, the name index from which this data is derived provides the birth and death dates of individuals in a variety of text descriptions, such as
+
+```{r echo=FALSE}
+priestley::Biographies %>%
+  slice(5) %>%
+  select(text) %>%
+  knitr::kable()
+```
+
 The *Description of a Chart of Biography* contains extensive discussion of how the lifespan segments were constructed from the available information. This section discusses how the segments in this data was generated.
 
 Examples in which the date of death and the age at death are known. These are drawn with a single solid black line since there is no uncertainty.
@@ -222,9 +329,6 @@ birth.
 
 -   Euclid fl. 300 BC. M
 
-What is left unspecified in the description is the mapping between dots and years?
-None of the digital specimens of the Chart of Biography available are high resolution enough to make this out.
-Dots seem a little less than decades?
 
 > If it be uncertain even in what
 > century a person lived or flourished, there is no full
@@ -270,29 +374,61 @@ B C.    before Christ
 
 Table: Date abbreviations appearing in the name index.
 
-## References
+```{r}
+library("glue")
 
--   Priestley, Joseph. 1764 and 1778. Description of a Chart of Biography
-    (list of the c2,000 names in the chart). 1st and 7th edn. J. Johnson.
-    London. Corrected OCR and annotated by Davis, Stephen Boyd (2009).
-    [URL](https://drive.google.com/file/d/0B4KIGf4GncycZGRmNWY4Y2QtZjNjNS00OGEzLWE0MjctMzY0NzFhM2I2YjFj/view?usp=sharing&authkey=CPGfreEB)
+format_year <- function(x) {
+  if_else(is.na(x), 
+          NA_character_,
+          if_else(x < 0, str_c(abs(x) + 1L, "BCE", sep = " "), as.character(x)))
+}
 
--   Davis, Stephen Boyd. "History on the Line: Time as Dimension." Design -
-    Issues 28, no. 4 (2012): 4-17. [URL](http://www.jstor.org/stable/23273847).
+clean_occupation <- function(x) {
+  str_replace_all(str_to_lower(x), 
+                 c("christian" = "Christian",
+                   "muslim" = "Muslim",
+                   "jewish" = "Jewish",
+                   "greek" = "Greek"))
+}
 
--   Priestley, Joseph. "A Description of a Chart of Biography with a Catalogue
-    of All the Names and the Dates Annexed to Them." 7th edition. 1778.
-    Corrected OCR and annotated by Davis, Stephen Boyd. [URL](https://drive.google.com/open?id=0B4KIGf4GncycMmU1ZTdjMGYtM2RiMC00NTE3LThiMTUtZjk5YzkxOThlNGNk).
+bios <- priestley::Biographies %>%
+  mutate(a_an = if_else(str_to_lower(str_sub(occupation, 1, 1)) %in%
+                          c("a", "e", "i", "o", "u"), "an", "a"),
+         flourished_str = str_c(case_when(
+           is.na(flourished) ~ "",
+           flourished_before ~ str_c(", was active before ", format_year(flourished)),
+           flourished_after ~ str_c(", was active before ", format_year(flourished)),
+           flourished_about ~ str_c(", was active in about ", format_year(flourished)),
+           !is.na(flourished) ~ str_c(", was active in ", format_year(flourished))
+         )),
+         born_str = str_c(case_when(
+           is.na(born) ~ "",
+           born_about ~ str_c(", was born in about ", format_year(born)),
+           TRUE ~ str_c(", born in ", format_year(born))
+         )),
+         lived_str = str_c(case_when(
+           is.na(lived) ~ "",
+           TRUE ~ str_c(", lived after ", format_year(lived))
+         )),
+         died_str = str_c(
+           case_when(
+             is.na(died) ~ "",
+             !is.na(age) & died_about ~ str_c(", died in about ", format_year(died), " at age ", age),
+             !is.na(age) & died_after ~ str_c(", died after ", format_year(died), " at age ", age),
+             !is.na(age) ~ str_c(", died in ", format_year(died), " at age ", age),
+             died_about ~ str_c(", died in about ", format_year(died), " at age ", age),
+             died_after ~ str_c(", died after ", format_year(died)),
+             TRUE ~ str_c(", died in ", format_year(died))
+           )
+         ),
+         age_str = str_c(case_when(
+           !is.na(died) ~ "",
+           !is.na(age) ~ str_c("died at age ", age),
+           TRUE ~ ""
+         )))
 
--   https://en.wikipedia.org/wiki/A_Chart_of_Biography
--   Priestley, Joseph. *A description of a new chart of history with a a Catalogue of All the Names and the Dates Annexed to Them*
+glue("{name} was {a_an} {clean_occupation(occupation)}{born_str} {flourished_str}{died_str}{age_str}.",
+     .envir = bios)
 
-<!--
-    -   2nd edn. 1765. <https://books.google.com/books?id=JHJZAAAAcAAJ>
-    -   3rd ed. 1767. <https://books.google.com/books?id=RYZcAAAAcAAJ>
-    -   5th ed. 1781. <https://books.google.com/books?id=eCwIAAAAQAAJ>
-    -   6th ed. 1777. <https://books.google.com/books?id=4QJcAAAAQAAJ>
-    -   1790. <https://books.google.com/books?id=-QJcAAAAQAAJ>
-    -   1767. <https://books.google.com/books?id=w5QBAAAAQAAJ>
-    -   1805. <https://books.google.com/books?id=6LuuDdFMKQAC>
--->
+```
+

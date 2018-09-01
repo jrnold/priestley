@@ -302,136 +302,137 @@ def add_intervals(data):
                 k for k in person
                 if re.match("died|born|lived|flourished|age", k)
             ]))
+        person['lifetype'] = ', '.join(life_type)
         if life_type == ("age", "born"):
-            person['start_1'] = person['born']['value']
-            person['end_1'] = person['start_1'] + person['age']
+            person['born_max'] = person['born']['value']
+            person['died_min'] = person['born_max'] + person['age']
         elif life_type == ("age", "died"):
-            person['end_1'] = person['died']['value']
-            person['start_1'] = person['end_1'] - person['age']
+            person['died_min'] = person['died']['value']
+            person['born_max'] = person['died_min'] - person['age']
         elif life_type == ("age", "died about"):
             # Ignore uncertainty with "about"
-            person['end_1'] = person['died about']['value']
-            person['start_1'] = person['end_1'] - person['age']
+            person['died_min'] = person['died about']['value']
+            person['born_max'] = person['died_min'] - person['age']
         elif life_type == ("age", "died after"):
-            person['end_1'] = person['died after']['value']
-            person['end_2'] = person['end_1'] + DOTS_YEARS
+            person['died_min'] = person['died after']['value']
+            person['died_max'] = person['died_min'] + DOTS_YEARS
             # died after uncertainty perpetuates through age
-            person['start_1'] = person['end_2'] - person['age']
-            person['start_2'] = person['end_1'] - person['age']
+            person['born_max'] = person['died_max'] - person['age']
+            person['born_min'] = person['died_min'] - person['age']
         elif life_type == ("age", "flourished"):
             # use exact values for age and the 2/3 rule for flourished
             fl = person['flourished']['value']
             age = person['age']
-            person["end_1"] = fl + (1 / 3) * age
-            person["start_1"] = fl - (2 / 3) * age
+            person["died_min"] = fl + (1 / 3) * age
+            person["born_max"] = fl - (2 / 3) * age
         elif life_type == ("age about", "born"):
             # ignore uncertainty with about
-            person['start_1'] = person['born']['value']
-            person['end_1'] = person['start_1'] + person['age about']
+            person['born_max'] = person['born']['value']
+            person['died_min'] = person['born_max'] + person['age about']
         elif life_type == ("age about", "died"):
             # ignore uncertainty with about
-            person['end_1'] = person['died']['value']
-            person['start_1'] = person['end_1'] - person['age about']
+            person['died_min'] = person['died']['value']
+            person['born_max'] = person['died_min'] - person['age about']
         elif life_type == ("age about", "died after"):
             # ignore uncertainty with about
             # for died after the uncertainty per
-            person['end_1'] = person['died after']['value']
-            person['end_2'] = person['end_1'] + DOTS_YEARS
-            person['start_1'] = person['end_2'] - person['age about']
-            person['start_2'] = person['end_1'] - person['age about']
+            person['died_min'] = person['died after']['value']
+            person['died_max'] = person['died_min'] + DOTS_YEARS
+            person['born_max'] = person['died_max'] - person['age about']
+            person['born_min'] = person['died_min'] - person['age about']
         elif life_type == ("age about", "died about"):
-            person['end_1'] = person['died about']['value']
-            person['start_1'] = person['end_1'] - person['age about']
+            person['died_min'] = person['died about']['value']
+            person['born_max'] = person['died_min'] - person['age about']
         elif life_type == ("age above", "born"):
-            person['start_1'] = person['born']['value']
-            person['end_1'] = person['start_1'] + person['age above']
-            person['end_2'] = person['end_1'] + DOTS_YEARS
+            person['born_max'] = person['born']['value']
+            person['died_min'] = person['born_max'] + person['age above']
+            person['died_max'] = person['died_min'] + DOTS_YEARS
         elif life_type == ("age above", "died"):
-            person['end_1'] = person['died']['value']
-            person['start_1'] = person['end_1'] - person['age above']
-            person['start_2'] = person['start_1'] - DOTS_YEARS
+            person['died_min'] = person['died']['value']
+            person['born_max'] = person['died_min'] - person['age above']
+            person['born_min'] = person['born_max'] - DOTS_YEARS
         elif life_type == ("age above", "died after"):
-            person['end_1'] = person['died after']['value']
-            person['end_2'] = person['end_1'] + DOTS_YEARS
-            person['start_1'] = person['end_2'] - person['age above']
-            person['start_2'] = person['start_1'] - 2 * DOTS_YEARS
+            person['died_min'] = person['died after']['value']
+            person['died_max'] = person['died_min'] + DOTS_YEARS
+            person['born_max'] = person['died_max'] - person['age above']
+            person['born_min'] = person['born_max'] - 2 * DOTS_YEARS
         elif life_type == ("born", ):
-            person["start_1"] = person["born"]["value"]
-            person["end_1"] = person["start_1"] + 3 * DOTS_YEARS
-            person["end_2"] = person["end_1"] + 3 * DOTS_YEARS
+            person["born_max"] = person["born"]["value"]
+            person["died_min"] = person["born_max"] + 3 * DOTS_YEARS
+            person["died_max"] = person["died_min"] + 3 * DOTS_YEARS
         elif life_type == ("born", "died"):
-            person['end_1'] = person['died']['value']
-            person['start_1'] = person['born']['value']
+            person['died_min'] = person['died']['value']
+            person['born_max'] = person['born']['value']
         elif life_type == ("born", "died after"):
-            person['start_1'] = person['born']['value']
-            person['end_1'] = person['died after']['value']
-            person['end_2'] = person['end_1'] + DOTS_YEARS
+            person['born_max'] = person['born']['value']
+            person['died_min'] = person['died after']['value']
+            person['died_max'] = person['died_min'] + DOTS_YEARS
         elif life_type == ("born", "lived after"):
-            person["start_1"] = person["born"]["value"]
-            person["end_1"] = person["lived after"]['value']
-            person["end_2"] = person["end_1"] + DOTS_YEARS
+            person["born_max"] = person["born"]["value"]
+            person["died_min"] = person["lived after"]['value']
+            person["died_max"] = person["died_min"] + DOTS_YEARS
         elif life_type == ("born about", ):
-            person["start_1"] = person["born about"]["value"]
-            person["end_1"] = person["start_1"] + 3 * DOTS_YEARS
-            person["end_2"] = person["end_1"] + 3 * DOTS_YEARS
+            person["born_max"] = person["born about"]["value"]
+            person["died_min"] = person["born_max"] + 3 * DOTS_YEARS
+            person["died_max"] = person["died_min"] + 3 * DOTS_YEARS
         elif life_type == ("born about", "died"):
-            person['end_1'] = person['died']['value']
-            person['start_1'] = person['born about']['value']
+            person['died_min'] = person['died']['value']
+            person['born_max'] = person['born about']['value']
         elif life_type == ("born before", ):
-            person["start_1"] = person["born before"]["value"]
-            person["start_2"] = person["start_1"] - 1 * DOTS_YEARS
-            person["end_1"] = person["start_1"] + 3 * DOTS_YEARS
-            person["end_2"] = person["end_1"] + 3 * DOTS_YEARS
+            person["born_max"] = person["born before"]["value"]
+            person["born_min"] = person["born_max"] - 1 * DOTS_YEARS
+            person["died_min"] = person["born_max"] + 3 * DOTS_YEARS
+            person["died_max"] = person["died_min"] + 3 * DOTS_YEARS
         elif life_type == ("died", ):
-            person['end_1'] = person['died']['value']
-            person['start_1'] = person['end_1'] - 3 * DOTS_YEARS
-            person['start_2'] = person['start_1'] - 4 * DOTS_YEARS
+            person['died_min'] = person['died']['value']
+            person['born_max'] = person['died_min'] - 3 * DOTS_YEARS
+            person['born_min'] = person['born_max'] - 4 * DOTS_YEARS
         elif life_type == ("died about", ):
-            person['end_1'] = person['died about']['value']
-            person['start_1'] = person['end_1'] - 3 * DOTS_YEARS
-            person['start_2'] = person['start_1'] - 4 * DOTS_YEARS
+            person['died_min'] = person['died about']['value']
+            person['born_max'] = person['died_min'] - 3 * DOTS_YEARS
+            person['born_min'] = person['born_max'] - 4 * DOTS_YEARS
         elif life_type == ("died after", ):
-            person['end_1'] = person['died after']['value']
-            person['end_2'] = person['end_1'] + DOTS_YEARS
-            person['start_1'] = person['end_1'] - 2 * DOTS_YEARS
-            person['start_2'] = person['start_1'] - 4 * DOTS_YEARS
+            person['died_min'] = person['died after']['value']
+            person['died_max'] = person['died_min'] + DOTS_YEARS
+            person['born_max'] = person['died_min'] - 2 * DOTS_YEARS
+            person['born_min'] = person['born_max'] - 4 * DOTS_YEARS
         elif life_type == ("flourished", ):
             fl = person['flourished']['value']
-            person["start_1"] = fl - 2 * DOTS_YEARS
-            person["start_2"] = person['start_1'] - 3 * DOTS_YEARS
-            person["end_1"] = fl + DOTS_YEARS
-            person["end_2"] = person["end_1"] + 2 * DOTS_YEARS
+            person["born_max"] = fl - 2 * DOTS_YEARS
+            person["born_min"] = person['born_max'] - 3 * DOTS_YEARS
+            person["died_min"] = fl + DOTS_YEARS
+            person["died_max"] = person["died_min"] + 2 * DOTS_YEARS
         elif life_type == ("flourished after", ):
             # treat the same as flourished
             fl = person['flourished after']['value']
-            person["start_1"] = fl - 2 * DOTS_YEARS
-            person["start_2"] = person['start_1'] - 3 * DOTS_YEARS
-            person["end_1"] = fl + DOTS_YEARS
-            person["end_2"] = person["end_1"] + 2 * DOTS_YEARS
+            person["born_max"] = fl - 2 * DOTS_YEARS
+            person["born_min"] = person['born_max'] - 3 * DOTS_YEARS
+            person["died_min"] = fl + DOTS_YEARS
+            person["died_max"] = person["died_min"] + 2 * DOTS_YEARS
         elif life_type == ("flourished before", ):
             # treat the same as flourished
             fl = person['flourished before']['value']
-            person["start_1"] = fl - 2 * DOTS_YEARS
-            person["start_2"] = person["start_1"] - 3 * DOTS_YEARS
-            person["end_1"] = fl + DOTS_YEARS
-            person["end_2"] = person["end_1"] + 2 * DOTS_YEARS
+            person["born_max"] = fl - 2 * DOTS_YEARS
+            person["born_min"] = person["born_max"] - 3 * DOTS_YEARS
+            person["died_min"] = fl + DOTS_YEARS
+            person["died_max"] = person["died_min"] + 2 * DOTS_YEARS
         elif life_type == ("flourished about", ):
             fl = person["flourished about"]['value']
-            person["start_2"] = fl - 5 * DOTS_YEARS
-            person["end_2"] = fl + 3 * DOTS_YEARS
+            person["born_min"] = fl - 5 * DOTS_YEARS
+            person["died_max"] = fl + 3 * DOTS_YEARS
         elif life_type == ("age about", "born about"):
-            person['start_1'] = person["born about"]["value"]
-            person["start_2"] = person["start_1"] - DOTS_YEARS
-            person["end_1"] = person["start_1"] + person["age about"]
-            person["end_2"] = person["end_1"] + DOTS_YEARS
+            person['born_max'] = person["born about"]["value"]
+            person["born_min"] = person["born_max"] - DOTS_YEARS
+            person["died_min"] = person["born_max"] + person["age about"]
+            person["died_max"] = person["died_min"] + DOTS_YEARS
         else:
             print("unknown type: ", life_type)
             print(person)
 
-        if 'start_1' in person and 'start_2' not in person:
-            person['start_2'] = person['start_1']
-        if 'end_1' in person and 'end_2' not in person:
-            person['end_2'] = person['end_1']
+        if 'born_max' in person and 'born_min' not in person:
+            person['born_min'] = person['born_max']
+        if 'died_min' in person and 'died_max' not in person:
+            person['died_max'] = person['died_min']
 
 
 def parse(filename, outfile, categories_filename):
@@ -441,9 +442,15 @@ def parse(filename, outfile, categories_filename):
     data = []
     with open(filename, "r") as f:
         for line in f.readlines():
+            # remove URLs
             # ignore lines starting with spaces
             if re.match(r"^[ \t]", line) or line == "\n":
                 continue
+            m_url = re.search("<(.*)>", line)
+            if m_url:
+              url = m_url.group(1)
+              print(url)
+              line = re.sub("<.*>", "", line).strip()
             m = re.search("(.*)\[(.*)\]\s*$", line)
             if m:
                 line = m.group(1).strip()

@@ -20,36 +20,36 @@ BIOGRAPHY_COLUMNS <-
                            enum = ENUM$occupation_abbr),
     sect_abbr = list(class = "character",
                      is_na = TRUE, enum = ENUM$sect_abbr),
-    start_1 = list(class = "integer",
+    born_max = list(class = "integer",
                    is_na = TRUE,
                    conditions = list(
-                     quo(is.na(start_1) | start_1 > START_YEAR),
-                     quo(is.na(start_1) | start_1 < END_YEAR)
+                     quo(is.na(born_max) | born_max > START_YEAR),
+                     quo(is.na(born_max) | born_max < END_YEAR)
                    )),
-    start_2 = list(class = "integer",
+    born_min = list(class = "integer",
                    is_na = FALSE,
                    conditions = list(
-                     quo(start_2 > START_YEAR),
-                     quo(start_2 < END_YEAR),
-                     quo(is.na(start_1) | (start_1 >= start_2))
+                     quo(born_min > START_YEAR),
+                     quo(born_min < END_YEAR),
+                     quo(is.na(born_max) | (born_max >= born_min))
                    )),
-    end_1 = list(class = "integer",
+    died_min = list(class = "integer",
                  is_na = TRUE,
                  conditions = list(
-                   quo(end_1[!is.na(end_1)] > START_YEAR),
-                   quo(end_1[!is.na(end_1)] < END_YEAR),
-                   quo(is.na(end_1) | (end_1 <= end_2)),
-                   quo(is.na(start_1) | !is.na(end_1)),
-                   quo(is.na(start_1) | start_1 < end_1),
-                   quo(is.na(start_1) | (end_1 - start_1 < 120))
+                   quo(died_min[!is.na(died_min)] > START_YEAR),
+                   quo(died_min[!is.na(died_min)] < END_YEAR),
+                   quo(is.na(died_min) | (died_min <= died_max)),
+                   quo(is.na(born_max) | !is.na(died_min)),
+                   quo(is.na(born_max) | born_max < died_min),
+                   quo(is.na(born_max) | (died_min - born_max < 120))
                  )),
-    end_2 = list(class = "integer",
+    died_max = list(class = "integer",
                  is_na = FALSE,
                  conditions = list(
-                   quo(end_2 > START_YEAR),
-                   quo(end_2 < END_YEAR),
-                   quo(start_2 < end_2),
-                   quo(end_2 - start_2 < 120)
+                   quo(died_max > START_YEAR),
+                   quo(died_max < END_YEAR),
+                   quo(born_min < died_max),
+                   quo(died_max - born_min < 120)
                  )),
     flourished = list(class = "integer",
                       is_na = TRUE,

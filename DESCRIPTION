@@ -7,17 +7,21 @@ Description: Data from Joseph Priestley's, "A Chart of Biography" (1765, 1778),
 License: MIT + file LICENSE
 LazyData: true
 Authors@R: person("Jeffrey", "Arnold", role = c("aut", "cre"), email = "jeffrey.arnold@gmail.com")
-Imports: dplyr,
+Imports: 
+  dplyr,
   purrr,
+  Rdpack,
   tibble
 Suggests:
-    spelling, knitr,
+    ggplot2,
+    knitr,
     plotly,
     rmarkdown,
-    ggplot2,
+    spelling,
     testthat
 Depends:
   R (>= 3.0.0)
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
 Language: en-US
+RdMacros: Rdpack

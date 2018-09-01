@@ -4,6 +4,7 @@ comment: >
   apart from minor edits to modernize spelling.
 divisions:
 - name: "Statesmen and Warriors"
+  description: "Monarchs, Politicians, and Military Persons"
   occupations:
     NA:
       label: "Politican/Military Person"
@@ -15,9 +16,11 @@ divisions:
   - "dbo:MilitaryPerson"
   - "dbo:Monarch"
 - name: "Divines and Metaphysicians"
+  description: "Religious Persons and Philosophers"
   occupations:
     "H P":
-      label: Philosopher
+      label: Ancient Greek Philosopher
+      original_label: "Heathen Philosopher"
       links:
       - "dbo:Philosopher"
       description: >
@@ -33,10 +36,12 @@ divisions:
       sects:
         Ion:
           name: Ionic
+          description: "Ionic"
           links:
           - "dbr:Ionian_School_(philosophy)"
         Soc:
           name: Socratic
+          description: "Socratic"
           links:
           - "dbr:Socrates"
         Cyr:
@@ -82,7 +87,8 @@ divisions:
           links:
           - "Eleatic_School"
     "F":
-      label: Christian Father
+      label: Christian Church Father
+      original_label: "Christian Father"
       links:
       - "dbo:Religious"
       description: >
@@ -91,12 +97,14 @@ divisions:
         and the Jews.
     "J":
       label: Jewish Religious Person
+      original_label: "Jew"
       links:
       - "dbo:Religious"
       description: >
         Signifies a JEW, either a PROPHET, RABBI, or HIGH-PRIEST, etc.
     "D":
       label: Christian Religious Person
+      original_label: "Christian Divine"
       links:
       - "dbo:Religious"
       description: >
@@ -105,14 +113,18 @@ divisions:
         SCHOOLMEN.
     "Moh":
       label: Muslim Religious Person
-      note: >
-        In the text, "Mohammaden Doctor".
+      links:
+      - "dbo:Religious"
+      original_label: "Mohammaden Doctor"
     "Met":
       label: Metaphysician
       links:
       - "dbo:Philosopher"
     "Mor":
-      label: Moralist
+      label: Philosopher
+      original_label: "Moralist"
+      links:
+       - "dbo:Philosopher"
     "Po":
       label: Pope
       links:
@@ -125,12 +137,14 @@ divisions:
         POLITICAL WRITERS, such as Grotius, Puffendorf, and even
         Algernon Sydney
 - name: "Mathematicians and Physicians"
+  description: "Scientists"
   order: 2
   links:
   - "dbo:Scientist"
   occupations:
     "M":
-      label: Mathematician
+      label: Mathematician or Scientist
+      original_label: Mathematician
       links:
       - "dbr:Mathematician"
       description: >
@@ -143,6 +157,7 @@ divisions:
       - "dbr:Chemist"
       description: CHYMIST
 - name: "Poets and Artists"
+  description: "Artists"
   order: 3
   links:
   - "dbo:Artist"
@@ -157,7 +172,8 @@ divisions:
       links:
       - "dbo:Painter"
     "St":
-      label: "Statuary"
+      label: "Sculptor"
+      original_label: "Statuary"
       links:
       - "dbo:Sculptor"
     "Mu":
@@ -183,6 +199,7 @@ divisions:
       links:
       - "dbo:Engineer"
 - name: "Orators and Critics"
+  description: "Writers and Orators"
   links:
   - "dbo:Writer"
   order: 4
@@ -202,12 +219,14 @@ divisions:
       - "dbr:Sophism"
     "Bel":
       label: Writer
+      original_label: "Belles Lettres"
       links:
       - "dbo:Writer"
       description: >
         Miscellaneous writers in any branch of the BELLES LETTRES among
         the Moderns.
 - name: "Historians, Antiquarians, and Lawyers"
+  description: "Historians, Explorers, and Lawyers"
   order: 5
   occupations:
     "H":
@@ -215,7 +234,8 @@ divisions:
       links:
       - "dbo:Historian"
     "Trav":
-      label: Traveller
+      label: Explorer
+      original_label: Traveller
     "Geo":
       label: Geographer
       links:

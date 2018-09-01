@@ -7,8 +7,9 @@ suppressPackageStartupMessages({
 })
 
 main <- function() {
+  filename <- commandArgs(TRUE)[[1]]
   kings <-
-    read_tsv(here::here("data-raw", "priestley_kings.tsv"),
+    read_tsv(filename,
              col_types = cols(
                category = col_character(),
                text = col_character()
