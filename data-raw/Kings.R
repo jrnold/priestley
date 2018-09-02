@@ -7,13 +7,18 @@ suppressPackageStartupMessages({
 })
 
 main <- function() {
-  filename <- commandArgs(TRUE)[[1]]
+  args <- commandArgs(TRUE)
+  input_path <- args[[1]]
+  output_path <- args[[2]]
+  object <- tools::file_path_sans_ext(basename(output_path))
   kings <-
-    read_tsv(filename,
+    read_csv(input_path,
              col_types = cols(
-               category = col_character(),
-               text = col_character()
-             ), na = "")
+             category = col_character(),
+             text = col_character(),
+             url = col_character(),
+             comment = col_character()
+            ), na = "")
 
   parsed_names <-
     as_tibble(str_match(kings$text, "(.*?)\\s*(\\d+)(?:\\s+(B\\. C\\.))?$"))
@@ -24,9 +29,8 @@ main <- function() {
   kings[["year"]] <- as.integer(kings[["year"]])
 
   e <- rlang::new_environment()
-  e[["Kings"]] <- select(kings, name, year, category)
-  path = here::here("data", "Kings.rda")
-  save(list = ls(e), file = path, compress = "bzip2", envir = e)
+  e[[object]] <- select(kings, name, year, category)
+  save(list = object, file = output_path, compress = "bzip2", envir = e)
 }
 
 main()

@@ -449,8 +449,9 @@ def parse(filename, outfile, categories_filename):
             m_url = re.search("<(.*)>", line)
             if m_url:
               url = m_url.group(1)
-              print(url)
               line = re.sub("<.*>", "", line).strip()
+            else:
+              url = None
             m = re.search("(.*)\[(.*)\]\s*$", line)
             if m:
                 line = m.group(1).strip()
@@ -466,15 +467,17 @@ def parse(filename, outfile, categories_filename):
                 parse_tree = parser.parse(line.strip())
                 try:
                     parsed = visit_parse_tree(parse_tree, visitor)
-                    parsed['text'] = line.strip()
-                    parsed['in_1778'] = in_1778
-                    parsed['in_1764'] = in_1764
-                    parsed['in_names_omitted'] = in_names_omitted
-                    data.append(parsed)
                 except IndexError as exc:
                     raise exc
             except NoMatch as exc:
                 print("ERROR:", line)
+                parsed = {}
+            parsed['text'] = line.strip()
+            parsed['in_1778'] = in_1778
+            parsed['in_1764'] = in_1764
+            parsed['in_names_omitted'] = in_names_omitted
+            parsed['url'] = url
+            data.append(parsed)
     add_intervals(data)
     with open(outfile, "w") as f:
         json.dump(data, f, indent=1)

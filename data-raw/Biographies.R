@@ -11,8 +11,8 @@ suppressPackageStartupMessages({
   library("dplyr")
 })
 
-load_categories <- function() {
-  data <- yaml::read_yaml(here::here("data-raw", "Categories.yml"))
+load_categories <- function(categories_filename) {
+  data <- yaml::read_yaml(categories_filename)
   list(
     occupations = map(data$divisions, "occupations") %>%
       purrr::flatten() %>%
@@ -33,7 +33,8 @@ process_bio <- function(x) {
   out[["occupation"]] <- x[["occupation"]] %||% NA_character_
   out[["sect"]] <- x[["sect"]] %||% NA_character_
   for (i in c("born_max", "born_min", "died_min", "died_max", "age",
-              "in_1764", "in_1778", "in_names_omitted", "lifetype")) {
+              "in_1764", "in_1778", "in_names_omitted", "lifetype",
+              "url")) {
     out[[i]] <- x[[i]]
   }
   for (i in str_subset(names(x), "^(born|died|lived|flourished)")) {
@@ -60,7 +61,7 @@ process_bio <- function(x) {
   out
 }
 
-create_bios <- function() {
+create_bios <- function(bios_json, categories_filename) {
   non_missing <- function(x) {
     if (all(is.na(x))) {
       NA_integer_
@@ -69,9 +70,9 @@ create_bios <- function() {
     }
   }
 
-  categories <- load_categories()
+  categories <- load_categories(categories_filename)
 
-  here::here("data-raw", "priestley_bios.json") %>%
+  bios_json %>%
     read_json() %>%
     map_df(process_bio) %>%
     mutate_at(vars(matches("^(born|died)_(min|max)$")),
@@ -92,11 +93,15 @@ create_bios <- function() {
 }
 
 main <- function() {
+  args <- commandArgs(TRUE)
+  bios_json <- args[[1]]
+  categories_filename <- args[[2]]
+  output_path <- args[[3]]
+  object <- tools::file_path_sans_ext(basename(output_path))
   dir.create(here::here("data"), showWarnings = FALSE, recursive = TRUE)
   e <- new_environment()
-  e[["Biographies"]] <- create_bios()
-  save(list = "Biographies", file = here::here("data", "Biographies.rda"),
-       envir = e, compress = "bzip2")
+  e[[object]] <- create_bios(bios_json, categories_filename)
+  save(list = object, file = output_path, envir = e, compress = "bzip2")
 }
 
 main()

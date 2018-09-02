@@ -20,9 +20,14 @@ parse_division <- function(x, i) {
 }
 
 main <- function() {
-  load(here::here("data", "Biographies.rda"))
+  args <- commandArgs(TRUE)
+  biography_path <- args[[1]]
+  specimen_path <- args[[2]]
+  output_path <- args[[3]]
+  object <- tools::file_path_sans_ext(basename(output_path))
+  load(biography_path)
 
-  specimen <- read_yaml(here::here("data-raw", "small-chart.yml")) %>%
+  specimen <- read_yaml(specimen_path) %>%
     imap_dfr(parse_division)
 
   specimen_merged <-
@@ -32,13 +37,13 @@ main <- function() {
     # delete duplicatesf
     filter(!(name == "Aratus" & born_min > 0),
            !(name == "Socrates" & born_min > 0)) %>%
-    select(-in_1764, -in_1778, -sect, -sect_abbr, -in_names_omitted)
+    select(row, label, name, division, text, born_min, born_max,
+           died_min, died_max)
 
   dir.create(here::here("data"), showWarnings = FALSE)
   e <- new_environment()
-  e[["Specimen"]] <- specimen_merged
-  save(list = "Specimen", file = here::here("data", "Specimen.rda"),
-       envir = e, compress = "bzip2")
+  e[[object]] <- specimen_merged
+  save(list = object, file = output_path, envir = e, compress = "bzip2")
 }
 
 main()
