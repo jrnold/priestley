@@ -10,7 +10,7 @@
 #' Successions Which Are Noted in the Margin of the Chart Began Their
 #' Reigns", (1st edition, 1764, pp. 77--80).
 #'
-#' @format A data frame with 164 rows and 3 columns.
+#' @format A data frame with 164 rows and 4 columns.
 #' \describe{
 #' \item{name}{(string) Name of the individual}
 #' \item{year}{(integer) Year in which the ruler ascended to power. Negative values indicate years BCE.}

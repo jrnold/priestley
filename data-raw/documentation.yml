@@ -129,20 +129,20 @@ resources:
           - Lawyer
           - Mathematician
           - Metaphysician
-          - Moralist
+          - Philosopher
           - Musician
           - Muslim Religious Person
           - Orator
           - Painter
-          - Philosopher
+          - Ancient Greek Philosopher
           - Physician
           - Poet
           - Political Writer
           - Politician/Military Person
           - Pope
           - Printer
-          - Statuary
-          - Traveller
+          - Sculptor
+          - Explorer
           - Writer
       - &sect_abbr
         name: sect_abbr
@@ -188,45 +188,49 @@ resources:
           - Sceptic
           - Socratic
           - Stoic
-      - &start_1
-        name: start_1
+      - &born_min
+        name: born_min
+        label: "Year of birth (min)"
         type: integer
         description: >
           Upper estimate of the birth year of an individual. This is used as the
-          start of the certain segment of an lifespan on a chart. Negative numbers
+          start of the uncertain segment of a lifespan on the timeline. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
         constraints: >
           minimum: -1300
           maximum: 1800
           required: false
-      - &end_1
-        name: end_1
+      - &born_max
+        name: born_max
+        label: "Year of birth (max)"
         type: integer
         description: >
-          Lower estimate of the death year of an individual. This is used as the
-          end of the certain segment of an lifespan on a chart. Negative numbers
-          are years BCE (0 = 1 BCE, -1 = 2 BCE).
-        constraints: >
-          minimum: -1300
-          maximum: 1800
-          required: false
-      - &start_2
-        name: start_2
-        type: integer
-        description: >
-          Lower estimate of the birth year of an individual. This is used as the
-          start of the uncertain segment of an lifespan on a chart. Negative numbers
+          Upper estimate of the birth year of an individual. This is used as the
+          start of the certain segment of a lifespan on the timeline. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
         constraints: >
           minimum: -1300
           maximum: 1800
           required: true
-      - &end_2
-        name: end_2
+      - &died_min
+        name: died_min
+        label: "Year of Death (min)"
+        type: integer
+        description: >
+          Lower estimate of the death year of an individual. This is used as the
+          end of the certain segment of a lifespan on the timeline. Negative numbers
+          are years BCE (0 = 1 BCE, -1 = 2 BCE).
+        constraints: >
+          minimum: -1300
+          maximum: 1800
+          required: false
+      - &died_max
+        name: died_max
+        label: "Year of Death (max)"
         type: integer
         description: >
           Upper estimate of the death year of an individual. This is used as the
-          end of the uncertain segment of an lifespan on a chart. Negative numbers
+          end of the uncertain segment of a lifespan on the timeline. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
         constraints: >
           minimum: -1300
@@ -332,6 +336,14 @@ resources:
         description: >
           Year that an individual lived after. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
+
+      - &lifetype
+        name: lifetype
+        label: Life-type
+        description: >
+          A vector describing which of born, died, flourished, etc.
+          is available for this entry.
+        type: list
 - name: Specimen
   title: List of persons in Priestley's A Specimen of A Chart of Biography
   description: >
@@ -364,7 +376,6 @@ resources:
         constraints:
           required: true
       - <<: *text
-      - <<: *name
       - name: division
         type: string
         constraints:
@@ -375,24 +386,10 @@ resources:
         description: >
           In the Specimen chart, individuals are divided into two broad
           classes of occupations: "Statesmen" and "Men of Learning".
-      - <<: *occupation_abbr
-      - <<: *occupation
-      - <<: *start_1
-      - <<: *end_1
-      - <<: *start_2
-      - <<: *end_2
-      - <<: *born
-      - <<: *born_about
-      - <<: *died
-      - <<: *died_about
-      - <<: *died_after
-      - <<: *age
-      - <<: *flourished
-      - <<: *flourished_about
-      - <<: *flourished_before
-      - <<: *flourished_after
-      - <<: *flourished_century
-      - <<: *lived
+      - <<: *born_min
+      - <<: *born_max
+      - <<: *died_min
+      - <<: *died_max
 
 - name: Kings
   title: List of Rulers of Major Empires, 1300 BCE to 1800

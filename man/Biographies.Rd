@@ -4,7 +4,7 @@
 \name{Biographies}
 \alias{Biographies}
 \title{List of persons in Priestley's A Chart of Biography}
-\format{A data frame with 2418 rows and 26 columns.
+\format{A data frame with 2418 rows and 27 columns.
 \describe{
 \item{text}{(string) Text entry in the name index of the source.}
 \item{name}{(string) Name of the individual}
@@ -16,10 +16,10 @@
 \item{occupation}{(string) Full name of the occupation. These values are generally the same as the provided documentation from the *Description*, but in a few cases they were modernized to avoid archaic or offensive language.}
 \item{sect_abbr}{(string) Abbreviation of the particular sect/school of Greek philosophy to which the individual belonged, as used in the}
 \item{sect}{(string) Name of the particular sect/school of Greek philosophy to which the individual belonged.}
-\item{start_1}{(integer) Upper estimate of the birth year of an individual. This is used as the start of the certain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
-\item{end_1}{(integer) Lower estimate of the death year of an individual. This is used as the end of the certain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
-\item{start_2}{(integer) Lower estimate of the birth year of an individual. This is used as the start of the uncertain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
-\item{end_2}{(integer) Upper estimate of the death year of an individual. This is used as the end of the uncertain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
+\item{born_min}{(integer) Upper estimate of the birth year of an individual. This is used as the start of the uncertain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
+\item{born_max}{(integer) Upper estimate of the birth year of an individual. This is used as the start of the certain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
+\item{died_min}{(integer) Lower estimate of the death year of an individual. This is used as the end of the certain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
+\item{died_max}{(integer) Upper estimate of the death year of an individual. This is used as the end of the uncertain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
 \item{born}{(integer) Birth year of an individual. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
 \item{born_about}{(boolean) Indicator for whether the birth year is approximate: "born about".}
 \item{died}{(integer) Death year of an individual. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
@@ -32,6 +32,7 @@
 \item{flourished_after}{(boolean) Indicator for whether `flourished` means "flourished after".}
 \item{flourished_century}{(boolean) Indicator for whether the year in `flourished` refers to the century.}
 \item{lived}{(integer) Year that an individual lived after. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
+\item{lifetype}{(list) A vector describing which of born, died, flourished, etc. is available for this entry.}
 }}
 \usage{
 Biographies

@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
   library("purrr")
 })
 
-create_docs <- function(docs, input) {
+create_docs <- function(docs, input, output) {
   load(input, envir = e <- rlang::new_environment())
 
   name <- ls(e)[[1]]
@@ -50,11 +50,13 @@ create_docs <- function(docs, input) {
     )
   )
 
-  output <- here::here("R", str_c(name, ".R"))
   cat(glue("Writing to {output}"), "\n")
   write_file(contents, output)
 }
 
-args <- commandArgs(TRUE)
+main <- function() {
+  args <- commandArgs(TRUE)
+  create_docs(args[[1]], args[[2]], args[[3]])
+}
 
-create_docs(args[[1]], args[[2]])
+main()
