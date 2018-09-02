@@ -114,7 +114,8 @@ BIOGRAPHY_COLUMNS <-
     in_names_omitted = list(class = "logical", is_na = FALSE),
     occupation = list(class = "character", is_na = FALSE,
                       enum = ENUM$occupation),
-    sect = list(class = "character", is_na = TRUE, enum = ENUM$sect)
+    sect = list(class = "character", is_na = TRUE, enum = ENUM$sect),
+    lifetype = list(class = "list")
   )
 
 test_that("Biographies is a tibble rows", {

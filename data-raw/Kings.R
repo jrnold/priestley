@@ -29,7 +29,7 @@ main <- function() {
   kings[["year"]] <- as.integer(kings[["year"]])
 
   e <- rlang::new_environment()
-  e[[object]] <- select(kings, name, year, category)
+  e[[object]] <- select(kings, name, year, category, url)
   save(list = object, file = output_path, compress = "bzip2", envir = e)
 }
 

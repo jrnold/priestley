@@ -1,4 +1,4 @@
-context("Biographies")
+context("Kings")
 library(glue)
 library(stringr)
 library(rlang)
@@ -14,21 +14,22 @@ KINGS_COLUMNS <-
                 conditions = list(
                   expr(year > -1300 & year < 1800)
                 )),
-    category = list(class = "character", is_na = TRUE,
-                    enum = c(str_c("Kings of ", c("Judah", "Persia", "England")),
-                             "King of Babylon",
-                             "Ptolemies of Egypt", "Roman Emperors"))
+    category = list(class = "character", is_na = FALSE,
+                    enum = c(str_c("Kings of ", c("Judah", "Persia", "England",
+                                                  "Babylon", "Macedonia")),
+                             "Ptolemies of Egypt", "Roman Emperors")),
+    url = list(class = "character", is_na = FALSE)
   )
 
 test_that("Kings has right number of rows", {
   expect_true(nrow(Kings) == 164L)
 })
 
-test_that("Biographies is a tibble", {
+test_that("Kings is a tibble", {
   expect_is(Kings, "tbl_df")
 })
 
-test_that("Biographies nas all columns", {
+test_that("Kings nas all columns", {
   expect_named(Kings, names(KINGS_COLUMNS), ignore.order = FALSE)
 })
 

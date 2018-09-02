@@ -33,10 +33,11 @@ process_bio <- function(x) {
   out[["occupation"]] <- x[["occupation"]] %||% NA_character_
   out[["sect"]] <- x[["sect"]] %||% NA_character_
   for (i in c("born_max", "born_min", "died_min", "died_max", "age",
-              "in_1764", "in_1778", "in_names_omitted", "lifetype",
+              "in_1764", "in_1778", "in_names_omitted",
               "url")) {
     out[[i]] <- x[[i]]
   }
+  out[["lifetype"]] <- list(flatten_chr(x[["lifetype"]]))
   for (i in str_subset(names(x), "^(born|died|lived|flourished)")) {
     if (str_detect(i, "(born|died)_(min|max)")) {
       next

@@ -46,98 +46,35 @@ SPECIMEN_COLUMNS <-
     division = list(class = "character", is_na = FALSE,
                     enum = c("Men of Learning", "Statesmen")),
     text = list(class = "character", is_na = FALSE),
-    occupation_abbr = list(class = "character", is_na = TRUE,
-                           enum = ENUM$occupation_abbr),
-    start_1 = list(class = "integer",
+    born_min = list(class = "integer",
                    is_na = TRUE,
                    conditions = list(
-                     quo(is.na(start_1) | is.na(end_1) | start_1 < end_1),
-                     quo(is.na(start_1) | start_1 > START_YEAR),
-                     quo(is.na(start_1) | start_1 < END_YEAR),
-                     quo(is.na(start_1) | (end_1 - start_1) < 150)
+                     quo(is.na(born_min) | is.na(died_min) | born_min < died_min),
+                     quo(is.na(born_min) | born_min > START_YEAR),
+                     quo(is.na(born_min) | born_min < END_YEAR),
+                     quo(is.na(born_min) | (died_min - born_min) < 150)
                    )),
-    start_2 = list(class = "integer",
+    born_max = list(class = "integer",
                    is_na = FALSE,
                    conditions = list(
-                     quo(start_2 < end_2),
-                     quo(start_2 > START_YEAR),
-                     quo(start_2 < END_YEAR),
-                     quo(is.na(start_1) | start_1 >= start_2)
+                     quo(born_max < died_max),
+                     quo(born_max > START_YEAR),
+                     quo(born_max < END_YEAR),
+                     quo(is.na(born_min) | born_max >= born_min)
                    )),
-    end_1 = list(class = "integer",
+    died_min = list(class = "integer",
                  is_na = TRUE,
                  conditions = list(
-                   quo(end_1[!is.na(end_1)] > START_YEAR),
-                   quo(end_1[!is.na(end_1)] < END_YEAR)
+                   quo(died_min[!is.na(died_min)] > START_YEAR),
+                   quo(died_min[!is.na(died_min)] < END_YEAR)
                  )),
-    end_2 = list(class = "integer",
+    died_max = list(class = "integer",
                  is_na = FALSE,
                  conditions = list(
-                   quo(end_2 > START_YEAR),
-                   quo(end_2 < END_YEAR),
-                   quo(is.na(end_1) | (end_1 <= end_2 & end_2 - end_1 < 120))
-                 )),
-    flourished = list(class = "integer",
-                      is_na = TRUE,
-                      conditions = list(
-                        quo(flourished[!is.na(flourished)] > START_YEAR),
-                        quo(flourished[!is.na(flourished)] < END_YEAR)
-                      )),
-    flourished_about = list(class = "logical",
-                            is_na = TRUE,
-                            conditions = list(
-                              quo(is.na(flourished) |
-                                     !is.na(flourished_about))
-                            )),
-    flourished_after = list(class = "logical",
-                            is_na = TRUE,
-                            conditions = list(
-                              quo(is.na(flourished) |
-                                     !is.na(flourished_after))
-                            )),
-    flourished_before = list(class = "logical",
-                             is_na = TRUE,
-                             conditions = list(
-                               quo(is.na(flourished) |
-                                      !is.na(flourished_before))
-                             )),
-    flourished_century = list(class = "logical",
-                              is_na = TRUE,
-                              conditions = list(
-                                quo(is.na(flourished) |
-                                       !is.na(flourished_century))
-                              )),
-    age = list(class = "integer",
-               is_na = TRUE,
-               conditions = list(
-                 quo(is.na(age) | (age > 0 & age < 120))
-               )),
-    died = list(class = "integer",
-                conditions = list(
-                  quo(is.na(died) | (died > START_YEAR & died < END_YEAR))
-                )),
-    died_about = list(class = "logical",
-                      conditions = list(
-                        quo(is.na(died) | !is.na(died_about))
-                      )),
-    died_after = list(class = "logical",
-                      conditions = list(
-                        quo(is.na(died) | !is.na(died_after))
-                      )),
-    born = list(class = "integer",
-                conditions = list(
-                  quo(is.na(born) | born > START_YEAR & born < END_YEAR)
-                )),
-    born_about = list(class = "logical", is_na = TRUE,
-                      conditions = list(
-                        quo(is.na(born) | !is.na(born_about))
-                      )),
-    lived = list(class = "integer", is_na = TRUE,
-                 conditions = list(
-                   quo(is.na(lived) | lived > START_YEAR & lived < END_YEAR)
-                 )),
-    occupation = list(class = "character", is_na = FALSE,
-                      enum = ENUM$occupation)
+                   quo(died_max > START_YEAR),
+                   quo(died_max < END_YEAR),
+                   quo(is.na(died_min) | (died_min <= died_max & died_max - died_min < 120))
+                 ))
   )
 
 test_that("Specimen has the correct number of rows", {
@@ -182,6 +119,8 @@ for (nm in names(SPECIMEN_COLUMNS)) {
   enum <- SPECIMEN_COLUMNS[[nm]][["enum"]]
   if (is.null(enum)) next
   test_that(glue("{nm} only takes values: {str_c(enum, collapse = \",\")}"), {
-    eval_tidy(quo(expect_true(all(is.na(UQ(sym(nm))) | UQ(sym(nm)) %in% UQ(enum)))), data = Specimen)
+    eval_tidy(quo(expect_true(all(is.na(UQ(sym(nm))) |
+                                    UQ(sym(nm)) %in% UQ(enum)))),
+              data = Specimen)
   })
 }

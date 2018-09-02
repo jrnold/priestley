@@ -302,7 +302,7 @@ def add_intervals(data):
                 k for k in person
                 if re.match("died|born|lived|flourished|age", k)
             ]))
-        person['lifetype'] = ', '.join(life_type)
+        person['lifetype'] = life_type
         if life_type == ("age", "born"):
             person['born_max'] = person['born']['value']
             person['died_min'] = person['born_max'] + person['age']
