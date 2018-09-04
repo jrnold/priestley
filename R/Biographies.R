@@ -5,7 +5,7 @@
 #' timeline for all individuals in the 1st (1764) and ... (1778) editions
 #' of Joseph Priestley's *A Chart of Biography*.
 #'
-#' @format A data frame with 2418 rows and 27 columns.
+#' @format A data frame with 2418 rows and 28 columns.
 #' \describe{
 #' \item{text}{(string) Text entry in the name index of the source.}
 #' \item{name}{(string) Name of the individual}

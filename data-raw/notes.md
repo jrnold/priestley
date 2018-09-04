@@ -62,6 +62,11 @@
 - `born`: `died_after - age_about - 5` to `died_after + 15`
 - `died`: `died_after` to `died_after` + 10
 
+`age`, `flourished`: Use exact age and 2/3 rule of flourished. This doesn't account for uncertainty.
+
+- `born`: `flourished - 2/3 * age`
+- `died`: `flourished + 1/3 * age`
+
 `born`: Lifespan of 30-70 years
 
 - Birth: `born`
@@ -82,15 +87,36 @@
 - Birth: `born`
 - Death: `lived_after` to `lived_after + 10`
 
+
 `born_about`, `died`:
 
 - Birth: `born_about - 5` to `born_about + 5`
 - Death: `died`
 
+`born_about`, `died`:
+
+- Birth: `born_about - 5` to `born_about + 5`
+- Death: `died`
+
+`born_before`:
+
+- Birth: `born_before - 10` to `born_before`
+- Death: `born_before + 20` to `born_before + 70`. Lifespan of 30-70.
+
 `died`: Lifespan of 30-70 years
 
 - Birth: `born` - 70 to `born - 30`
 - Died: `died`
+
+`died_about`: Use lifespan of 30-70
+
+- Birth: `(died_about - 5) - 70` to `(died_about + 5) - 30`
+- Death: `died_about - 5` to `died_about + 5`
+
+`died_after`: Use lifespan of 30-70
+
+- Birth: `(died_about) - 70` to `(died_about + 10) - 30`
+- Death: `died_about` to `died_about + 10`
 
 `age_about`, `born_about`:
 

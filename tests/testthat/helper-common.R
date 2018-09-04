@@ -11,7 +11,7 @@ ENUM <- list(
                  "Muslim Religious Person",
                  "Orator", "Painter", "Philosopher", "Physician", "Poet",
                  "Political Writer",
-                 "Politician/Military Person", "Pope", "Printer", "Sculptor",
+                 "Monarch, Politician, or Military Person", "Pope", "Printer", "Sculptor",
                  "Writer"),
   occupation_abbr = c("Ph", "D", "P", "J", "H", "Geo", "L", "H P", "M", "Cr",
                       "Po", "F", "Or", "Ar", "Pa", "Mu", "Moh", "Ant", "Met", "Mor",

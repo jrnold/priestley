@@ -8,10 +8,10 @@ License: MIT + file LICENSE
 LazyData: true
 Authors@R: person("Jeffrey", "Arnold", role = c("aut", "cre"), email = "jeffrey.arnold@gmail.com")
 Imports: 
-  dplyr,
-  purrr,
-  Rdpack,
-  tibble
+    dplyr,
+    purrr,
+    Rdpack,
+    tibble
 Suggests:
     ggplot2,
     knitr,
@@ -20,8 +20,9 @@ Suggests:
     spelling,
     testthat
 Depends:
-  R (>= 3.0.0)
+    R (>= 3.0.0)
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
 Language: en-US
 RdMacros: Rdpack
+Encoding: UTF-8

@@ -41,7 +41,8 @@ BIOGRAPHY_COLUMNS <-
                    quo(is.na(died_min) | (died_min <= died_max)),
                    quo(is.na(born_max) | !is.na(died_min)),
                    quo(is.na(born_max) | born_max < died_min),
-                   quo(is.na(born_max) | (died_min - born_max < 120))
+                   quo(is.na(died_min) | died_min - born_max <= 120),
+                   quo(is.na(died_min) | died_min - born_max >= 15)
                  )),
     died_max = list(class = "integer",
                  is_na = FALSE,
@@ -49,7 +50,7 @@ BIOGRAPHY_COLUMNS <-
                    quo(died_max > START_YEAR),
                    quo(died_max < END_YEAR),
                    quo(born_min < died_max),
-                   quo(died_max - born_min < 120)
+                   quo(died_max - born_min <= 150)
                  )),
     flourished = list(class = "integer",
                       is_na = TRUE,
@@ -115,7 +116,8 @@ BIOGRAPHY_COLUMNS <-
     occupation = list(class = "character", is_na = FALSE,
                       enum = ENUM$occupation),
     sect = list(class = "character", is_na = TRUE, enum = ENUM$sect),
-    lifetype = list(class = "list")
+    lifetype = list(class = "list"),
+    description = list(class = "character", is_na = FALSE)
   )
 
 test_that("Biographies is a tibble rows", {
