@@ -2352,29 +2352,29 @@ Tyrtæus fl. 607 BC P
 
 Vaillant d. 1708. 76 Ant
 Valdemar d. 1182. 48
-Valens d. 379. 50
+Valens d. 379. 50 <https://en.wikipedia.org/wiki/Valens>
 Valentine, Basil, fl. 1410 Chy <https://en.wikipedia.org/wiki/Basil_Valentine>
-Valentinian 1st d. 367
-Valentinian fl. 120 F
+Valentinian 1st d. 367 <https://en.wikipedia.org/wiki/Valentinian_I>
+Valentinian fl. 120 F <https://en.wikipedia.org/wiki/Valentinus_(Gnostic)>
 Valerian fl. 260. 79 <https://en.wikipedia.org/wiki/Valerian_(emperor)>
-Valerius Flaccus fl. 84 P
-Valerius Maximus fl. 23 H
-Valescus Tarentinus fl. 1382 Ph
-Valla Laurentius d. 1465. 50 Cr
-Vandyke d. 1641. 42 Pa
-Vanini d. 1619. 34 D
-Varius fl. 17 BC Cr
-Varro, Terentius, d. 28 BC 88 Cr
-Varus Q. d. 18
+Valerius Flaccus fl. 84 P <https://en.wikipedia.org/wiki/Gaius_Valerius_Flaccus>
+Valerius Maximus fl. 23 H <https://en.wikipedia.org/wiki/Valerius_Maximus>
+Valescus Tarentinus fl. 1382 Ph <https://es.wikipedia.org/wiki/Vasco_de_Taranta>
+Valla Laurentius d. 1465. 50 Cr <https://en.wikipedia.org/wiki/Lorenzo_Valla>
+Vandyke d. 1641. 42 Pa <https://en.wikipedia.org/wiki/Anthony_van_Dyck>
+Vanini d. 1619. 34 D <https://en.wikipedia.org/wiki/Lucilio_Vanini>
+Varius fl. 17 BC Cr <https://en.wikipedia.org/wiki/Lucius_Varius_Rufus>
+Varro, Terentius, d. 28 BC 88 Cr <https://en.wikipedia.org/wiki/Marcus_Terentius_Varro>
+Varus Q. d. 18 <https://en.wikipedia.org/wiki/Publius_Quinctilius_Varus>
 Vauban d. 1707. 74 Engineer [Names Omitted;1778] <https://en.wikipedia.org/wiki/S%C3%A9bastien_Le_Prestre_de_Vauban>
-Ubaldus d. 1423 L
-Vegetius fl. 380 Cr
-Venantius, Fortunatus, fl. 560 P
+Ubaldus d. 1423 L <https://en.wikipedia.org/wiki/Baldus_de_Ubaldis>
+Vegetius fl. 380 Cr <https://en.wikipedia.org/wiki/Publius_Flavius_Vegetius_Renatus>
+Venantius, Fortunatus, fl. 560 P <https://en.wikipedia.org/wiki/Venantius_Fortunatus>
 Verochio d. 1488. 56 Pa
 Verrius Flaccus fl. 8 BC Cr
 Verus L. d. 169. 39
 Vernerus J fl. 1514 M
-Vernon, Edward, d. 1757. 73 [Names Omitted;1778]
+Vernon, Edward, d. 1757. 73 [Names Omitted;1778] <https://en.wikipedia.org/wiki/Edward_Vernon>
 Vertot d. 1735. 80 H
 Vertue d. 1756. 72 Eng <https://en.wikipedia.org/wiki/George_Vertue>
 Vesalius d. 1564. 52 Ph

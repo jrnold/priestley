@@ -25,7 +25,7 @@ def load_categories(filename):
         data = yaml.load(f)
     categories = {}
     for d in data['divisions']:
-        for cat, _ in d['occupations'].items():
+        for cat, v in d['occupations'].items():
             categories[cat] = d['name']
     return categories
 
@@ -47,7 +47,6 @@ class Visitor(PTNodeVisitor):
         return int(str(node))
 
     def visit_century(self, node, children):
-        out = {'value': None, 'century': True}
         bc = len(children.bc) > 0
         if self.debug:
             print(bc)
@@ -58,8 +57,7 @@ class Visitor(PTNodeVisitor):
             value = values[0] * 100 - 50
         if bc:
             value *= -1
-        out['value'] = value
-        return out
+        return value
 
     def visit_year(self, node, children):
         if self.debug:
@@ -69,7 +67,7 @@ class Visitor(PTNodeVisitor):
         # if BCE, then need to adjust it so that 1 BCE = 0
         if len(children) > 1:
             value = -value + 1
-        return {'value': value, 'century': False}
+        return value
 
     def visit_name(self, node, children):
         return ' '.join(str(x) for x in children)
@@ -81,7 +79,7 @@ class Visitor(PTNodeVisitor):
     def visit_died_prefix(self, node, children):
         out = 'died'
         if len(children):
-            out = out + ' ' + str(children[0])
+            out = out + '_' + str(children[0])
         return out
 
     def visit_died(self, node, children):
@@ -93,7 +91,7 @@ class Visitor(PTNodeVisitor):
             print(children)
         out = 'born'
         if len(children):
-            out = out + ' ' + str(children[0])
+            out = out + '_' + str(children[0])
         return out
 
     def visit_born(self, node, children):
@@ -105,7 +103,7 @@ class Visitor(PTNodeVisitor):
     def visit_lived_prefix(self, node, children):
         out = 'lived'
         if len(children):
-            out = out + ' ' + str(children[1])
+            out = out + '_' + str(children[1])
         return out
 
     def visit_lived(self, node, children):
@@ -114,10 +112,13 @@ class Visitor(PTNodeVisitor):
     def visit_flourished_prefix(self, node, children):
         out = 'flourished'
         if len(children):
-            out = out + ' ' + str(children[0])
+            out = out + '_' + str(children[0])
         return out
 
-    def visit_flourished(self, node, children):
+    def visit_flourished_century(self, node, children):
+        return {'flourished_century': children[1]}
+
+    def visit_flourished_year(self, node, children):
         return {children[0]: children[1]}
 
     def visit_age(self, node, children):
@@ -125,7 +126,7 @@ class Visitor(PTNodeVisitor):
             print(node)
             print(children)
         if len(children) > 1:
-            out = {'age ' + children[0]: children[1]}
+            out = {'age_' + children[0]: children[1]}
         else:
             out = {'age': children[0]}
         if self.debug:
@@ -165,11 +166,11 @@ class Visitor(PTNodeVisitor):
         if len(children.occupation):
             occupation = children.occupation[0]
             if occupation.startswith('H P.'):
-              out['occupation'] = occupation[:3]
-              if len(occupation) > 4:
-                out['sect'] = occupation[4:].strip()
+                out['occupation'] = occupation[:3]
+                if len(occupation) > 4:
+                    out['sect'] = occupation[4:].strip()
             else:
-              out['occupation'] = occupation
+                out['occupation'] = occupation
             out['division'] = self.occupations[out['occupation']]
         else:
             out['division'] = 'Statesmen and Warriors'
@@ -220,10 +221,6 @@ def year():
     return integer, Optional(bc)
 
 
-def ordinal():
-    return "\d+"
-
-
 def century():
     return Optional("in"), Optional(about), integer, Optional(
         "or", integer), "Cent.", Optional(bc)
@@ -257,8 +254,16 @@ def flourished_prefix():
     return "fl.", Optional([after, about, before]),
 
 
+def flourished_year():
+    return flourished_prefix, year
+
+
+def flourished_century():
+    return flourished_prefix, century
+
+
 def flourished():
-    return flourished_prefix, [century, year]
+    return [flourished_century, flourished_year]
 
 
 def age():
@@ -294,146 +299,165 @@ def bio():
             Optional(occupation), Optional(period), EOF)
 
 
-def add_intervals(data):
+def format_year(x):
+    return str(x) if x > 0 else str(x - 1) + " BCE"
+
+
+def add_intervals(x):
     """Add start and end years to intervals."""
-    for person in data:
-        life_type = tuple(
-            sorted([
-                k for k in person
-                if re.match("died|born|lived|flourished|age", k)
-            ]))
-        person['lifetype'] = life_type
-        if life_type == ("age", "born"):
-            person['born_max'] = person['born']['value']
-            person['died_min'] = person['born_max'] + person['age']
-        elif life_type == ("age", "died"):
-            person['died_min'] = person['died']['value']
-            person['born_max'] = person['died_min'] - person['age']
-        elif life_type == ("age", "died about"):
-            # Ignore uncertainty with "about"
-            person['died_min'] = person['died about']['value']
-            person['born_max'] = person['died_min'] - person['age']
-        elif life_type == ("age", "died after"):
-            person['died_min'] = person['died after']['value']
-            person['died_max'] = person['died_min'] + DOTS_YEARS
-            # died after uncertainty perpetuates through age
-            person['born_max'] = person['died_max'] - person['age']
-            person['born_min'] = person['died_min'] - person['age']
-        elif life_type == ("age", "flourished"):
-            # use exact values for age and the 2/3 rule for flourished
-            fl = person['flourished']['value']
-            age = person['age']
-            person["died_min"] = fl + (1 / 3) * age
-            person["born_max"] = fl - (2 / 3) * age
-        elif life_type == ("age about", "born"):
-            # ignore uncertainty with about
-            person['born_max'] = person['born']['value']
-            person['died_min'] = person['born_max'] + person['age about']
-        elif life_type == ("age about", "died"):
-            # ignore uncertainty with about
-            person['died_min'] = person['died']['value']
-            person['born_max'] = person['died_min'] - person['age about']
-        elif life_type == ("age about", "died after"):
-            # ignore uncertainty with about
-            # for died after the uncertainty per
-            person['died_min'] = person['died after']['value']
-            person['died_max'] = person['died_min'] + DOTS_YEARS
-            person['born_max'] = person['died_max'] - person['age about']
-            person['born_min'] = person['died_min'] - person['age about']
-        elif life_type == ("age about", "died about"):
-            person['died_min'] = person['died about']['value']
-            person['born_max'] = person['died_min'] - person['age about']
-        elif life_type == ("age above", "born"):
-            person['born_max'] = person['born']['value']
-            person['died_min'] = person['born_max'] + person['age above']
-            person['died_max'] = person['died_min'] + DOTS_YEARS
-        elif life_type == ("age above", "died"):
-            person['died_min'] = person['died']['value']
-            person['born_max'] = person['died_min'] - person['age above']
-            person['born_min'] = person['born_max'] - DOTS_YEARS
-        elif life_type == ("age above", "died after"):
-            person['died_min'] = person['died after']['value']
-            person['died_max'] = person['died_min'] + DOTS_YEARS
-            person['born_max'] = person['died_max'] - person['age above']
-            person['born_min'] = person['born_max'] - 2 * DOTS_YEARS
-        elif life_type == ("born", ):
-            person["born_max"] = person["born"]["value"]
-            person["died_min"] = person["born_max"] + 3 * DOTS_YEARS
-            person["died_max"] = person["died_min"] + 3 * DOTS_YEARS
-        elif life_type == ("born", "died"):
-            person['died_min'] = person['died']['value']
-            person['born_max'] = person['born']['value']
-        elif life_type == ("born", "died after"):
-            person['born_max'] = person['born']['value']
-            person['died_min'] = person['died after']['value']
-            person['died_max'] = person['died_min'] + DOTS_YEARS
-        elif life_type == ("born", "lived after"):
-            person["born_max"] = person["born"]["value"]
-            person["died_min"] = person["lived after"]['value']
-            person["died_max"] = person["died_min"] + DOTS_YEARS
-        elif life_type == ("born about", ):
-            person["born_max"] = person["born about"]["value"]
-            person["died_min"] = person["born_max"] + 3 * DOTS_YEARS
-            person["died_max"] = person["died_min"] + 3 * DOTS_YEARS
-        elif life_type == ("born about", "died"):
-            person['died_min'] = person['died']['value']
-            person['born_max'] = person['born about']['value']
-        elif life_type == ("born before", ):
-            person["born_max"] = person["born before"]["value"]
-            person["born_min"] = person["born_max"] - 1 * DOTS_YEARS
-            person["died_min"] = person["born_max"] + 3 * DOTS_YEARS
-            person["died_max"] = person["died_min"] + 3 * DOTS_YEARS
-        elif life_type == ("died", ):
-            person['died_min'] = person['died']['value']
-            person['born_max'] = person['died_min'] - 3 * DOTS_YEARS
-            person['born_min'] = person['born_max'] - 4 * DOTS_YEARS
-        elif life_type == ("died about", ):
-            person['died_min'] = person['died about']['value']
-            person['born_max'] = person['died_min'] - 3 * DOTS_YEARS
-            person['born_min'] = person['born_max'] - 4 * DOTS_YEARS
-        elif life_type == ("died after", ):
-            person['died_min'] = person['died after']['value']
-            person['died_max'] = person['died_min'] + DOTS_YEARS
-            person['born_max'] = person['died_min'] - 2 * DOTS_YEARS
-            person['born_min'] = person['born_max'] - 4 * DOTS_YEARS
-        elif life_type == ("flourished", ):
-            fl = person['flourished']['value']
-            person["born_max"] = fl - 2 * DOTS_YEARS
-            person["born_min"] = person['born_max'] - 3 * DOTS_YEARS
-            person["died_min"] = fl + DOTS_YEARS
-            person["died_max"] = person["died_min"] + 2 * DOTS_YEARS
-        elif life_type == ("flourished after", ):
-            # treat the same as flourished
-            fl = person['flourished after']['value']
-            person["born_max"] = fl - 2 * DOTS_YEARS
-            person["born_min"] = person['born_max'] - 3 * DOTS_YEARS
-            person["died_min"] = fl + DOTS_YEARS
-            person["died_max"] = person["died_min"] + 2 * DOTS_YEARS
-        elif life_type == ("flourished before", ):
-            # treat the same as flourished
-            fl = person['flourished before']['value']
-            person["born_max"] = fl - 2 * DOTS_YEARS
-            person["born_min"] = person["born_max"] - 3 * DOTS_YEARS
-            person["died_min"] = fl + DOTS_YEARS
-            person["died_max"] = person["died_min"] + 2 * DOTS_YEARS
-        elif life_type == ("flourished about", ):
-            fl = person["flourished about"]['value']
-            person["born_min"] = fl - 5 * DOTS_YEARS
-            person["died_max"] = fl + 3 * DOTS_YEARS
-        elif life_type == ("age about", "born about"):
-            person['born_max'] = person["born about"]["value"]
-            person["born_min"] = person["born_max"] - DOTS_YEARS
-            person["died_min"] = person["born_max"] + person["age about"]
-            person["died_max"] = person["died_min"] + DOTS_YEARS
-        else:
-            print("unknown type: ", life_type)
-            print(person)
+    life_type = tuple(
+        sorted([
+            k for k in x
+            if re.match("died|born|lived|flourished|age", k)
+        ]))
+    x['lifetype'] = life_type
 
-        if 'born_max' in person and 'born_min' not in person:
-            person['born_min'] = person['born_max']
-        if 'died_min' in person and 'died_max' not in person:
-            person['died_max'] = person['died_min']
+    if life_type == ("age", "born"):
+        # Exact birth and death dates
+        died = x["born"] + x['age']
+        # provides exact birth and death dates
+        x["born_min"] = x["born_max"] = x["born"]
+        x["died_min"] = x["died_max"] = x["died"]
+    elif life_type == ("age", "died"):
+        # provides exact birth and death dates
+        born = x["died"] - x["age"]
+        x["born_min"] = x["born_max"] = born
+        x["died_max"] = x["died_min"] = x["died"]
+    elif life_type == ("age", "died_about"):
+        # Ignore uncertainty with "about"
+        x['died_min'] = x['died_about'] - 5
+        x['died_max'] = x['died_about'] + 5
+        x['born_max'] = x['died_max'] - x['age']
+        x['born_min'] = x['died_min'] - x['age']
+    elif life_type == ("age", "died_after"):
+        x['died_min'] = x['died after']
+        x['died_max'] = x['died_min'] + 10
+        # died after uncertainty perpetuates through age
+        x['born_max'] = x['died_max'] - x['age']
+        x['born_min'] = x['died_min'] - x['age']
+    # elif life_type == ("age", "flourished"):
+    #     # use exact values for age and the 2/3 rule for flourished
+    #     fl = x['flourished']['value']
+    #     age = x['age']
+    #     x["died_min"] = fl + (1 / 3) * age
+    #     x["died_max"] = x["died_min"]
+    #     x["born_max"] = fl - (2 / 3) * age
+    #     x["born_min"] = x["born_max"]
+    elif life_type == ("age_about", "born"):
+        # ignore uncertainty with about
+        x['born_min'] = x['born_max'] = x['born']
+        x['died_min'] = x['born'] - 5
+        x['died_max'] = x['born'] + 5
+    elif life_type == ("age_about", "died"):
+        # ignore uncertainty with about
+        x['died_min'] = x['died_max'] = x['died']
+        x['born_max'] = x['died'] - x['age about'] + 5
+        x['born_min'] = x['died'] - x['age about'] - 5
+    elif life_type == ("age about", "died after"):
+        x['died_min'] = x['died_after']
+        x['died_max'] = x['died_after'] + 10
+        x['born_max'] = x['died_max'] - x['age about'] + 5
+        x['born_min'] = x['died_min'] - x['age about'] - 5
+    elif life_type == ("age about", "died about"):
+        # apply maximum uncertainty
+        # treating the intervals as normal it would be 2 * sqrt(2 * 2.5^2) but
+        # that is probably not what Priestley did.
+        x['died_min'] = x['died about']['value'] - 5
+        x['died_max'] = x['died_about']['value'] + 5
+        x['born_max'] = x['died_max'] - x['age about'] + 5
+        x['born_min'] = x['died_min'] - x['age about'] - 5
+    elif life_type == ("age above", "born"):
+        x['born_max'] = x['born_min'] = x['born']
+        x['died_min'] = x['born'] + x['age above']
+        x['died_max'] = x['born'] + x['age above'] + 10
+    elif life_type == ("age above", "died"):
+        x['died_min'] = x['died_max'] = x['died']
+        x['born_max'] = x['died_min'] - x['age above']
+        x['born_min'] = x['died_min'] - x['age above'] - 10
+    elif life_type == ("age above", "died after"):
+        x['died_min'] = x['died_after']
+        x['died_max'] = x['died_after'] + 10
+        x['born_max'] = x['born_min'] = x['died_max'] - x['age above']
+    elif life_type == ("born", ):
+        x["born_min"] = x["born"]
+        x["died_min"] = x["born"] + 30
+        x["died_max"] = x["born"] + 70
+    elif life_type == ("born", "died"):
+        x["died_min"] = x["died_max"] = x['died']
+        x["born_max"] = x["born_max"] = x['born']
+    elif life_type == ("born", "died after"):
+        x['born_max'] = x['born_min'] = x['born']
+        x['died_min'] = x['died after']
+        x['died_max'] = x['died_after'] + 10
+    elif life_type == ("born", "lived after"):
+        x["born_max"] = x["born_min"] = x["born"]
+        x["died_min"] = x["lived after"]
+        x["died_max"] = x["lived_after"] + 10
+    # elif life_type == ("born about", ):
+    #     x["born_min"] = x["born about"]["value"] - 5
+    #     x["born_max"] = x["born about"]["value"] + 5
+    #     x["died_min"] = x["born_max"] + 25
+    #     x["died_max"] = x["died_min"] + 35
+    elif life_type == ("born about", "died"):
+        x['died_min'] = x['died_max'] = x['died']
+        x['born_max'] = x['born about'] + 5
+        x["born_min"] = x["born about"] - 5
+    # elif life_type == ("born before", ):
+    #     x["born_max"] = x["born before"]["value"]
+    #     x["born_min"] = x["born_max"] - 10
+    #     x["died_min"] = x["born_max"] + 30
+    #     x["died_max"] = x["died_min"] + 30
+    elif life_type == ("died", ):
+        x['died_min'] = x['died_max'] = x['died']
+        x['born_max'] = x['died'] - 30
+        x['born_min'] = x['died'] - 70
+    # elif life_type == ("died about", ):
+    #     x['died_min'] = x['died about']['value']
+    #     x['born_max'] = x['died_min'] - 30
+    #     x['born_min'] = x['born_max'] - 40
+    # elif life_type == ("died after", ):
+    #     x['died_min'] = x['died after']['value']
+    #     x['died_max'] = x['died_min'] + 10
+    #     x['born_max'] = x['died_min'] - 20
+    #     x['born_min'] = x['born_max'] - 40
+    # elif life_type == ("flourished", ):
+    #     fl = x['flourished']['value']
+    #     x["born_max"] = fl - 20
+    #     x["born_min"] = x['born_max'] - 30
+    #     x["died_min"] = fl + 10
+    #     x["died_max"] = x["died_min"] + 20
+    # elif life_type == ("flourished after", ):
+    #     # treat the same as flourished
+    #     fl = x['flourished after']['value']
+    #     x["born_max"] = fl - 20
+    #     x["born_min"] = x['born_max'] - 30
+    #     x["died_min"] = fl + 20
+    #     x["died_max"] = x["died_min"] + 20
+    # elif life_type == ("flourished before", ):
+    #     # treat the same as flourished
+    #     fl = x['flourished before']['value']
+    #     x["born_max"] = fl - 20
+    #     x["born_min"] = x["born_max"] - 30
+    #     x["died_min"] = fl + 10
+    #     x["died_max"] = x["died_min"] + 20
+    # elif life_type == ("flourished about", ):
+    #     fl = x["flourished about"]['value']
+    #     x["born_min"] = fl - 50
+    #     x["died_max"] = fl + 30
+    elif life_type == ("age about", "born about"):
+        x['born_min'] = x["born_about"] - 5
+        x["born_max"] = x["born_about"] + 5
+        x["died_min"] = x["born_about"] + x["age_about"] - 10
+        x["died_max"] = x["born_about"] + x["age_about"] + 10
+    else:
+        print("unknown type: ", life_type)
+        print(x)
 
+    # if 'born_max' in x and 'born_min' not in x:
+    #     x['born_min'] = x['born_max']
+    # if 'died_min' in x and 'died_max' not in x:
+    #     x['died_max'] = x['died_min']
+    #
 
 def parse(filename, outfile, categories_filename):
     parser = ParserPython(bio)
@@ -448,11 +472,11 @@ def parse(filename, outfile, categories_filename):
                 continue
             m_url = re.search("<(.*)>", line)
             if m_url:
-              url = m_url.group(1)
-              line = re.sub("<.*>", "", line).strip()
+                url = m_url.group(1)
+                line = re.sub("<.*>", "", line).strip()
             else:
-              url = None
-            m = re.search("(.*)\[(.*)\]\s*$", line)
+                url = None
+            m = re.search(r"(.*)\[(.*)\]\s*$", line)
             if m:
                 line = m.group(1).strip()
                 editions = set(m.group(2).split(';'))
@@ -478,14 +502,15 @@ def parse(filename, outfile, categories_filename):
             parsed['in_names_omitted'] = in_names_omitted
             parsed['url'] = url
             data.append(parsed)
-    add_intervals(data)
+    # add_intervals(data)
     with open(outfile, "w") as f:
         json.dump(data, f, indent=1)
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Parse text files with Priestley bios and output JSON file.'
+        description=("Parse text files with Priestley bios and output JSON "
+                     "file.")
     )
     parser.add_argument('--categories-filename', type=str,
                         help="Path to YAML file with Priestley's categories.",
@@ -496,6 +521,7 @@ def main():
                         help='Path to output JSON file')
     args = parser.parse_args()
     parse(args.filename, args.outfile, args.categories_filename)
+
 
 if __name__ == '__main__':
     main()
