@@ -320,6 +320,13 @@ def format_year(x):
     return str(x) if x > 0 else str(abs(x) - 1) + " BCE"
 
 
+def clean_occupation(x):
+    x = x.lower()
+    x = x.replace('christian', "Christian")
+    x = x.replace('jewish', "Jewish")
+    x = x.replace("muslim", "Muslim")
+    return x
+
 def add_intervals(x):
     """Add start and end years to intervals."""
     life_type = tuple(
@@ -489,7 +496,7 @@ def add_intervals(x):
         x["born_max"] = fl - 20
         x["died_min"] = fl + 10
         x["died_max"] = fl + 30
-        x["description"] = "lived about {flourished}".\
+        x["description"] = "lived in about {flourished}".\
             format(flourished=format_year(x["flourished"]))
     elif life_type == ("flourished_after", ):
         # add -10 to flourished
@@ -602,7 +609,8 @@ def parse(filename, outfile, categories_filename):
             if parsed["sect_abbr"]:
                 occupation += " (" + parsed["sect"] + ")"
             parsed["description"] = "{name} was a {occupation} who {lived}.".\
-                format(name=parsed['name'], occupation=occupation,
+                format(name=parsed['name'],
+                       occupation=clean_occupation(occupation),
                        lived=parsed['description'])
             data.append(parsed)
     # add_intervals(data)

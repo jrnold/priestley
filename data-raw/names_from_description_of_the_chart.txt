@@ -677,9 +677,9 @@ Codrus d. 804 BC
 Cœlius Aurelian fl. ab. 150 Ph
 Cœpio G. Serfilius d. 90 BC
 Coke Edw. d. 1634. 85 L
-Colbert d. 1683. 64
-Colet d. 1519. 53 D
-Coligni d. 1572. 56
+Colbert d. 1683. 64 <https://en.wikipedia.org/wiki/Jean-Baptiste_Colbert>
+Colet d. 1519. 53 D <https://en.wikipedia.org/wiki/John_Colet>
+Coligni d. 1572. 56 <https://en.wikipedia.org/wiki/Odet_de_Coligny>
 Collatius (Petrus Apollonius) fl. 15 Cent. P
 Collins Antony d. 1729. 53 D
 Columba d. 595 F
@@ -1831,11 +1831,11 @@ Perseus d. 52. 30 P
 Pertinax d. 193. 66
 Petavius d. 1652. 59 Ch <https://en.wikipedia.org/wiki/Denis_P%C3%A9tau>
 Peter, St. d. 67 F
-Peter the Great d. 1725. 53
+Peter the Great d. 1725. 53 <https://en.wikipedia.org/wiki/Peter_the_Great>
 Peter d’Apono b. 1250 M
 Peter of Blois d. 1200 H
 Peter the Hermit fl. 1092 D
-Peter Martyr d. 1562. 63 D
+Peter Martyr d. 1562. 63 D <https://en.wikipedia.org/wiki/Peter_Martyr_Vermigli>
 Petosiris fl. 772 BC M
 Petrarch d. 1374. 70 P
 Petronius Arbiter d. ab. 66 Cr
