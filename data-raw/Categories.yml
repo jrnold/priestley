@@ -19,7 +19,7 @@ divisions:
   description: "Religious Persons and Philosophers"
   occupations:
     "H P":
-      label: Ancient Greek Philosopher
+      label: Ancient Philosopher
       original_label: "Heathen Philosopher"
       links:
       - "dbo:Philosopher"
@@ -33,6 +33,9 @@ divisions:
         in their proper division, in that of CRITICS, to whom they had a very near
         relation; a very few among the MATHEMATICIANS; if they ever distinguished themselves
         in that character, as Proclus and some others.
+      note: >-
+        Ancient Philsopher was used instead of Ancient Greek Philosopher since
+        it includes Confucius.
       sects:
         Ion:
           name: Ionic
@@ -48,26 +51,32 @@ divisions:
           name: Cyrenaic
           links:
           - "dbr:Cyrenaics"
+          - "https://en.wikipedia.org/wiki/Category:Cyrenaic_philosophers"
         Meg:
           name: Megaric
           links:
           - "dbr:Megarian_school"
+          - "https://en.wikipedia.org/wiki/Category:Megarian_philosophers"
         Ac:
           name: Academic
           links:
           - "dbr:Platonism"
+          - "https://en.wikipedia.org/wiki/Category:Academic_philosophers"
         Per:
           name: Peripatetic
           links:
           - "dbr:Peripatetic_School"
+          - "https://en.wikipedia.org/wiki/Category:Peripatetic_philosophers"
         Sto:
           name: Stoic
           links:
           - "dbr:Stoicism"
+          - "https://en.wikipedia.org/wiki/Category:Stoic_philosophers"
         Cyn:
           name: Cynic
           links:
           - "dbr:Cynicism_(philosophy)"
+          - "https://en.wikipedia.org/wiki/Category:Cynic_philosophers"
         Ital:
           name: Italic
           links:
@@ -75,17 +84,18 @@ divisions:
         Scept:
           name: Sceptic
           links:
-          - "dbr:Philosophical_skepticism"
+          - "https://en.wikipedia.org/wiki/Philosophical_skepticism"
         Ep:
           name: Epicurean
           links:
-          - "dbr:Epicureanism"
+          - "https://en.wikipedia.org/wiki/Epicureanism"
         Eleack:
           name: Eleack
         Eleat:
           name: Eleatic
           links:
-          - "Eleatic_School"
+          - "https://en.wikipedia.org/wiki/Category:Eleatic_philosophers"
+          - "https://en.wikipedia.org/wiki/Eleatic_School"
     "F":
       label: Christian Church Father
       original_label: "Christian Father"

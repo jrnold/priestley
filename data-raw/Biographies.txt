@@ -3,8 +3,8 @@ Abas fl. 1070 BC
 Abbas Shah d. 1628. 70 <https://en.wikipedia.org/wiki/Abbas_I_of_Persia>
 Abbo d. 1183 D [1764]
 Abbo d. 1104 D [1778]
-Abbo Neustriae fl. 892 P
-Abbot d. 1633 71 D
+Abbo Neustriae fl. 892 P <https://en.wikipedia.org/wiki/Abbo_Cernuus>
+Abbot d. 1633 71 D <https://en.wikipedia.org/wiki/George_Abbot_(bishop)>
 Abdalrahman d. 708 [1764] <https://en.wikipedia.org/wiki/Abd_al-Rahman_I>
 Abdalrahman d. 987. 85 M [1764] <https://en.wikipedia.org/wiki/Abd_ar-Rahman_III>
 Abelard d. 1143. 62 D <https://en.wikipedia.org/wiki/Peter_Abelard>
@@ -73,15 +73,15 @@ Agricola d. 93. 56 <https://en.wikipedia.org/wiki/Gnaeus_Julius_Agricola>
 Agricola George d. 1555. 61 M <https://en.wikipedia.org/wiki/Georgius_Agricola>
 Agricola Rodolphus d. 1485. 43 Cr <https://en.wikipedia.org/wiki/Rodolphus_Agricola>
 Agrippa d. 64. 54 <https://en.wikipedia.org/wiki/Marcus_Vipsanius_Agrippa>
-Agrippa Byth. fl. 90 M
+Agrippa Byth. fl. 90 M <https://en.wikipedia.org/wiki/Agrippa_(astronomer)>
 Agrippa Cornelius d. 1534. 48 M <https://en.wikipedia.org/wiki/Heinrich_Cornelius_Agrippa>
 Agrippa Vipsanius d. 12 BC 51 <https://en.wikipedia.org/wiki/Marcus_Vipsanius_Agrippa>
 Agrippina Junior d. 59 <https://en.wikipedia.org/wiki/Agrippina_the_Younger>
 Ahab d. 897 BC <https://en.wikipedia.org/wiki/Ahab>
 Ahaz d. 726 BC <https://en.wikipedia.org/wiki/Ahaz>
-Ahmed d. 883
-Aidan d. 651 D
-Ailli d. 1420. 70 D
+Ahmed d. 883 <https://en.wikipedia.org/wiki/Ahmad_ibn_Tulun>
+Aidan d. 651 D <https://en.wikipedia.org/wiki/Aidan_of_Lindisfarne>
+Ailli d. 1420. 70 D <https://en.wikipedia.org/wiki/Pierre_d%27Ailly>
 Ailred d. 1166. 57 H [1778] <https://en.wikipedia.org/wiki/Aelred_of_Rievaulx>
 Aimoin d. 1008 H <https://en.wikipedia.org/wiki/Aimoin>
 Akbar d. 1605. 63 <https://en.wikipedia.org/wiki/Akbar>
@@ -632,8 +632,8 @@ Chillingworth d. 1644. 42 D <https://en.wikipedia.org/wiki/Roger_Chillingworth>
 Chœroboscus Georgius fl. 750 Cr
 Choricius fl. 570 Cr <https://en.wikipedia.org/wiki/Choricius_of_Gaza>
 
-Chosroes the Great d. 580
-Chosroes 2d d. 627
+Chosroes the Great d. 580 <https://en.wikipedia.org/wiki/Khosrow_I>
+Chosroes 2d d. 627 <https://en.wikipedia.org/wiki/Khosrow_II>
 Christ d. 33. 37 [Names Omitted;1778] <https://en.wikipedia.org/wiki/Jesus>
 Chrysostom d. 407. 53 F <https://en.wikipedia.org/wiki/John_Chrysostom>
 Chrodogandus d. 765 D. <https://en.wikipedia.org/wiki/Chrodegang>
@@ -670,8 +670,8 @@ Cleostratus fl. 542 BC M
 Clisthenes fl. 568 BC <https://en.wikipedia.org/wiki/Cleisthenes>
 Clitomachus d. ab. 100 BC H P. Ac <https://en.wikipedia.org/wiki/Clitomachus_(philosopher)>
 Clodius d. 52 BC <https://en.wikipedia.org/wiki/Publius_Clodius_Pulcher>
-Clotaire d. 562
-Clotaire 2d d. 628. 44
+Clotaire d. 562 <https://en.wikipedia.org/wiki/Chlothar_I>
+Clotaire 2d d. 628. 44 <https://en.wikipedia.org/wiki/Chlothar_II>
 Clovis d. 511. 44
 Codrus d. 804 BC <https://en.wikipedia.org/wiki/Codrus>
 Cœlius Aurelian fl. ab. 150 Ph
@@ -868,8 +868,8 @@ Edgar d. 975. 32
 Edgar Atheling d. af. 1120. ab. 70 <https://en.wikipedia.org/wiki/Edgar_Ætheling>
 Edward Confessor d. 1066. 64 <https://en.wikipedia.org/wiki/Edward_the_Confessor>
 Edward Martyr d. 978. 19 <https://en.wikipedia.org/wiki/Edward_the_Martyr>
-Edward 1st of England d. 1307. 68
-Edward 3d of England d. 1377. 63
+Edward 1st of England d. 1307. 68 <https://en.wikipedia.org/wiki/Edward_I_of_England>
+Edward 3d of England d. 1377. 63 <https://en.wikipedia.org/wiki/Edward_III_of_England>
 Edwin of Kent d. 633
 Egbert d. 838
 Egidius d. 465.
@@ -984,15 +984,15 @@ Foster d. 1763. 56 D
 Fox, George, d. 1681 D
 Fox, John, d. 1587. 69 D
 Fracastorius d. 1553. 71 P <https://en.wikipedia.org/wiki/Girolamo_Fracastoro>
-Francis 1st d. 1547. 52
-Francis St. d. 1227. 46 D
+Francis 1st d. 1547. 52 <https://en.wikipedia.org/wiki/Francis_I_of_France>
+Francis St. d. 1227. 46 D <https://en.wikipedia.org/wiki/Francis_of_Assisi>
 Francis Mayronis d. 1325 D
 Franciscus Pedemontanus fl. 1310 Ph
 Franco fl. 1047 M
 Fredegaire fl. 743 H <https://en.wikipedia.org/wiki/Chronicle_of_Fredegar>
-Frederic of Germany d. 1190. 63
-Frederic 2d d. 1250. 54
-Frederic 3d of Denmark d. 1670
+Frederic of Germany d. 1190. 63 <https://en.wikipedia.org/wiki/Frederick_I,_Holy_Roman_Emperor>
+Frederic 2d d. 1250. 54 <https://en.wikipedia.org/wiki/Frederick_II,_Holy_Roman_Emperor>
+Frederic 3d of Denmark d. 1670 <https://en.wikipedia.org/wiki/Frederick_III_of_Denmark>
 Freinshemius d. 1666. 52 Cr <https://en.wikipedia.org/wiki/Johann_Freinsheim>
 Fresnoy d. 1665. 54 Pa [Names Omitted;1778]
 Friend J. d. 1728. 51 Ph
@@ -1014,7 +1014,7 @@ Gallienus d. 268. 50 <https://en.wikipedia.org/wiki/Gallienus>
 Gallus El. Cornel d. 26 BC 43
 Gama Vasques de d. 1522
 Gamaliel d. 229 J <https://en.wikipedia.org/wiki/Gamaliel>
-Gamaliel 4th d. af. 392 J
+Gamaliel 4th d. af. 392 J <https://en.wikipedia.org/wiki/Gamaliel_IV>
 Gardiner d. 1555. 72 D
 Gariopontus fl. in 12 Cent. Ph <https://it.wikipedia.org/wiki/Garioponto>
 Gascoigne d. 1413 L
@@ -1037,8 +1037,8 @@ Geoffrey of Monmouth fl. 1152 H <https://en.wikipedia.org/wiki/Geoffrey_of_Monmo
 Geoffroy d. 1731. 59 Chy <https://en.wikipedia.org/wiki/%C3%89tienne_Fran%C3%A7ois_Geoffroy>
 Georgione d. 1511. 34 Pa [Names Omitted;1778]
 Germanicus d. 19. 34 <https://en.wikipedia.org/wiki/Germanicus>
-Germanus 1st d. 749 D
-Germanus 2d d. 1255 D
+Germanus 1st d. 749 D <https://en.wikipedia.org/wiki/Germanus_I_of_Constantinople>
+Germanus 2d d. 1255 D <https://en.wikipedia.org/wiki/Germanus_II_of_Constantinople>
 Germanus, of Paris, d. 579 F [Names Omitted;1778] <https://en.wikipedia.org/wiki/Germain_of_Paris>
 Gershom d. 1028 J <https://en.wikipedia.org/wiki/Gershom>
 Gerson J. d. 1421. 58 D
@@ -1171,9 +1171,9 @@ Hemskirk d. 1574. Pa
 Hengham fl. 1300 L <https://en.wikipedia.org/wiki/Ralph_de_Hengham>
 Hengist d. 487 ab. 69
 
-Henry 1st of Germany d. 936. 59
+Henry 1st of Germany d. 936. 59 <https://en.wikipedia.org/wiki/Henry_the_Fowler>
 Henry 4th of Germany d. 1106. 55 <https://en.wikipedia.org/wiki/Henry_IV_of_England>
-Henry 4th of France d. 1611. 57
+Henry 4th of France d. 1611. 57 <https://en.wikipedia.org/wiki/Henry_IV_of_France>
 Henry 5th of England d. 1422. 36 <https://en.wikipedia.org/wiki/Henry_V_of_England>
 Henry of Ghent d. 1293 Cr <https://en.wikipedia.org/wiki/Henry_of_Ghent>
 Henry of Huntingdon fl. 1168 H <https://en.wikipedia.org/wiki/Henry_of_Huntingdon>
@@ -1202,16 +1202,16 @@ Hevelius d. 1688. 76 M <https://en.wikipedia.org/wiki/Johannes_Hevelius>
 Heylin d. 1662. 62 H [Names Omitted;1778]
 Hezekiah d. 697 BC <https://en.wikipedia.org/wiki/Hezekiah>
 Hicks, George, d. 1715. 73 Cr
-Hiero d. 467 BC
-Hiero 2d d. 225 BC
+Hiero d. 467 BC <https://en.wikipedia.org/wiki/Hiero_I_of_Syracuse>
+Hiero 2d d. 225 BC <https://en.wikipedia.org/wiki/Hiero_II_of_Syracuse>
 Hierocles fl. 302 H P. <https://en.wikipedia.org/wiki/Hierocles_(Stoic)>
 
 Hierocles fl. 5 Cent. H P. <https://en.wikipedia.org/wiki/Hierocles_(Stoic)>
 Higden Ran. d. 1377 H
 Hilary d. 372. 80 F
 Hildebertus de Lavardino d. 1132 D
-Hillel fl. ab. 40 BC J
-Hillel 2d. fl. 320 J
+Hillel fl. ab. 40 BC J <https://en.wikipedia.org/wiki/Hillel_the_Elder>
+Hillel 2d. fl. 320 J <https://en.wikipedia.org/wiki/Hillel_II>
 Hilliard d. 1619. 62 P
 Himerius fl. 363 Cr <https://en.wikipedia.org/wiki/Himerius>
 Himilco fl. 397 BC <https://en.wikipedia.org/wiki/Himilco>
@@ -1242,7 +1242,7 @@ Honorius Augustodunensis fl. 1130. D <https://en.wikipedia.org/wiki/Honorius_Aug
 Hooke d. 1703. 67 M <https://en.wikipedia.org/wiki/Robert_Hooke>
 Hooker d. 1600. 46 D
 Horace d. 8 BC 57 P
-Hormisdas 2d d. 309
+Hormisdas 2d d. 309 <https://en.wikipedia.org/wiki/Hormizd_II>
 
 Horne fl. 1305 L
 Horrox d. 1640. 23 M
@@ -1299,7 +1299,7 @@ Jehu d. 856 BC <https://en.wikipedia.org/wiki/Jehu>
 Jenghiz Khan d. 1227. 66 <https://en.wikipedia.org/wiki/Genghis_Khan>
 Jeremiah d. ab. 577 BC J
 Jeroboam d. 954 BC <https://en.wikipedia.org/wiki/Jeroboam>
-Jeroboam 2d d. 783 BC
+Jeroboam 2d d. 783 BC <https://en.wikipedia.org/wiki/Jeroboam_II>
 Jerom d. 420. 78 F
 Jerom of Prague d. 1416 D
 Jesus Sirac fl. 247 BC J
@@ -1436,17 +1436,17 @@ Lepidus d. 13 BC <https://en.wikipedia.org/wiki/Marcus_Aemilius_Lepidus_(triumvi
 Lesbonax fl. ab. 0 Cr <https://en.wikipedia.org/wiki/Lesbonax>
 Leucippus fl. ab. 440 H P. Eleack <https://en.wikipedia.org/wiki/Leucippus>
 Levi Ben Gershom fl. 1290 J <https://en.wikipedia.org/wiki/Gersonides>
-Lewis the 7th of France d. 1180. 59
-Lewis the 9th d. 1270. 55
+Lewis the 7th of France d. 1180. 59 <https://en.wikipedia.org/wiki/Louis_VII_of_France>
+Lewis the 9th of France d. 1270. 55 <https://en.wikipedia.org/wiki/Louis_IX_of_France>
 
-Lewis the 11th d. 1483. 64
-Lewis the 12th d. 1515. 53
-Lewis the 14th d. 1715. 77
+Lewis the 11th of France d. 1483. 64 <https://en.wikipedia.org/wiki/Louis_XI_of_France>
+Lewis the 12th of France d. 1515. 53 <https://en.wikipedia.org/wiki/Louis_XII_of_France>
+Lewis the 14th of France d. 1715. 77 <https://en.wikipedia.org/wiki/Louis_XIV_of_France>
 Libanias fl. 358 Cr
 Liberius d. 367 F <https://en.wikipedia.org/wiki/Pope_Liberius>
 Licinius d. 312 <https://en.wikipedia.org/wiki/Licinius>
 Liewenhoek fl. 1650 M
-Lightfoot d. 1675. 73 D
+Lightfoot d. 1675. 73 D <https://en.wikipedia.org/wiki/John_Lightfoot>
 Lilly, William, d. 1522. 54 Cr
 Limborch d. 1712. 78 D <https://en.wikipedia.org/wiki/Philipp_van_Limborch>
 Linacre, Thomas, d. 1524. 64 Ph <https://en.wikipedia.org/wiki/Thomas_Linacre>
@@ -1513,8 +1513,8 @@ Mantegna Andrea d. 1517. 86 Pa <https://en.wikipedia.org/wiki/Andrea_Mantegna>
 Malachi fl. 436 BC J <https://en.wikipedia.org/wiki/Malachi>
 Malbranche d. 1715. 77 Mor <https://en.wikipedia.org/wiki/Nicolas_Malebranche>
 Malchus fl. 494 Cr <https://en.wikipedia.org/wiki/Malchus>
-Malcolm 1st d. 958
-Malcolm 3d d. 1093
+Malcolm 1st d. 958 <https://en.wikipedia.org/wiki/Malcolm_I_of_Scotland>
+Malcolm 3d d. 1093 <https://en.wikipedia.org/wiki/Malcolm_III_of_Scotland>
 Maleck Ebn. Ans. d. 795. 86 Moh
 Maleck Shah d. 1091. 37
 Malela J fl. 600 H
@@ -1628,7 +1628,7 @@ Modestinus Herrenius fl. 240 L
 Moeris fl. 860 BC
 Moez d. 987. 44
 Mohammed d. 632. 63 Moh <https://en.wikipedia.org/wiki/Muhammad>
-Mohammed 2d d. 1481. 51
+Mohammed 2d d. 1481. 51 <https://en.wikipedia.org/wiki/Mehmed_the_Conqueror>
 Moliere d. 1672. 52 P <https://en.wikipedia.org/wiki/Molière>
 Molyneux d. 1698. 42 M <https://en.wikipedia.org/wiki/Stefan_Molyneux>
 Monk d. 1670. 62
@@ -1713,7 +1713,7 @@ Ocellus Lucanus fl. ab. 450 H P. <https://en.wikipedia.org/wiki/Ocellus_Lucanus>
 Octavius Horatianus fl. 370 Ph
 Odenatus d. 267
 Odo St. d. 942. 64 D
-Odo ©Cantianus d. 1171 D
+Odo Cantianus d. 1171 D
 Odoacer, King of the Heruli, d. 492 <https://en.wikipedia.org/wiki/Odoacer>
 Odurius Vitalis fl. 1141 H
 Oecolampadias d. 1531. 49 D
@@ -1856,13 +1856,13 @@ Philelphus d. 1481. 83 Cr <https://en.wikipedia.org/wiki/Francesco_Filelfo>
 Philemon d. ab. 274 BC P
 Philetas d. ab. 280 BC P <https://en.wikipedia.org/wiki/Philitas_of_Cos>
 Philistus d. ab. 356 BC H <https://en.wikipedia.org/wiki/Philistus>
-Philip of Maced. d. 335 BC 48
+Philip of Maced. d. 335 BC 48 <https://en.wikipedia.org/wiki/Philip_II_of_Macedon>
 Philip 2d d. 179 BC
-Philip the Emp. d. 249
+Philip the Emp. d. 249 <https://en.wikipedia.org/wiki/Philip_the_Arab>
 Philip of France d. 1108 <https://en.wikipedia.org/wiki/Philip_IV_of_France>
 Philip Augustus d. 1223. 58 <https://en.wikipedia.org/wiki/Philip_II_of_France>
 Philip the Good of Burgundy d. 1467 <https://en.wikipedia.org/wiki/Philip_the_Good>
-Philip 2d of Spain d. 1598. 70
+Philip 2d of Spain d. 1598. 70 <https://en.wikipedia.org/wiki/Philip_II_of_Spain>
 Philippicus the Emperor d. 713 <https://en.wikipedia.org/wiki/Philippikos_Bardanes>
 Philippicus the General d. 602
 Phillippus de Leydis d. 1380 L
@@ -2019,9 +2019,9 @@ Robins d. 1751. 44 M
 Rochefocault d. 1680. 67 Cr
 Roderick, Ximenes, d. 1245 H
 Rodolphus d. 1291. 72 <https://nl.wikipedia.org/wiki/Rodolphus_van_Detta>
-Rodolphus the 3d of Burgundy d. 1032
+Rodolphus the 3d of Burgundy d. 1032 <https://en.wikipedia.org/wiki/Rudolph_III_of_Burgundy>
 Roger de Hoveden fl. 1192 H <https://en.wikipedia.org/wiki/Roger_of_Hoveden>
-Roger the 3d of Naples d. 1153. 58
+Roger the 3d of Naples d. 1153. 58 <https://en.wikipedia.org/wiki/Roger_II_of_Sicily>
 Rohault d. 1675. 55 M
 Roland fl. ab. 1220 Ph
 Rollin d. 1741. 80 Cr
@@ -2069,8 +2069,8 @@ Sanctorius fl. 1610 Ph <https://en.wikipedia.org/wiki/Santorio_Santorio>
 Sannazar d. 1530. 62 P <https://en.wikipedia.org/wiki/Jacopo_Sannazaro>
 Saosduchinus d. 647 BC
 
-Sapor 1st d. 273
-Sapor 2d d. 380
+Sapor 1st d. 273 <https://en.wikipedia.org/wiki/Shapur_I>
+Sapor 2d d. 380 <https://en.wikipedia.org/wiki/Shapur_II>
 Sappho fl. 600 BC P <https://en.wikipedia.org/wiki/Sappho>
 Savanorola d. 1498. 46 D
 Saville H. d. 1622. 73 M
@@ -2085,9 +2085,9 @@ Scanderbeg d. 1467. 63 <https://en.wikipedia.org/wiki/Skanderbeg>
 Schonerus J. fl. 1536 M
 Scioppius d. 1649. 73 Cr <https://en.wikipedia.org/wiki/Caspar_Schoppe>
 Scipio Africanus d. 184 BC ab. 51 <https://en.wikipedia.org/wiki/Scipio_Africanus>
-Scipio Africanus 2d d. 129. 56
+Scipio Africanus 2d d. 129 BC. 56 <https://en.wikipedia.org/wiki/Scipio_Aemilianus>
 Scipio Asiaticus fl. 190 BC <https://en.wikipedia.org/wiki/Lucius_Cornelius_Scipio_Asiaticus>
-Scipio Nasica Serapion d. af. 133 BC
+Scipio Nasica Serapion d. af. 133 BC <https://en.wikipedia.org/wiki/Publius_Cornelius_Scipio_Nasica_Serapio_(consul_138_BC)>
 Scribonius Largus Desig. fl. 10 Ph
 Scylax Chariandensis fl. 500 BC Geo
 Scymnus Chius fl. 90 BC Geo <https://en.wikipedia.org/wiki/Scymnus>
@@ -2433,20 +2433,20 @@ Wickliffe J. d. 1385 D
 Wicks, Thomas, fl. 1290 H
 Wikeham, William of, d. 1426. 80
 Wilkins d. 1672. 58 M
-William of Brandenburgh d. 1688
+William of Brandenburgh d. 1688 <https://en.wikipedia.org/wiki/Frederick_William,_Elector_of_Brandenburg>
 William the Conqueror d. 1087. 73
 William of Malmesbury fl. 1140 H <https://en.wikipedia.org/wiki/William_of_Malmesbury>
 William of Newbury fl. 1197 H
 William of Spires fl. 1081 M
 William of Tyre d. 1180 H <https://en.wikipedia.org/wiki/William_of_Tyre>
-Willis d. 1670. 49 Ph
+Willis d. 1670. 49 Ph <https://en.wikipedia.org/wiki/Thomas_Willis>
 
 Winstanley, Hamlet, d. 1756. 61 Pa <https://en.wikipedia.org/wiki/Hamlet_Winstanley>
 Wit, John de, d. 1672. 47 <https://en.wikipedia.org/wiki/Johan_de_Witt>
 Witikind fl. 781 <https://en.wikipedia.org/wiki/Widukind>
 Wolfe d. 1759. 34 <https://en.wikipedia.org/wiki/James_Wolfe>
 Wollaston d. 1724. 74 Mor. <https://en.wikipedia.org/wiki/William_Wollaston>
-Wolodimer of Russia d. 1008
+Wolodimer of Russia d. 1008 <https://en.wikipedia.org/wiki/Vladimir_the_Great>
 Wolsey d. 1531. 60  <https://en.wikipedia.org/wiki/Thomas_Wolsey>
 Wren, Christopher, d. 1723. 91 Ar. <https://en.wikipedia.org/wiki/Christopher_Wren>
 Xenocrates, fl. 0 Ph <https://en.wikipedia.org/wiki/Xenocrates_of_Aphrodisias>
@@ -2457,29 +2457,29 @@ Xenophon Ephesius fl. ab. 250 H P. <https://en.wikipedia.org/wiki/Xenophon_of_Ep
 Ximenes d. 1517. 80 <https://en.wikipedia.org/wiki/Francisco_Jim%C3%A9nez_de_Cisneros>
 Xiphilin fl. 1073 H. <https://en.wikipedia.org/wiki/John_Xiphilinus>
 York, Richard Duke of, d. 1460. 50 <https://en.wikipedia.org/wiki/Richard_of_York,_3rd_Duke_of_York>
-Yvo d. 1115 D
+Yvo d. 1115 D <https://en.wikipedia.org/wiki/Ivo_of_Chartres>
 Yusef of Morocco d. 1110. <https://en.wikipedia.org/wiki/Ivo_of_Chartres>
-Zacuti fl. 1474 M
+Zacuti fl. 1474 M <https://en.wikipedia.org/wiki/Abraham_Zacuto>
 Zaleucus fl. 450 H P. <https://en.wikipedia.org/wiki/Zaleucus>
 Zamolxis fl. 520 BC H P. <https://en.wikipedia.org/wiki/Zalmoxis>
 Zanzales d. 578 F
 Zechariah fl. 527 BC J <https://en.wikipedia.org/wiki/Zechariah_(Hebrew_prophet)>
 Zedekiah d. af. 587 BC <https://en.wikipedia.org/wiki/Zedekiah>
-Zeno d. 491. 66
+Zeno d. 491. 66 <https://en.wikipedia.org/wiki/Zeno_(emperor)>
 Zeno of Elea fl. 463 BC H P. <https://en.wikipedia.org/wiki/Zeno_of_Elea>
 Zeno Stoicus d. 264 BC. 98 H P. <https://en.wikipedia.org/wiki/Zeno_of_Citium>
 Zeno of Sydon fl. 83 BC H P. Ep <https://en.wikipedia.org/wiki/Zeno_of_Elea>
 Zenobia fl. 273 <https://en.wikipedia.org/wiki/Zenobia>
-Xephaniah fl. 626 BC J
+Xephaniah fl. 626 BC J <https://en.wikipedia.org/wiki/Zephaniah>
 Zerah d. 946
 Zeuxis fl. 397 BC Pa <https://en.wikipedia.org/wiki/Zeuxis>
-Zimisces, John, d. 975
+Zimisces, John, d. 975 <https://en.wikipedia.org/wiki/John_I_Tzimiskes>
 Zinzendorf d. 1760. 70 D <https://en.wikipedia.org/wiki/Nicolaus_Zinzendorf>
-Zisca d. 1424
-Zoe d. 919
+Zisca d. 1424 <https://en.wikipedia.org/wiki/Jan_%C5%BDi%C5%BEka>
+Zoe d. 919 <https://en.wikipedia.org/wiki/Zoe_Karbonopsina>
 Zoilus fl. 259 BC Cr <https://en.wikipedia.org/wiki/Zoilus>
 Zoharas fl. 1120 H
 Zoroaster fl. 510 BC H P. <https://en.wikipedia.org/wiki/Zoroaster>
-Zozimus fl. 427 H
+Zozimus fl. 427 H <https://en.wikipedia.org/wiki/Zosimus>
 Zucchero d. 1616. 66 Pa <https://en.wikipedia.org/wiki/Zucchero_Fornaciari>
-Zuinglius d. 1531. 44 D.
+Zuinglius d. 1531. 44 D. <https://en.wikipedia.org/wiki/Huldrych_Zwingli>
