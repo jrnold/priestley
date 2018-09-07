@@ -4,13 +4,13 @@
 #' categories ("Statesmen" and "Men of Learning") rather than six.
 #' Otherwise, the data is identical to that in `Biographies`.
 #'
-#' @format A data frame with 59 rows and 9 columns.
+#' @format A data frame with 59 rows and 8 columns.
 #' \describe{
 #' \item{row}{(integer) The row (from top to bottom, within each `division`) which the individual appears in the chart.}
-#' \item{label}{(string) The label used for the individual in the "Specimen" chart. This may be different than the one used in the name index.}
-#' \item{text}{(string) Text entry in the name index of the source.}
+#' \item{name}{(string) The name used for the individual in the "Specimen" chart. This may be different than the one used in the name index.}
+#' \item{text}{(string) Original text from name index.}
 #' \item{division}{(string) In the Specimen chart, individuals are divided into two broad classes of occupations: "Statesmen" and "Men of Learning".}
-#' \item{born_min}{(integer) Upper estimate of the birth year of an individual. This is used as the start of the uncertain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
+#' \item{born_min}{(integer) Lower estimate of the birth year of an individual. This is used as the start of the uncertain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
 #' \item{born_max}{(integer) Upper estimate of the birth year of an individual. This is used as the start of the certain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
 #' \item{died_min}{(integer) Lower estimate of the death year of an individual. This is used as the end of the certain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
 #' \item{died_max}{(integer) Upper estimate of the death year of an individual. This is used as the end of the uncertain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}

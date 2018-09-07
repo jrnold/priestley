@@ -4,7 +4,7 @@
 \name{Kings}
 \alias{Kings}
 \title{List of Rulers of Major Empires, 1300 BCE to 1800}
-\format{A data frame with 164 rows and 4 columns.
+\format{A data frame with 164 rows and 3 columns.
 \describe{
 \item{name}{(string) Name of the individual}
 \item{year}{(integer) Year in which the ruler ascended to power. Negative values indicate years BCE.}

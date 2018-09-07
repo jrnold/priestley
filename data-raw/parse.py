@@ -30,7 +30,7 @@ def get_occupations(data):
     occs = {}
     for d in data['divisions']:
         for abbr, v in d['occupations'].items():
-            occs[abbr] = v['label']
+            occs[abbr] = v['name']
     return occs
 
 
@@ -372,7 +372,7 @@ def add_intervals(x):
         x["died_max"] = x["died_min"]
         x["born_max"] = fl - (2 / 3) * age
         x["born_min"] = x["born_max"]
-        x['description'] = "lived around {flourished} and died at age {age}".\
+        x['description'] = "flourished in {flourished} and died at age {age}".\
             format(flourished=format_year(x['flourished']), age=x['age'])
     elif life_type == ("age_about", "born"):
         # ignore uncertainty with about
@@ -496,7 +496,7 @@ def add_intervals(x):
         x["born_max"] = fl - 20
         x["died_min"] = fl + 10
         x["died_max"] = fl + 30
-        x["description"] = "lived in about {flourished}".\
+        x["description"] = "flourished in {flourished}".\
             format(flourished=format_year(x["flourished"]))
     elif life_type == ("flourished_after", ):
         # add -10 to flourished
@@ -505,7 +505,7 @@ def add_intervals(x):
         x["born_max"] = fl - 10
         x["died_min"] = fl + 20
         x["died_max"] = fl + 50
-        x["description"] = "lived after {flourished}".\
+        x["description"] = "flourished after {flourished}".\
             format(flourished=format_year(x["flourished_after"]))
     elif life_type == ("flourished_before", ):
         # add +10 to flourished
@@ -514,7 +514,7 @@ def add_intervals(x):
         x["born_max"] = fl - 30
         x["died_min"] = fl
         x["died_max"] = fl + 20
-        x["description"] = "lived before {flourished}".\
+        x["description"] = "flourished before {flourished}".\
             format(flourished=format_year(x["flourished_before"]))
     elif life_type == ("flourished_about", ):
         # no certainty
@@ -523,7 +523,7 @@ def add_intervals(x):
         x["born_max"] = None
         x["died_min"] = None
         x["died_max"] = fl + 30
-        x["description"] = "lived around {flourished}".\
+        x["description"] = "flourished about {flourished}".\
             format(flourished=format_year(x["flourished_about"]))
     elif life_type == ("flourished_century", ):
         # century endpoints +/- extra flourished periods (30 years, 20 years)
@@ -531,7 +531,7 @@ def add_intervals(x):
         x["born_max"] = None
         x["died_min"] = None
         x["died_max"] = x['flourished_century'] + 70
-        x["description"] = "lived sometime around {flourished}".\
+        x["description"] = "flourished around {flourished}".\
             format(flourished=format_year(x["flourished_century"]))
     elif life_type == ("age_about", "born_about"):
         x['born_min'] = x["born_about"] - 5
@@ -556,63 +556,51 @@ def parse(filename, outfile, categories_filename):
     visitor = Visitor(categories)
     data = []
     with open(filename, "r") as f:
-        for line in f.readlines():
-            # remove URLs
-            # ignore lines starting with spaces
-            if re.match(r"^[ \t]", line) or line == "\n":
-                continue
-            m_url = re.search("<(.*)>", line)
-            if m_url:
-                url = m_url.group(1)
-                line = re.sub("<.*>", "", line).strip()
-            else:
-                url = None
-            m = re.search(r"(.*)\[(.*)\]\s*$", line)
-            if m:
-                line = m.group(1).strip()
-                editions = set(m.group(2).split(';'))
-                in_1764 = '1764' in editions
-                in_names_omitted = 'Names Omitted' in editions
-                in_1778 = '1778' in editions
-            else:
-                in_1764 = True
-                in_1778 = True
-                in_names_omitted = False
+      bios = yaml.load(f)
+    for person in bios:
+        print(person)
+        try:
+            parse_tree = parser.parse(person['text'].strip())
             try:
-                parse_tree = parser.parse(line.strip())
-                try:
-                    parsed = visit_parse_tree(parse_tree, visitor)
-                except IndexError as exc:
-                    raise exc
-            except NoMatch as exc:
-                print("ERROR:", line)
-                parsed = {}
-            parsed['text'] = line.strip()
-            parsed['in_1778'] = in_1778
-            parsed['in_1764'] = in_1764
-            parsed['in_names_omitted'] = in_names_omitted
-            parsed['url'] = url
-            add_intervals(parsed)
-            if 'occupation' in parsed:
-                parsed['occupation_abbr'] = parsed['occupation']
-                parsed['occupation'] = occupations[parsed['occupation_abbr']]
-            else:
-                parsed['occupation_abbr'] = None
-                parsed['occupation'] = "Monarch, Politician, or Military Person"
-            if 'sect' in parsed:
-                parsed["sect_abbr"] = parsed["sect"]
-                parsed["sect"] = sects[parsed["sect_abbr"]]
-            else:
-                parsed['sect'] = None
-                parsed['sect_abbr'] = None
-            occupation = parsed["occupation"]
-            if parsed["sect_abbr"]:
-                occupation += " (" + parsed["sect"] + ")"
-            parsed["description"] = "{name} was a {occupation} who {lived}.".\
-                format(name=parsed['name'],
-                       occupation=clean_occupation(occupation),
-                       lived=parsed['description'])
-            data.append(parsed)
+                parsed = visit_parse_tree(parse_tree, visitor)
+            except IndexError as exc:
+                raise exc
+        except NoMatch as exc:
+            print("ERROR:", parsed['text'])
+            raise Exception
+        add_intervals(parsed)
+        parsed["text"] = person['text']
+        if 'url' in person:
+            parsed['url'] = person['url']
+        else:
+            parsed['url'] = None
+        if 'editions' in person:
+            parsed['in_1764'] = '1764' in person['editions']
+            parsed['in_1778'] = '1778' in person['editions']
+            parsed['in_names_omitted'] = "Names Omitted" in person['editions']
+        else:
+            parsed['in_1764'] = parsed['in_1778'] = True
+            parsed['in_names_omitted'] = False
+        if 'occupation' in parsed:
+            parsed['occupation_abbr'] = parsed['occupation']
+            parsed['occupation'] = occupations[parsed['occupation_abbr']]
+        else:
+            parsed['occupation_abbr'] = None
+            parsed['occupation'] = "Monarch, Politician, or Military Person"
+        if 'sect' in parsed:
+            parsed["sect_abbr"] = parsed["sect"]
+            parsed["sect"] = sects[parsed["sect_abbr"]]
+        else:
+            parsed['sect'] = None
+            parsed['sect_abbr'] = None
+        occupation = parsed["occupation"]
+        if parsed["sect_abbr"]:
+            occupation += " (" + parsed["sect"] + ")"
+        parsed["description"] = "{name} was a {occupation} who {lived}.".\
+            format(name=parsed['name'],
+                   occupation=clean_occupation(occupation),
+                   lived=parsed['description'])
+        data.append(parsed)
     # add_intervals(data)
     with open(outfile, "w") as f:
         json.dump(data, f, indent=1)
@@ -627,7 +615,7 @@ def main():
                         help="Path to YAML file with Priestley's categories.",
                         default="Categories.yml")
     parser.add_argument('filename', type=str,
-                        help="Path to input text file.")
+                        help="Path to input YAML file.")
     parser.add_argument('-o', '--outfile', type=str,
                         help='Path to output JSON file')
     args = parser.parse_args()

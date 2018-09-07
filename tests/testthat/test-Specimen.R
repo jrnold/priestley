@@ -41,7 +41,6 @@ SPECIMEN_COLUMNS <-
   list(
     row = list(class = "integer", is_na = FALSE,
                conditions = list(quo(all(row >= 1 & row <= 8)))),
-    label = list(class = "character", is_na = FALSE),
     name = list(class = "character", is_na = FALSE),
     division = list(class = "character", is_na = FALSE,
                     enum = c("Men of Learning", "Statesmen")),

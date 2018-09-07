@@ -17,8 +17,7 @@ KINGS_COLUMNS <-
     category = list(class = "character", is_na = FALSE,
                     enum = c(str_c("Kings of ", c("Judah", "Persia", "England",
                                                   "Babylon", "Macedonia")),
-                             "Ptolemies of Egypt", "Roman Emperors")),
-    url = list(class = "character", is_na = FALSE)
+                             "Ptolemies of Egypt", "Roman Emperors"))
   )
 
 test_that("Kings has right number of rows", {

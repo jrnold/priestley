@@ -13,6 +13,8 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("priestley")
+library("ggplot2")
+library("dplyr")
 ```
 
 ## Introduction
@@ -21,8 +23,8 @@ Joseph Priestley's *A Chart of Biography* [@Priestley1864], first published in 1
 The **priestley** is a data package containing datasets used in the the biographic information used in the 1st (1764) and 7th (1778) editions of the the *Chart of Biography*.
 
 The timeline visualizes the lifespans of approximately two thousand individuals, 
-described as "the most distinguished in the annals of fame". 
-This timeline was popular in its era, being published 
+described as "the most distinguished in the annals of fame"
+(`r sum(Biographies$in_1778)` in the 1764 edition and `r sum(Biographies$in_1778)` in the 1778 edition).
 The stated criteria for selection into this list was "fame" rather than "merit".
 
 > My rule, I considered, was renown and not merit; acquired fame,
@@ -33,7 +35,7 @@ The stated criteria for selection into this list was "fame" rather than "merit".
 > deserved ever so well of it, if he had passed through
 > it without being much known.
 
-
+The chart organized individuals into six divisions based on their primary occupations.
 
 1. Statesmen and Warriors
 2. Divines and Physicians
@@ -41,28 +43,29 @@ The stated criteria for selection into this list was "fame" rather than "merit".
 4. Poets and Artists
 5. Orators and Critics
 
-The timeline was popular in 
-The timelines include approximately two thousand individuals
-(`r sum(Biographies$in_1778)` in the 1764 edition and `r sum(Biographies$in_1778)` in the 1778 edition) 
-
-The list of individuals was both Priestley's opinion and particular to an educated 
-18th century Englishman. However, the purpose of reproducing the data is not the 
-subject of the data itself or its quality, 
-but because it was used in a historically important data visualization.
-
-The timeline shows the names and lines indicating lifespan.
-The individuals were grouped into five categories, which are called "divisions"
-in the work.
-
 The data in this package come from the index of names  *Chart* was accompanied by a *A Description of a Chart of Biography: With a Catalogue of all the Names Inserted in It, and the Dates annexed to Them.*.
+The data was extracted from the OCR'd versions of the 1764 and 1778 editions provided by Stephen Boyd Davis [@Davis2010].
 This included an index of the names, birth date, death date, age, and primary occupation of the individuals included in the *Chart*.
+The original index entries looked like this:
+```{r echo=FALSE}
+select(ungroup(Biographies), text) %>%
+  head() %>%
+  print()
+```
+These parsed and normalized to generate the data included in this package.
+
+The package includes three data sets
+
+-   `Biographies`: Names, occupations, birth dates, and death dates for all individuals in the *Chart of Biography*
+-   `Kings`: Names and dates for the rules of major empires, used to annotate the axis of the *Chart of Biography*.
+-   `Specimen`: Names, birth dates, and death dates for a subset of individuals included in the chart, a *Specimen of a Chart of Biography*.
 
 ## Replication of a Specimen of a Chart of History
 
 *The Chart of Biography* was distributed with a pamphlet titled 
 *A Description of a Chart of Biography*, which documented the methodology of the chart and included an index of the individuals included in the chart.
-Since the full chart was 2 feet x 3 feet, the *Description* also included a chart titled *A Specimen of a Chart of Biography*, which was a subset of the full chart small enough to fit on a single page.
-The "Specimen" contained only `r nrow(Specimen)` individuals with lifespans between 800 BCE and 0, divided into two categories: "Men of Learning", and "Statesmen". 
+Since the full chart was 2 feet x 3 feet, the *Description* included a smaller chart titled *A Specimen of a Chart of Biography*.
+The "Specimen" contained only `r nrow(Specimen)` individuals with lifespans between 800 BCE and 0, divided into only two categories: "Men of Learning", and "Statesmen". 
 
 ![](PriestleyChart.gif)
 
@@ -70,16 +73,24 @@ Table: "A redacted version of Priestley's Chart of Biography (1765)."
 Wikimedia Commons contributors, "File:PriestleyChart.gif," Wikimedia Commons, the free media repository, <https://commons.wikimedia.org/w/index.php?title=File:PriestleyChart.gif&oldid=177413180>.
 
 The data frame `priestley::Specimen` contains the data necessary to reproduce this chart.
+Priestley indicated uncertainty in lifespans using dots.
+In our replication, the uncertain part of the lifespan is indicated using a thinner, gray line, while the certain section is indicated with a thicker, black line.
+The `priestley::Specimen` data contains four variables that are used to draw 
+the lifespans: `born_min`, `born_max`, `died_min`, and `died_max`.
+The longer, uncertain line extends from the earliest birth date (`born_min`) to 
+the latest death date (`died_max`), while the shorter certain line extends from the
+latest birth date (`born_max`) to the earliest death date (`died_min`).
+In some very uncertain cases, only `born_min` and `died_max` are available.
 
 ```{r specimen-chart,message = FALSE}
 library("ggplot2")
 
-p <- ggplot(priestley::Specimen) +
-  geom_segment(aes(y = row, yend = row, x = start_2, xend = end_2),
+ggplot(priestley::Specimen) +
+  geom_segment(aes(y = row, yend = row, x = born_min, xend = died_max),
                alpha = 0.5, size = 0.5) +
-  geom_segment(aes(y = row, yend = row, x = start_1, xend = end_1),
+  geom_segment(aes(y = row, yend = row, x = born_max, xend = died_min),
                size = 1) +
-  geom_text(aes(x = (start_2 + end_2) * 0.5, y = row, label = label),
+  geom_text(aes(x = (born_min + died_max) * 0.5, y = row, label = name),
             size = 3, vjust = "bottom", nudge_y = 0.25, color = "gray50") +
   facet_wrap(~ division, ncol = 1) +
   scale_x_continuous("", 
@@ -96,68 +107,55 @@ p <- ggplot(priestley::Specimen) +
         strip.text = element_text(face = "bold"))
 ```
 
-```{r}
-ggplotly(p) %>% 
-  plotly_json()
-```
-
-
 ## Replication of the Full Chart
 
-The full chart contains over 2,000 individuals and when printed was "about three feet in length,
-and two feet in breadth".  The data frame `priestley::Biographies` contains data on the
-individuals in the chart extracted from the name index.
+The full chart contains over 2,000 individuals.
+The original physical form of this chart was "about three feet in length, and two feet in breadth".
+The data frame `priestley::Biographies` contains data for all the the individuals in the chart extracted from the associated name index.
+The following chart 
 
-```{r message=FALSE, fig.width = 14, fig.height = 7}
+
+```{r message=FALSE, fig.width = 14, fig.height = 7,include=FALSE}
+library("plotly")
+library("dplyr")
+
 start_year <- -1300
 end_year <- 1800
+minor_breaks <- seq(start_year, end_year, by = 100)
+breaks <- minor_breaks[!(minor_breaks %% 500)]
 
-bios <- priestley::Biographies %>%
-  filter(in_1778) %>%
-  ungroup() %>%
-  mutate(row = layout_segments(start_2, end_2, gap = 100, random = FALSE)) %>%
-  ungroup()
+# Layout the segments
+Biographies <- priestley::Biographies %>%
+  group_by(division) %>%
+  mutate(row = layout_segments(born_min, died_max, gap = 50))
 
-plot_ly() %>%
-  add_segments(x = ~ start_2, xend = ~end_2, y = ~ row, yend = ~row, data = bios,
-               color = ~division,
-               size = I(1),
-               hovertext = ~text,
-               hoverinfo = "text", 
-               legendgroup = ~division, 
-               showlegend = FALSE) %>%
-  add_segments(x = ~start_1, xend = ~end_1, y = ~row, yend = ~row, data = bios,
-               color = ~division,
-               size = I(2),
-               hovertext = ~text, 
-               hoverinfo = "text",
-               legendgroup = ~division, 
-               showlegend = TRUE
-               ) %>%
-  layout(title = "A Chart of Biography",
-         hovermode = "closest",
-         legend = list(orientation = "h"),
-         xaxis = list(
-            title = "",
-            autotick = FALSE,
-            tick0 = (start_year %/% 100) * 100,
-            dtick = 100,
-            zeroline = FALSE,
-            mirror = "allticks",
-            side = "bottom",
-            rangeslider = list()
-         ),
-         yaxis = list(
-                title = "",
-                zeroline = FALSE,
-                showline = FALSE,
-                showticklabels = FALSE,
-                showgrid = FALSE
-         )
-        )
+p <- ggplot(data = Biographies) +
+  geom_segment(mapping = aes(x = born_min, xend = died_max, 
+                             y = row, yend = row, text = description),
+               color = "gray", size = 0.5) +
+  geom_segment(mapping = aes(x = born_max, xend = died_min, 
+                             y = row, yend = row, text = description),
+               color = "black", size = 1) +
+  facet_wrap(~ division, ncol = 1) +
+  scale_x_continuous("", breaks = breaks, minor_breaks = minor_breaks) +
+  ggtitle("A Chart of Biography") +
+  theme_minimal() +
+  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank())
+        
+p <- ggplotly(p, tooltip = "text") %>%
+  rangeslider(start = start_year, end = end_year) %>%
+  style(hoverlabel = list(
+                 bgcolor = "white",
+                 bordercolor = "white",
+                 font = list(color = "black")))
+
 ```
 
-```{r message=FALSE, fig.width = 14, fig.height = 7}
+```{r message=FALSE, fig.width = 14, fig.height = 7,include=FALSE, eval=FALSE}
 library("plotly")
 library("dplyr")
 
@@ -166,22 +164,26 @@ end_year <- 1800
 
 one_timeline <- function(`data_`, name) {
   plot_ly() %>%
-  add_segments(x = ~start_2, xend = ~end_2, y = ~row, yend = ~row,
+  add_segments(x = ~born_min, xend = ~died_max, y = ~row, yend = ~row,
                data = `data_`,
                size = I(1),
-               hovertext = ~text,
-               hoverinfo = "text", 
+               hovertext = ~description,
+               hoverinfo = "text",
+               hoverlabel = list(
+                 bgcolor = "white",
+                 bordercolor = "white",
+                 font = list(color = "black")
+               ),
                color = I("black"),
                alpha = 0.5,
                showlegend = FALSE
                ) %>%
-  add_segments(x = ~start_1, xend = ~end_1, y = ~row, yend = ~row,
+  add_segments(x = ~born_max, xend = ~died_min, y = ~row, yend = ~row,
                data = `data_`,
                sizes = 2,
                color = I("black"),
-               hovertext = ~text, 
-               hoverinfo = "text",
-               showlegend = FALSE
+               showlegend = FALSE,
+               hoverinfo = "none"
                ) %>%
   layout(yaxis = list(
             title = "",
@@ -197,7 +199,7 @@ divisions <- priestley::Biographies %>%
   filter(in_1778) %>%
   split(.$division) %>%
   map(~ mutate(., 
-               row = layout_segments(start_2, end_2, 
+               row = layout_segments(born_max, died_max, 
                                      gap = 100, random = FALSE)))
 
 max_rows <- map_int(divisions, ~ max(.x$row))
@@ -209,11 +211,11 @@ rulers <- plot_ly(data = priestley::Kings,
         mode = 'marker', 
         visible = FALSE) %>%
   layout(yaxis = list(
-                title = "",
-                zeroline = FALSE,
-                showline = FALSE,
-                showticklabels = FALSE,
-                showgrid = FALSE
+            title = "",
+            zeroline = FALSE,
+            showline = FALSE,
+            showticklabels = FALSE,
+            showgrid = FALSE
          ),
         annotations = list(
           text = Kings$name,
@@ -237,198 +239,11 @@ imap(divisions, one_timeline) %>%
          xaxis = list(
             title = "",
             autotick = FALSE,
-            tick0 = (start_year %/% 100) * 100,
+            tick0 = round(start_year, -2),
             dtick = 100,
             zeroline = FALSE,
-            # mirror = "allticks",
             side = "bottom",
-            # rangeslider = list()
+            rangeslider = list()
          ) 
         )  
 ```
-
-The full dataset is listed here:
-```{r}
-DT::datatable(priestley::Biographies)
-```
-
-
-## Details
-
-The names and dates in `priestley::Biographies` come from the name index included
-in the *Description of a Chart of Biography* that was distributed with the chart itself.
-The name index uses a regular, concise representation of the birth and death dates of individuals, but they can appear in several formats: indicating on or more of the year(s) in which an individual was born, died, lived, or "flourished", as well as several ways of indicating uncertainty ("before", "after", "about", and only indicating the Century).
-
-However, the name index from which this data is derived provides the birth and death dates of individuals in a variety of text descriptions, such as
-
-```{r echo=FALSE}
-priestley::Biographies %>%
-  slice(5) %>%
-  select(text) %>%
-  knitr::kable()
-```
-
-The *Description of a Chart of Biography* contains extensive discussion of how the lifespan segments were constructed from the available information. This section discusses how the segments in this data was generated.
-
-Examples in which the date of death and the age at death are known. These are drawn with a single solid black line since there is no uncertainty.
-
--   Pindar d. 435 BC. 86 P
--   Sophocles d. 406 BC 91 P
--   Xenophon d. 359 BC. ab. 90 H
--   Plato d. 348 BC. 81 HP
--   Terence d. 159 BC. 35 P
-
-> It is an imperfection which must necessarily attend every Chart of this
-> nature, that the time of the death, but more especially the time of the birth
-> of eminent men cannot always be found. In this case the compiler must content
-> himself with placing his line as near as he can conjecture from history where
-> his true place was, leaving marks to express the uncertainty
-> there is attending it. The method I have used in
-> this Chart is to express certainty by a full line, and
-> what is uncertain by dots or a broken line, dispro
-> of the dots in the following manner, according to the
-> kind or degree of the uncertainty they have to express.
->
-> If it be thought that a person was born or died but
-> a little before or after a certain time, the full line
-> begins or ends at the certain time, and a single dot only
-> is placed at the beginning or end of the line
-
-Examples include,
-
--   Herodotus b. 484 BC. d. af. 413 H
-
-> If history informs us that he was born or died
-> about a certain time, a dot is placed just under the
-> beginning or end of the full line
-
-Examples include,
-
--   Agis b. 24. BC. ab. 22
--   Thucydides d. ab. 391. ab. 80 H
-
-> If the birth be certain but the death uncertain, the line begins full but ends in dots.
-
-Examples include,
-
--   Abul Pharai b. 1226 l. af. 1285 H
--   Alain b. 1386 H
-
-> If, as is often the case, the death be known but the birth
-> unknown, the line begins with dots, and ends full
-
--   Epaminondas d. 363
-
-> When it is faid that a writer flourished at or
-> about a particular time, a short full line is drawn
-> about two-thirds before and one third after that particular time,
-> with three dots before and two after it; because, in
-general, men are said to flourish much
-> nearer the time of their death than the time of their
-birth.
-
--   Euclid fl. 300 BC. M
-
-
-> If it be uncertain even in what
-> century a person lived or flourished, there is no full
-> line made at all, but only dots or broken lines where
-> I imagine it is most probable he might have flourished.
-
-Priestley provides no other details about how long this line may be. However,
-the examples on this [chart](http://www.enoughroomforspace.org/wp-content/uploads/cartographies-of-time_20130505_0006.jpg) have between six and seven dots, which seem
-to correspond to 60--70 years.
-
--   Suidas fl. ab. 11 Cent. Cr                  
--   Hesychius fl. ab. 300 Cr
-
-```{r example-ages}
-examples <- c("Euclid fl. 300 BC M",
-              "Epaminondas d. 363 BC",
-              "Herodotus b. 484 BC d. af. 413 BC H",
-              "Suidas fl. ab. 11 Cent. Cr",
-              "Hesychius fl. ab. 300 Cr",
-              "Agis d. 241 BC ab. 22",
-              "Thucydides d. ab. 391 BC. ab. 80 H")
-              
-filter(Biographies, 
-       text %in% examples) %>%
-  select(text, start_2, start_1, end_1, end_2) %>%
-  knitr::kable()
-```
-
-Table: Examples of life segments generated from the text descriptions in 
-the index of names in the *Description of a Chart of Biography*.
-
-## Miscellaneous
-
-------- ----------------------------
-d.      died
-b.      born
-fl.     flourished
-af.     after
-ab.     about
-fl. ab. Considerable uncertainty
-B C.    before Christ
-------- ----------------------------
-
-Table: Date abbreviations appearing in the name index.
-
-```{r}
-library("glue")
-
-format_year <- function(x) {
-  if_else(is.na(x), 
-          NA_character_,
-          if_else(x < 0, str_c(abs(x) + 1L, "BCE", sep = " "), as.character(x)))
-}
-
-clean_occupation <- function(x) {
-  str_replace_all(str_to_lower(x), 
-                 c("christian" = "Christian",
-                   "muslim" = "Muslim",
-                   "jewish" = "Jewish",
-                   "greek" = "Greek"))
-}
-
-bios <- priestley::Biographies %>%
-  mutate(a_an = if_else(str_to_lower(str_sub(occupation, 1, 1)) %in%
-                          c("a", "e", "i", "o", "u"), "an", "a"),
-         flourished_str = str_c(case_when(
-           is.na(flourished) ~ "",
-           flourished_before ~ str_c(", was active before ", format_year(flourished)),
-           flourished_after ~ str_c(", was active before ", format_year(flourished)),
-           flourished_about ~ str_c(", was active in about ", format_year(flourished)),
-           !is.na(flourished) ~ str_c(", was active in ", format_year(flourished))
-         )),
-         born_str = str_c(case_when(
-           is.na(born) ~ "",
-           born_about ~ str_c(", was born in about ", format_year(born)),
-           TRUE ~ str_c(", born in ", format_year(born))
-         )),
-         lived_str = str_c(case_when(
-           is.na(lived) ~ "",
-           TRUE ~ str_c(", lived after ", format_year(lived))
-         )),
-         died_str = str_c(
-           case_when(
-             is.na(died) ~ "",
-             !is.na(age) & died_about ~ str_c(", died in about ", format_year(died), " at age ", age),
-             !is.na(age) & died_after ~ str_c(", died after ", format_year(died), " at age ", age),
-             !is.na(age) ~ str_c(", died in ", format_year(died), " at age ", age),
-             died_about ~ str_c(", died in about ", format_year(died), " at age ", age),
-             died_after ~ str_c(", died after ", format_year(died)),
-             TRUE ~ str_c(", died in ", format_year(died))
-           )
-         ),
-         age_str = str_c(case_when(
-           !is.na(died) ~ "",
-           !is.na(age) ~ str_c("died at age ", age),
-           TRUE ~ ""
-         )))
-
-glue("{name} was {a_an} {clean_occupation(occupation)}{born_str} {flourished_str}{died_str}{age_str}.",
-     .envir = bios)
-
-```
-

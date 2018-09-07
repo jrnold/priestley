@@ -4,25 +4,17 @@ comment: >
   apart from minor edits to modernize spelling.
 divisions:
 - name: "Statesmen and Warriors"
-  description: "Monarchs, Politicians, and Military Persons"
   occupations:
     NA:
-      label: "Politican/Military Person"
+      name: "Monarch, Politician, or Military Person"
       note: >
         In the original, these were not subdivided.
-  order: 1
-  links:
-  - "dbo:Politician"
-  - "dbo:MilitaryPerson"
-  - "dbo:Monarch"
 - name: "Divines and Metaphysicians"
   description: "Religious Persons and Philosophers"
   occupations:
     "H P":
-      label: Ancient Philosopher
-      original_label: "Heathen Philosopher"
-      links:
-      - "dbo:Philosopher"
+      name: Ancient Philosopher
+      original_name: "Heathen Philosopher"
       description: >
         HEATHEN PHILOSOPHERS, which are further subdivided according to their sects in the following manner:
         \[Ionic, Socractic, Cyrenaic, Megaric, Eleatic, Academic, Peripatetic, Stoic,
@@ -39,229 +31,128 @@ divisions:
       sects:
         Ion:
           name: Ionic
-          description: "Ionic"
-          links:
-          - "dbr:Ionian_School_(philosophy)"
         Soc:
           name: Socratic
-          description: "Socratic"
-          links:
-          - "dbr:Socrates"
         Cyr:
           name: Cyrenaic
-          links:
-          - "dbr:Cyrenaics"
-          - "https://en.wikipedia.org/wiki/Category:Cyrenaic_philosophers"
         Meg:
           name: Megaric
-          links:
-          - "dbr:Megarian_school"
-          - "https://en.wikipedia.org/wiki/Category:Megarian_philosophers"
         Ac:
           name: Academic
-          links:
-          - "dbr:Platonism"
-          - "https://en.wikipedia.org/wiki/Category:Academic_philosophers"
         Per:
           name: Peripatetic
-          links:
-          - "dbr:Peripatetic_School"
-          - "https://en.wikipedia.org/wiki/Category:Peripatetic_philosophers"
         Sto:
           name: Stoic
-          links:
-          - "dbr:Stoicism"
-          - "https://en.wikipedia.org/wiki/Category:Stoic_philosophers"
         Cyn:
           name: Cynic
-          links:
-          - "dbr:Cynicism_(philosophy)"
-          - "https://en.wikipedia.org/wiki/Category:Cynic_philosophers"
         Ital:
           name: Italic
-          links:
-          - "dbr:Pythagoreanism"
         Scept:
           name: Sceptic
-          links:
-          - "https://en.wikipedia.org/wiki/Philosophical_skepticism"
         Ep:
           name: Epicurean
-          links:
-          - "https://en.wikipedia.org/wiki/Epicureanism"
         Eleack:
           name: Eleack
         Eleat:
           name: Eleatic
-          links:
-          - "https://en.wikipedia.org/wiki/Category:Eleatic_philosophers"
-          - "https://en.wikipedia.org/wiki/Eleatic_School"
     "F":
-      label: Christian Church Father
-      original_label: "Christian Father"
-      links:
-      - "dbo:Religious"
+      name: Christian Church Father
+      original_name: "Christian Father"
       description: >
         Signifies CHRISITIAN FATHERS, including those commonly called HERETICS,
         who will be found in the Chart between those who are usually called Orthodox
         and the Jews.
     "J":
-      label: Jewish Religious Person
-      original_label: "Jew"
-      links:
-      - "dbo:Religious"
+      name: Jewish Religious Person
+      original_name: "Jew"
       description: >
         Signifies a JEW, either a PROPHET, RABBI, or HIGH-PRIEST, etc.
     "D":
-      label: Christian Religious Person
-      original_label: "Christian Divine"
-      links:
-      - "dbo:Religious"
+      name: Christian Religious Person
+      original_name: "Christian Divine"
       description: >
         "Christian DIVINES, arbitrarily distinguished from the Fathers, by behind
         made to commence from the time of Mohammed, and including those called
         SCHOOLMEN.
     "Moh":
-      label: Muslim Religious Person
-      links:
-      - "dbo:Religious"
-      original_label: "Mohammaden Doctor"
+      name: Muslim Religious Person
+      original_name: "Mohammaden Doctor"
     "Met":
-      label: Metaphysician
-      links:
-      - "dbo:Philosopher"
+      name: Metaphysician
     "Mor":
-      label: Philosopher
-      original_label: "Moralist"
-      links:
-       - "dbo:Philosopher"
+      name: Philosopher
+      original_name: "Moralist"
     "Po":
-      label: Pope
-      links:
-      - "dbo:Pope"
+      name: Pope
     "Pol":
-      label: Political Writer
-      links:
-      - "dbo: Writer"
+      name: Political Writer
       description: >
         POLITICAL WRITERS, such as Grotius, Puffendorf, and even
         Algernon Sydney
 - name: "Mathematicians and Physicians"
   description: "Scientists"
-  order: 2
-  links:
-  - "dbo:Scientist"
   occupations:
     "M":
-      label: Mathematician or Scientist
-      original_label: Mathematician
-      links:
-      - "dbr:Mathematician"
+      name: Mathematician or Scientist
+      original_name: Mathematician
       description: >
         MATHEMATICIANS, including NATURALISTS, NATURAL PHILOSOPHERS, and ASTRONOMERS.
     "Ph":
-      label: Physician
+      name: Physician
     "Chy":
-      label: Chemist
-      links:
-      - "dbr:Chemist"
+      name: Chemist
       description: CHYMIST
 - name: "Poets and Artists"
   description: "Artists"
-  order: 3
-  links:
-  - "dbo:Artist"
-  - "dbo:Writer"
   occupations:
     "P":
-      label: "Poet"
-      links:
-      - "dbo:Poet"
+      name: "Poet"
     "Pa":
-      label: "Painter"
-      links:
-      - "dbo:Painter"
+      name: "Painter"
     "St":
-      label: "Sculptor"
-      original_label: "Statuary"
-      links:
-      - "dbo:Sculptor"
+      name: "Sculptor"
+      original_name: "Statuary"
     "Mu":
-      label: "Musician"
-      links:
-      - "dbo:Musician"
+      name: "Musician"
     "Pr":
-      label: "Printer"
+      name: "Printer"
     "Act":
-      label: "Actor"
-      links:
-      - "dbo:Actor"
+      name: "Actor"
     "Eng":
-      label: "Engraver"
-      links:
-      - "dbo:Sculptor"
+      name: "Engraver"
     "Ar":
-      label: "Architect"
-      links:
-      - "dbo:Architect"
+      name: "Architect"
     "Engineer":
-      label: "Engineer"
-      links:
-      - "dbo:Engineer"
+      name: "Engineer"
 - name: "Orators and Critics"
   description: "Writers and Orators"
-  links:
-  - "dbo:Writer"
-  order: 4
   occupations:
     "Or":
-      label: Orator
-      links:
-      - "dbr:orator"
+      name: Orator
     "Cr":
-      label: Critic
+      name: Critic
       description: >
         CRITIC, including all the Miscellaneous writers of Antiquity,
         and those who are usually called SOPHISTS.
-      links:
-      - "dbo:Writer"
-      - "dbr:Critic"
-      - "dbr:Sophism"
     "Bel":
-      label: Writer
-      original_label: "Belles Lettres"
-      links:
-      - "dbo:Writer"
+      name: Writer
+      original_name: "Belles Lettres"
       description: >
         Miscellaneous writers in any branch of the BELLES LETTRES among
         the Moderns.
 - name: "Historians, Antiquarians, and Lawyers"
   description: "Historians, Explorers, and Lawyers"
-  order: 5
   occupations:
     "H":
-      label: Historian
-      links:
-      - "dbo:Historian"
+      name: Historian
     "Trav":
-      label: Explorer
-      original_label: Traveller
+      name: Explorer
+      original_name: Traveller
     "Geo":
-      label: Geographer
-      links:
-      - "dbr:Geographer"
+      name: Geographer
     "Ch":
-      label: Chronologer
+      name: Chronologer
     "Ant":
-      label: Antiquary
+      name: Antiquary
     "L":
-      label: Lawyer
-      links:
-      - "dbo:Lawyer"
-abbreviations:
-  "d.": died
-  "b.": born
-  "fl.": flourished
-  "af.": after
-  "ab.": about
-  "B C.": before Christ
+      name: Lawyer

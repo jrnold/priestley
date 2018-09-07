@@ -20,10 +20,10 @@ build-docs: build-data
 build-data: $(DATA_FILES) $(R_FILES)
 	@echo $(DATA_FILES) $(R_FILES)
 
-priestley_bios.json: parse.py names_from_description_of_the_chart.txt Categories.yml
+Biographies.json: parse.py Biographies.yml Categories.yml
 	python $< $(word 2,$^) --outfile $@
 
-$(DATA_DIR)/Biographies.rda: Biographies.R priestley_bios.json Categories.yml
+$(DATA_DIR)/Biographies.rda: Biographies.R Biographies.json Categories.yml
 	Rscript $^ $@
 
 $(DATA_DIR)/Kings.rda: Kings.R Kings.csv

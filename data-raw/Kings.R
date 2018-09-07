@@ -18,7 +18,8 @@ main <- function() {
              text = col_character(),
              url = col_character(),
              comment = col_character()
-            ), na = "")
+            ), na = "") %>%
+    select(-url)
 
   parsed_names <-
     as_tibble(str_match(kings$text, "(.*?)\\s*(\\d+)(?:\\s+(B\\. C\\.))?$"))
@@ -29,7 +30,7 @@ main <- function() {
   kings[["year"]] <- as.integer(kings[["year"]])
 
   e <- rlang::new_environment()
-  e[[object]] <- select(kings, name, year, category, url)
+  e[[object]] <- select(kings, name, year, category)
   save(list = object, file = output_path, compress = "bzip2", envir = e)
 }
 

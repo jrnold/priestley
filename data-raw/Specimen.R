@@ -37,7 +37,7 @@ main <- function() {
     # delete duplicatesf
     filter(!(name == "Aratus" & born_min > 0),
            !(name == "Socrates" & born_min > 0)) %>%
-    select(row, label, name, division, text, born_min, born_max,
+    select(row, name = label, division, text, born_min, born_max,
            died_min, died_max)
 
   dir.create(here::here("data"), showWarnings = FALSE)

@@ -86,6 +86,7 @@ BIOGRAPHY_COLUMNS <-
                conditions = list(
                  quo(is.na(age) | (age > 0 & age < 120))
                )),
+    age_about = list(class = "logical", is_na = TRUE),
     died = list(class = "integer",
                 conditions = list(
                   quo(is.na(died) | (died > START_YEAR & died < END_YEAR))
@@ -128,7 +129,7 @@ test_that("Biographies is a tibble", {
   expect_is(Biographies, "tbl_df")
 })
 
-test_that("Biographies nas all columns", {
+test_that("Biographies has all columns", {
   expect_named(Biographies, names(BIOGRAPHY_COLUMNS), ignore.order = TRUE)
 })
 

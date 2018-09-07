@@ -2,7 +2,7 @@ ENUM <- list(
   divisions = c("Mathematicians and Physicians", "Statesmen and Warriors",
                 "Divines and Metaphysicians", "Poets and Artists",
                 "Historians, Antiquarians, and Lawyers", "Orators and Critics"),
-  occupation = c("Actor", "Ancient Greek Philosopher", "Antiquary", "Architect",
+  occupation = c("Actor", "Ancient Philosopher", "Antiquary", "Architect",
                  "Chemist", "Christian Church Father",
                  "Christian Religious Person",
                  "Chronologer", "Critic", "Engineer", "Engraver", "Explorer",

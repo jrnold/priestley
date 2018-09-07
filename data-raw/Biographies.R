@@ -19,16 +19,16 @@ format_person <- function(x) {
 process_bio <- function(x) {
   out <- as_tibble(x[c("name", "text", "division",
                        "description")])
-  for (i in c("born_max", "born_min", "died_min", "died_max", "age",
+  for (i in c("born_max", "born_min", "died_min", "died_max",
               "in_1764", "in_1778", "in_names_omitted",
-              "url", "description")) {
+              "description")) {
     out[[i]] <- x[[i]]
   }
   for (i in c("occupation", "occupation_abbr", "sect", "sect_abbr")) {
     out[[i]] <- x[[i]] %||% NA_character_
   }
   out[["lifetype"]] <- list(flatten_chr(x[["lifetype"]]))
-  for (i in str_subset(names(x), "^(born|died|lived|flourished)")) {
+  for (i in str_subset(names(x), "^(born|died|lived|flourished|age)")) {
     if (str_detect(i, "(born|died)_(min|max)")) {
       next
     }
@@ -47,6 +47,9 @@ process_bio <- function(x) {
       out[["born_about"]] <- str_detect(i, "about")
     } else if (str_detect(i, "lived")) {
       out[["lived"]] <- x[[i]]
+    } else if (str_detect(i, "age")) {
+      out[["age"]] <- x[[i]]
+      out[["age_about"]] <- str_detect(i, "about")
     }
   }
   out
@@ -68,11 +71,17 @@ create_bios <- function(bios_json) {
               funs(as.integer)) %>%
     mutate(flourished = as.integer(flourished)) %>%
   # order columns
-  select(text, name, in_1764, in_1778, in_names_omitted, division, occupation_abbr, occupation,
-         sect_abbr, sect, born_max, died_min, born_min, died_max, born, born_about,
-         died, died_about,
-         died_after, age, flourished, flourished_about, flourished_before,
-         flourished_after, flourished_century, lived, lifetype, description)
+  select(text, description, name,
+         in_1764, in_1778, in_names_omitted,
+         division, occupation_abbr, occupation, sect_abbr, sect,
+         born_max, died_min, born_min, died_max, born,
+         lifetype,
+         born_about,
+         died, died_about, died_after,
+         age, age_about,
+         flourished, flourished_about, flourished_before, flourished_after,
+         flourished_century,
+         lived)
 }
 
 main <- function() {

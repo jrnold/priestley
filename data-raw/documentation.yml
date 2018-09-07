@@ -1,5 +1,5 @@
 name: priestley
-title: >
+title: >-
   Data from Joseph Priestley's "A Chart of Biography"
 homepage: "https://github.com/jrnold/priestley"
 version: "1.0.0"
@@ -10,7 +10,7 @@ contributors:
 resources:
 - name: Biographies
   title: List of persons in Priestley's A Chart of Biography
-  description: >
+  description: >-
     Table with biographical information: names, birth dates, death dates, ages,
     occupation, category, and the lifespan segments to use in the timeline
     for all individuals in the 1st (1764) and ... (1778) editions of
@@ -22,41 +22,48 @@ resources:
         type: string
         constraints:
           required: true
-        description: Text entry in the name index of the source.
+        description: Original text from name index.
       - &name
         name: name
         type: string
         constraints:
           required: true
         description: Name of the individual
+      - &description
+        name: description
+        type: string
+        constraints:
+          required: true
+        description: >-
+          Natural language description of the individual.
       - &in_1764
         name: in_1764
         type: boolean
         constraints:
           required: true
-        description: >
+        description: >-
           Is this entry in the 1764 edition?
       - &in_1778
         name: in_1778
         type: boolean
         constraints:
           required: true
-        description: >
+        description: >-
           Is this entry in the 1778 edition?
       - &in_names_omitted
         name: in_names_omitted
         type: boolean
         constraints:
           required: true
-        description: >
+        description: >-
           Is this entry in the "Names Omitted" section of the 1764 edition?
       - &division
         name: division
         type: string
-        description: >
+        description: >-
           The *Chart* divides individuals into six categories of occupations,
           which are referred to as "divisions" in the text.
-        constraints: >
+        constraints:
           enum:
           - Mathematicians and Physicians
           - Statesmen and Warriors
@@ -68,7 +75,7 @@ resources:
       - &occupation_abbr
         name: occupation_abbr
         type: string
-        description: >
+        description: >-
           Abbreviation of the occupation, as used in the name index.
         constraints:
           required: false
@@ -106,7 +113,7 @@ resources:
       - &occupation
         name: occupation
         type: string
-        description: >
+        description: >-
           Full name of the occupation. These values are generally the same as
           the provided documentation from the *Description*, but in a few cases
           they were modernized to avoid archaic or offensive language.
@@ -147,7 +154,7 @@ resources:
       - &sect_abbr
         name: sect_abbr
         type: string
-        description: >
+        description: >-
           Abbreviation of the particular sect/school of Greek philosophy to which
           the individual belonged, as used in the
         constraints:
@@ -169,7 +176,7 @@ resources:
       - &sect
         name: sect
         type: string
-        description: >
+        description: >-
           Name of the particular sect/school of Greek philosophy to which
           the individual belonged.
         constraints:
@@ -190,83 +197,83 @@ resources:
           - Stoic
       - &born_min
         name: born_min
-        label: "Year of birth (min)"
+        label: "Year of birth (minimum)"
         type: integer
-        description: >
-          Upper estimate of the birth year of an individual. This is used as the
+        description: >-
+          Lower estimate of the birth year of an individual. This is used as the
           start of the uncertain segment of a lifespan on the timeline. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
-        constraints: >
+        constraints:
           minimum: -1300
           maximum: 1800
           required: false
       - &born_max
         name: born_max
-        label: "Year of birth (max)"
+        label: "Year of birth (maximum)"
         type: integer
-        description: >
+        description: >-
           Upper estimate of the birth year of an individual. This is used as the
           start of the certain segment of a lifespan on the timeline. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
-        constraints: >
+        constraints:
           minimum: -1300
           maximum: 1800
           required: true
       - &died_min
         name: died_min
-        label: "Year of Death (min)"
+        label: "Year of Death (minimum)"
         type: integer
-        description: >
+        description: >-
           Lower estimate of the death year of an individual. This is used as the
           end of the certain segment of a lifespan on the timeline. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
-        constraints: >
+        constraints:
           minimum: -1300
           maximum: 1800
           required: false
       - &died_max
         name: died_max
-        label: "Year of Death (max)"
+        label: "Year of Death (maximum)"
         type: integer
-        description: >
+        description: >-
           Upper estimate of the death year of an individual. This is used as the
           end of the uncertain segment of a lifespan on the timeline. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
-        constraints: >
+        constraints:
           minimum: -1300
           maximum: 1800
           required: true
       - &born
         name: born
         type: integer
-        constraints: >
+        constraints:
           minimum: -1300
           maximum: 1800
           required: true
-        description: >
+        description: >-
           Birth year of an individual. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
       - &born_about
         name: born_about
         type: boolean
-        description: >
+        description: >-
           Indicator for whether the birth year is approximate: "born about".
         constraints:
           required: false
       - &died
         name: died
         type: integer
-        description: >
+        description: >-
           Death year of an individual. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
-        constraints: >
+        constraints:
           minimum: -1300
           maximum: 1800
           required: true
       - &died_about
         name: died_about
         type: boolean
-        description: >
+        description: >-
           Indicator for whether the death year is approximate: "died about".
         constraints:
           required: false
@@ -275,7 +282,7 @@ resources:
         type: boolean
         constraints:
           required: false
-        description: >
+        description: >-
           Indicator for whether the death year should be interpreted as the
           lower value of a death, "died after".
       - &age
@@ -285,8 +292,15 @@ resources:
           required: false
           minimum: 0
           maximum: 120
-        description: >
+        description: >-
           Age at which an individual died.
+      - &age_about
+        name: age_about
+        type: boolean
+        constraints:
+          required: false
+        description: >-
+          Is the age listed in `age` an approximation, "age about"?
       - &flourished
         name: flourished
         type: integer
@@ -302,28 +316,28 @@ resources:
         type: boolean
         constraints:
           required: false
-        description: >
+        description: >-
           Indicator for whether `flourished` is approximate, "flourished about".
       - &flourished_before
         name: flourished_before
         type: boolean
         constrains:
           required: false
-        description: >
+        description: >-
           Indicator for whether `flourished `means "flourished before".
       - &flourished_after
         name: flourished_after
         type: boolean
         constraints:
           required: false
-        description: >
+        description: >-
           Indicator for whether `flourished` means "flourished after".
       - &flourished_century
         name: flourished_century
         type: boolean
         constraints:
           required: false
-        description: >
+        description: >-
           Indicator for whether the year in `flourished` refers to the century.
       - &lived
         name: lived
@@ -333,24 +347,24 @@ resources:
           minimum: -1300
           maximum: 1800
           required: false
-        description: >
+        description: >-
           Year that an individual lived after. Negative numbers
           are years BCE (0 = 1 BCE, -1 = 2 BCE).
 
       - &lifetype
         name: lifetype
         label: Life-type
-        description: >
+        description: >-
           A vector describing which of born, died, flourished, etc.
           is available for this entry.
         type: list
 - name: Specimen
   title: List of persons in Priestley's A Specimen of A Chart of Biography
-  description: >
+  description: >-
     The "Specimen" only contains ... individuals, divided into two categories
     ("Statesmen" and "Men of Learning") rather than six. Otherwise, the data is
     identical to that in `Biographies`.
-  details: >
+  details: >-
     This dataset is the same as `Biographies`, except for the selection of a
     subset of individuals, `division` comprising only two categories,
     the addition of a `row` variable indicating the row (within each `division`)
@@ -361,17 +375,17 @@ resources:
     fields:
       - name: row
         type: integer
-        description: >
+        description: >-
           The row (from top to bottom, within each `division`) which the
           individual appears in the chart.
         constraints:
           required: true
           minimum: 1
           maximum: 8
-      - name: label
+      - name: name
         type: string
-        description: >
-          The label used for the individual in the "Specimen" chart. This
+        description: >-
+          The name used for the individual in the "Specimen" chart. This
           may be different than the one used in the name index.
         constraints:
           required: true
@@ -383,7 +397,7 @@ resources:
           enum:
             - Statesmen
             - Men of Learning
-        description: >
+        description: >-
           In the Specimen chart, individuals are divided into two broad
           classes of occupations: "Statesmen" and "Men of Learning".
       - <<: *born_min
@@ -393,7 +407,7 @@ resources:
 
 - name: Kings
   title: List of Rulers of Major Empires, 1300 BCE to 1800
-  description: >
+  description: >-
     This table contains a list of rulers and the dates of their successions
     which were used annotate the margin of Joseph Priestley's a Chart of History.
     The list consists  Kings of Judah (1095 BCE--608 BCE), Nebuchadnezzer (608 BCE),
@@ -408,13 +422,13 @@ resources:
     fields:
     - name: name
       type: string
-      description: >
+      description: >-
         Name of the individual
       constraints:
         required: true
     - name: year
       type: integer
-      description: >
+      description: >-
         Year in which the ruler ascended to power. Negative values indicate
         years BCE.
       constraints:
@@ -423,7 +437,7 @@ resources:
         maximum: 1800
     - name: category
       type: string
-      description: >
+      description: >-
         The empire or kingdom that the ruler ruled.
       constraints:
         enum:
