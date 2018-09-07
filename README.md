@@ -7,7 +7,7 @@ of the first examples of a timeline in its current form. The first
 edition was printed in 1764, and it was reprinted in various editions.
 Data from the 1st (1764) and 1778 editions are included in this package.
 *A Chart of Biography* visualizes the lifespans of more than 2,000
-famous individuals from 1300 BCE to 1800 AD. A smaller example chart, “A
+famous individuals from 1300 BCE to 1800 CE. A smaller example chart, “A
 Specimen of a Chart of Biography”, is displayed below.
 
 This R package contains the data from that chart. It comprises three
@@ -21,3 +21,10 @@ data sets.
     dates of the individuals in the “Speciment” chart.
 
 ![](vignettes/PriestleyChart.gif)
+
+Install
+=======
+
+**priestley** is not on CRAN. It can be installed using
+
+    devtools::install_github("jrnold/priestley")

@@ -15,3 +15,10 @@ This R package contains the data from that chart. It comprises three data sets.
 -   `Specimen` contains the names, occupations, birth dates, and death dates of the individuals in the "Speciment" chart.
 
 ![](vignettes/PriestleyChart.gif)
+
+# Install
+
+**priestley** is not on CRAN. It can be installed using
+```{r eval=FALSE}
+devtools::install_github("jrnold/priestley")
+```
