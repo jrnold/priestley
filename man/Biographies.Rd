@@ -36,13 +36,21 @@
 \item{lived}{(integer) Year that an individual lived after. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).}
 \item{lifetype}{(list) A vector describing which of born, died, flourished, etc. is available for this entry.}
 }}
+\source{
+Davis, S. B. (2010) "Names from Desc Chart 1764 OCRcorrected.pdf" <https://drive.google.com/file/d/0B4KIGf4GncycZGRmNWY4Y2QtZjNjNS00OGEzLWE0MjctMzY0NzFhM2I2YjFj/view?authkey=CPGfreEB>.
+}
 \usage{
 Biographies
 }
 \description{
 Table with biographical information: names, birth dates, death dates,
 ages, occupation, category, and the lifespan segments to use in the
-timeline for all individuals in the 1st (1764) and ... (1778) editions
+timeline for all individuals in the 1st (1764) and 7th (1778) editions
 of Joseph Priestley's *A Chart of Biography*.
+}
+\references{
+Priestley, J. (1765) *A chart of biography to the Right Honourable Hugh Lord Willoughby of Parham this chart is with the greatest respect and gratitude inscribed by his Lordship's most obedient and most humble servant Joseph Priestley*. 1st ed. London. <http://explore.bl.uk/BLVU1:LSCOP-ALL:BLLSFX3360000000234303>
+Priestley, J. (1764) *A Description of a Chart of Biography* 1st ed. Warrington.
+Priestley, J. (1778). *A Description of a Chart of Biography; with a Catalogue of All the Names Inserted in It, and the Dates Annexed to Them*. 7th ed. London: J. Johnson.
 }
 \keyword{datasets}

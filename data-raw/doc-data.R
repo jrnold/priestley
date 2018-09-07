@@ -22,6 +22,11 @@ create_docs <- function(docs, input, output) {
     "#'",
     "<description>",
     "#'",
+    "#' @source <source>",
+    "#'",
+    "#' @references",
+    "<references>",
+    "#'",
     "#' @format A data frame with <rows> rows and <cols> columns.",
     "#' \\describe{",
     "<columns>",
@@ -46,7 +51,11 @@ create_docs <- function(docs, input, output) {
         glue_collapse(sep = "\n"),
       rows = nrow(e[[name]]),
       cols = ncol(e[[name]]),
-      name = name
+      name = name,
+      source = docs[["rd_source"]],
+      references = str_c("#' ",
+                         flatten_chr(str_split(docs[["rd_references"]], "\n")),
+                         collapse = "\n")
     )
   )
 

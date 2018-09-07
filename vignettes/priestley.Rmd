@@ -19,21 +19,12 @@ library("dplyr")
 
 ## Introduction
 
-Joseph Priestley's *A Chart of Biography* [@Priestley1864], first published in 1764, is the, or one of the, first instances of a modern timeline [@FriendleySigalHarnanasingh2013,@Friendly2006,@Friendly,@RosenbergGrafton2013,@wiki:chart-biography,@Davis2012].
-The **priestley** is a data package containing datasets used in the the biographic information used in the 1st (1764) and 7th (1778) editions of the the *Chart of Biography*.
+Joseph Priestley's *A Chart of Biography* [@Priestley1765,@Priestley1778a], first published in 1764, is the, or one of the, first instances of a modern timeline [@FriendleySigalHarnanasingh2013,@Friendly2006,@Friendly,@RosenbergGrafton2013,@wiki:chart-biography,@Davis2012].
+The **priestley** package contains the data used to create the *A Chart of Biography*.
 
-The timeline visualizes the lifespans of approximately two thousand individuals, 
-described as "the most distinguished in the annals of fame"
-(`r sum(Biographies$in_1778)` in the 1764 edition and `r sum(Biographies$in_1778)` in the 1778 edition).
-The stated criteria for selection into this list was "fame" rather than "merit".
-
-> My rule, I considered, was renown and not merit; acquired fame,
-> and not deserved reputation: so that a person who had
-> made a great noise in the world, though he were
-> known by nothing but the devastation he had made
-> in it, was more acceptable to me than one who had
-> deserved ever so well of it, if he had passed through
-> it without being much known.
+*A Chart of Biography* visualizes the lifespans of approximately two thousand individuals, described as "the most distinguished in the annals of fame"
+(`r sum(priestley::Biographies$in_1778)` in the 1764 edition [@Priestley1764] and `r sum(priestley::Biographies$in_1778)` in the 1778 edition [@Priestley1778a]).
+The stated criteria for selection into this list was "fame", not "merit".
 
 The chart organized individuals into six divisions based on their primary occupations.
 
@@ -43,24 +34,32 @@ The chart organized individuals into six divisions based on their primary occupa
 4. Poets and Artists
 5. Orators and Critics
 
-The data in this package come from the index of names  *Chart* was accompanied by a *A Description of a Chart of Biography: With a Catalogue of all the Names Inserted in It, and the Dates annexed to Them.*.
-The data was extracted from the OCR'd versions of the 1764 and 1778 editions provided by Stephen Boyd Davis [@Davis2010].
+The data in this package come from the index of names *Chart* was accompanied by a *A Description of a Chart of Biography: With a Catalogue of all the Names Inserted in It, and the Dates annexed to Them.*.
+The data was extracted from the Stephen Boyd Davis's corrected OCR'd versions of the name indexes for the 1st (1764) and 7th (1778) editions [@Priestley1764,@Priestley1778a,@Davis2010].
 This included an index of the names, birth date, death date, age, and primary occupation of the individuals included in the *Chart*.
-The original index entries looked like this:
-```{r echo=FALSE}
-select(ungroup(Biographies), text) %>%
-  head() %>%
-  print()
-```
-These parsed and normalized to generate the data included in this package.
+@Priestley1764 used a concise format for these index entries:
 
-The package includes three data sets
+```{r echo=FALSE, results='asis'}
+set.seed(1234)
+priestley::Biographies %>%
+  ungroup() %>%
+  filter(in_1778) %>%
+  sample_n(5) %>%
+  `[[`("text") %>%
+  stringr::str_c("-", ., sep = " ", collapse = "\n") %>%
+  cat(., "\n")
+
+```
+
+I parsed and normalized these entries to generate the data included in this package.
+
+The package includes three data sets:
 
 -   `Biographies`: Names, occupations, birth dates, and death dates for all individuals in the *Chart of Biography*
 -   `Kings`: Names and dates for the rules of major empires, used to annotate the axis of the *Chart of Biography*.
 -   `Specimen`: Names, birth dates, and death dates for a subset of individuals included in the chart, a *Specimen of a Chart of Biography*.
 
-## Replication of a Specimen of a Chart of History
+## Replication of "A Specimen of a Chart of Biography"
 
 *The Chart of Biography* was distributed with a pamphlet titled 
 *A Description of a Chart of Biography*, which documented the methodology of the chart and included an index of the individuals included in the chart.
@@ -82,7 +81,7 @@ the latest death date (`died_max`), while the shorter certain line extends from 
 latest birth date (`born_max`) to the earliest death date (`died_min`).
 In some very uncertain cases, only `born_min` and `died_max` are available.
 
-```{r specimen-chart,message = FALSE}
+```{r specimen-chart, message = FALSE}
 library("ggplot2")
 
 ggplot(priestley::Specimen) +
@@ -107,13 +106,10 @@ ggplot(priestley::Specimen) +
         strip.text = element_text(face = "bold"))
 ```
 
-## Replication of the Full Chart
+## Replication of "The Chart of Biography"
 
-The full chart contains over 2,000 individuals.
-The original physical form of this chart was "about three feet in length, and two feet in breadth".
+The full chart contained over 2,000 individuals, and in its physical form was "about three feet in length, and two feet in breadth".
 The data frame `priestley::Biographies` contains data for all the the individuals in the chart extracted from the associated name index.
-The following chart 
-
 
 ```{r message=FALSE, fig.width = 14, fig.height = 7,include=FALSE}
 library("plotly")
@@ -146,7 +142,7 @@ p <- ggplot(data = Biographies) +
         panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank())
         
-p <- ggplotly(p, tooltip = "text") %>%
+ggplotly(p, tooltip = "text") %>%
   rangeslider(start = start_year, end = end_year) %>%
   style(hoverlabel = list(
                  bgcolor = "white",
@@ -246,4 +242,18 @@ imap(divisions, one_timeline) %>%
             rangeslider = list()
          ) 
         )  
+```
+
+# Name Index in "The Chart of Biography"
+
+The individuals in the *The Chart of Biography* (1778 edition) can be viewed
+in the following table.
+
+```{r echo=FALSE}
+library(DT)
+priestley::Biographies %>%
+  filter(in_1778) %>%
+  select(name, description, born_min, born_max,
+         died_min, died_max) %>%
+  datatable(rownames = FALSE)
 ```

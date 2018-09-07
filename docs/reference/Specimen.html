@@ -114,31 +114,26 @@ Otherwise, the data is identical to that in `Biographies`.</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 59 rows and 23 columns.</p><dl class='dl-horizontal'>
+    <p>A data frame with 59 rows and 8 columns.</p><dl class='dl-horizontal'>
 <dt>row</dt><dd><p>(integer) The row (from top to bottom, within each `division`) which the individual appears in the chart.</p></dd>
-<dt>label</dt><dd><p>(string) The label used for the individual in the "Specimen" chart. This may be different than the one used in the name index.</p></dd>
-<dt>text</dt><dd><p>(string) Text entry in the name index of the source.</p></dd>
-<dt>name</dt><dd><p>(string) Name of the individual</p></dd>
+<dt>name</dt><dd><p>(string) The name used for the individual in the "Specimen" chart. This may be different than the one used in the name index.</p></dd>
+<dt>text</dt><dd><p>(string) Original text from name index.</p></dd>
 <dt>division</dt><dd><p>(string) In the Specimen chart, individuals are divided into two broad classes of occupations: "Statesmen" and "Men of Learning".</p></dd>
-<dt>occupation_abbr</dt><dd><p>(string) Abbreviation of the occupation, as used in the name index.</p></dd>
-<dt>occupation</dt><dd><p>(string) Full name of the occupation. These values are generally the same as the provided documentation from the *Description*, but in a few cases they were modernized to avoid archaic or offensive language.</p></dd>
-<dt>start_1</dt><dd><p>(integer) Upper estimate of the birth year of an individual. This is used as the start of the certain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
-<dt>end_1</dt><dd><p>(integer) Lower estimate of the death year of an individual. This is used as the end of the certain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
-<dt>start_2</dt><dd><p>(integer) Lower estimate of the birth year of an individual. This is used as the start of the uncertain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
-<dt>end_2</dt><dd><p>(integer) Upper estimate of the death year of an individual. This is used as the end of the uncertain segment of an lifespan on a chart. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
-<dt>born</dt><dd><p>(integer) Birth year of an individual. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
-<dt>born_about</dt><dd><p>(boolean) Indicator for whether the birth year is approximate: "born about".</p></dd>
-<dt>died</dt><dd><p>(integer) Death year of an individual. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
-<dt>died_about</dt><dd><p>(boolean) Indicator for whether the death year is approximate: "died about".</p></dd>
-<dt>died_after</dt><dd><p>(boolean) Indicator for whether the death year should be interpreted as the lower value of a death, "died after".</p></dd>
-<dt>age</dt><dd><p>(integer) Age at which an individual died.</p></dd>
-<dt>flourished</dt><dd><p>(integer) Year in which an a individual was flourishing, meaning that the individual was active in their occupation. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
-<dt>flourished_about</dt><dd><p>(boolean) Indicator for whether `flourished` is approximate, "flourished about".</p></dd>
-<dt>flourished_before</dt><dd><p>(boolean) Indicator for whether `flourished `means "flourished before".</p></dd>
-<dt>flourished_after</dt><dd><p>(boolean) Indicator for whether `flourished` means "flourished after".</p></dd>
-<dt>flourished_century</dt><dd><p>(boolean) Indicator for whether the year in `flourished` refers to the century.</p></dd>
-<dt>lived</dt><dd><p>(integer) Year that an individual lived after. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
+<dt>born_min</dt><dd><p>(integer) Lower estimate of the birth year of an individual. This is used as the start of the uncertain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
+<dt>born_max</dt><dd><p>(integer) Upper estimate of the birth year of an individual. This is used as the start of the certain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
+<dt>died_min</dt><dd><p>(integer) Lower estimate of the death year of an individual. This is used as the end of the certain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
+<dt>died_max</dt><dd><p>(integer) Upper estimate of the death year of an individual. This is used as the end of the uncertain segment of a lifespan on the timeline. Negative numbers are years BCE (0 = 1 BCE, -1 = 2 BCE).</p></dd>
 </dl>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Davis, S. B. (2010) "Names from Desc Chart 1764 OCRcorrected.pdf" &lt;https://drive.google.com/file/d/0B4KIGf4GncycZGRmNWY4Y2QtZjNjNS00OGEzLWE0MjctMzY0NzFhM2I2YjFj/view?authkey=CPGfreEB&gt;.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Priestley, J. (1765) *A chart of biography to the Right Honourable Hugh Lord Willoughby of Parham this chart is with the greatest respect and gratitude inscribed by his Lordship's most obedient and most humble servant Joseph Priestley*. 1st ed. London. &lt;http://explore.bl.uk/BLVU1:LSCOP-ALL:BLLSFX3360000000234303&gt;
+Priestley, J. (1764) *A Description of a Chart of Biography* 1st ed. Warrington.
+Priestley, J. (1778). *A Description of a Chart of Biography; with a Catalogue of All the Names Inserted in It, and the Dates Annexed to Them*. 7th ed. London: J. Johnson.</p>
     
 
   </div>
@@ -147,6 +142,10 @@ Otherwise, the data is identical to that in `Biographies`.</p>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
+
+      <li><a href="#source">Source</a></li>
+
+      <li><a href="#references">References</a></li>
           </ul>
 
   </div>

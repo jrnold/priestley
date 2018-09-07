@@ -3,7 +3,8 @@ Type: Package
 Title: Priestley's Chart of Biography Data
 Version: 0.0.1
 Description: Data from Joseph Priestley's, "A Chart of Biography" (1765, 1778),
-    the first known example of visual timeline.
+    the first known example of visual timeline. This package also contains
+    a function for laying out line segments in rows so that they do not overlap.
 License: MIT + file LICENSE
 LazyData: true
 Authors@R: person("Jeffrey", "Arnold", role = c("aut", "cre"), email = "jeffrey.arnold@gmail.com")
@@ -13,6 +14,7 @@ Imports:
     Rdpack,
     tibble
 Suggests:
+    DT,
     ggplot2,
     knitr,
     plotly,
@@ -26,3 +28,5 @@ RoxygenNote: 6.1.0
 Language: en-US
 RdMacros: Rdpack
 Encoding: UTF-8
+URL: https://github.com/jrnold/priestley
+BugReports: https://github.com/jrnold/priestley/issues

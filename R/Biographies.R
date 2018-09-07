@@ -2,8 +2,15 @@
 #'
 #' Table with biographical information: names, birth dates, death dates,
 #' ages, occupation, category, and the lifespan segments to use in the
-#' timeline for all individuals in the 1st (1764) and ... (1778) editions
+#' timeline for all individuals in the 1st (1764) and 7th (1778) editions
 #' of Joseph Priestley's *A Chart of Biography*.
+#'
+#' @source Davis, S. B. (2010) "Names from Desc Chart 1764 OCRcorrected.pdf" <https://drive.google.com/file/d/0B4KIGf4GncycZGRmNWY4Y2QtZjNjNS00OGEzLWE0MjctMzY0NzFhM2I2YjFj/view?authkey=CPGfreEB>.
+#'
+#' @references
+#' Priestley, J. (1765) *A chart of biography to the Right Honourable Hugh Lord Willoughby of Parham this chart is with the greatest respect and gratitude inscribed by his Lordship's most obedient and most humble servant Joseph Priestley*. 1st ed. London. <http://explore.bl.uk/BLVU1:LSCOP-ALL:BLLSFX3360000000234303>
+#' Priestley, J. (1764) *A Description of a Chart of Biography* 1st ed. Warrington.
+#' Priestley, J. (1778). *A Description of a Chart of Biography; with a Catalogue of All the Names Inserted in It, and the Dates Annexed to Them*. 7th ed. London: J. Johnson.
 #'
 #' @format A data frame with 2418 rows and 29 columns.
 #' \describe{
