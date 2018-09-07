@@ -10,6 +10,14 @@ Data from Joseph Priestley's, "A Chart of Biography" (1765, 1778),
     the first known example of visual timeline. This package also contains
     a function for laying out line segments in rows so that they do not overlap.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jrnold/priestley}
+  \item Report bugs at \url{https://github.com/jrnold/priestley/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Jeffrey Arnold \email{jeffrey.arnold@gmail.com}
 

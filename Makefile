@@ -1,34 +1,49 @@
 PYTHON ?= python3
 RSCRIPT ?= Rscript
 
-DATASETS = Biographies Kings Specimen
-RDA_FILES = $(addprefix data/,$(addsuffix .rda,$(DATASETS)))
-R_FILES = $(addprefix R/,$(addsuffix .R,$(DATASETS)))
+DATASETS := Biographies Kings Specimen
 
-build: $(RDA_FILES) $(R_FILES) docs website
+DATA_DIR = data
+R_DIR = R
 
-data-raw/priestley_bios.json: data-raw/parse.py data-raw/names_from_description_of_the_chart.txt data-raw/Categories.yml
-	$(PYTHON) $< --categories-filename $(word 3,$^) -o $@ $(word 2,$^)
+DATA_FILES = $(addsuffix .rda,$(addprefix $(DATA_DIR)/,$(DATASETS)))
+R_FILES = $(addsuffix .R,$(addprefix $(R_DIR)/,$(DATASETS)))
 
-data/Biographies.rda: data-raw/Biographies.R data-raw/priestley_bios.json
-	$(RSCRIPT) $<
+.PHONY: all
+all: build
 
-data/Kings.rda: data-raw/Kings.R data-raw/priestley_kings.tsv
-	$(RSCRIPT) $<
+.PHONY: build
+build: build-sources build-docs README.md build-site
 
-data/Specimen.rda: data-raw/Specimen.R data-raw/small-chart.yml data/Biographies.rda
-	$(RSCRIPT) $<
+.PHONY: build-docs
+build-docs: build-sources
+	Rscript -e 'devtools::document()'
 
-R/%.R: data/%.rda data-raw/documentation.yml
-	$(RSCRIPT) data-raw/doc-data.R data-raw/documentation.yml $^
+.PHONY: build-sources
+build-sources: $(DATA_FILES) $(R_FILES)
 
-.PHONY: docs
-docs:
-	$(RSCRIPT) -e 'devtools::document()'
+data-raw/Biographies.json: data-raw/parse.py data-raw/Biographies.yml data-raw/Categories.yml
+	$(PYTHON) $< $(word 2,$^) --outfile $@
 
-.PHONY: pkgdown
-website:
+$(DATA_DIR)/Biographies.rda: data-raw/Biographies.R data-raw/Biographies.json data-raw/Categories.yml
+	$(RSCRIPT) $^ $@
+
+$(DATA_DIR)/Kings.rda: data-raw/Kings.R data-raw/Kings.csv
+	$(RSCRIPT) $^ $@
+
+$(DATA_DIR)/Specimen.rda: data-raw/Specimen.R data/Biographies.rda data-raw/Specimen.yml
+	$(RSCRIPT) $^ $@
+
+$(R_DIR)/%.R: $(DATA_DIR)/%.rda data-raw/doc-data.R data-raw/documentation.yml
+	$(RSCRIPT) data-raw/doc-data.R data-raw/documentation.yml $< $@
+
+.PHONY: build-site
+build-site: build-sources
 	$(RSCRIPT) -e 'pkgdown::build_site()'
 
+README.md: README.Rmd
+	$(RSCRIPT) -e 'rmarkdown::render("$<")'
+
+.PHONY: test
 test:
 	$(RSCRIPT) -e 'devtools::check()'
